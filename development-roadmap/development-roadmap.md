@@ -2,7 +2,7 @@ VENSLY. — Code in Rhythm
 Project: Vensly Benaya's interactive developer portfolio
 Product direction: Professional full-stack engineering meets music and 3D interaction
 Stack: Next.js App Router, TypeScript, Tailwind CSS, Three.js / React Three Fiber, Vercel
-Status: Planning — implementation phases must be explicitly approved one at a time
+Status: Phase 1 foundation implemented and locally verified; Vercel preview deferred by Vensly. Phase 2 awaits approval.
 Last updated: 2026-10-27
 
 1. Mission and release strategy
@@ -145,15 +145,19 @@ Learning focus: product scoping, content modeling, and acceptance criteria.
 PHASE 1 — Repository, Next.js scaffold, and design system
 Goal: create a clean, understandable Next.js foundation.
 
+Implementation note (2026-10-27): Local foundation and checks are complete. Existing root app/ and @/* alias retained per team rules instead of a src/ migration. Node 24 LTS is declared; checks ran on Node 24.21.0. Git and the GitHub origin already exist, but GitHub CLI authentication needs repair before future pushes. Vensly explicitly deferred connecting Vercel, so the original live-preview acceptance gate remains pending. See README.md for verification details. Phase 2 has not started.
+
 Tasks
-- [ ] Initialize vensly-portfolio with Next.js App Router, TypeScript, ESLint, Tailwind, src/, npm and @/* import alias. Use a supported Node.js LTS release.
-- [ ] Initialize Git, add a sensible .gitignore, and connect a GitHub repository with an agreed name.
-- [ ] Explain layout.tsx, page.tsx, globals.css, public, package.json and server/client rendering.
-- [ ] Implement global palette tokens, font setup, spacing and buttons.
-- [ ] Build minimal Container, Section, Button, Header, and Footer components only as needed.
-- [ ] Set title/description metadata and a temporary favicon; ensure keyboard-only nav works.
-- [ ] Render a basic homepage and create an early Vercel preview from the GitHub repo.
-- [ ] Run lint, TypeScript checking and production build.
+- [x] Verify existing Next.js App Router, TypeScript, ESLint, Tailwind, npm and @/* alias; retain root app/ organization. Declare and validate with Node 24 LTS.
+- [x] Verify existing Git repository, sensible .gitignore, and existing venslyg/portfolio-new GitHub origin.
+- [ ] Repair GitHub CLI authentication before future push operations.
+- [x] Explain layout.tsx, page.tsx, globals.css, public, package.json and server/client rendering in README.md.
+- [x] Implement global palette tokens, font setup, spacing and buttons.
+- [x] Build minimal Container, Section, Button, Header, and Footer components only as needed.
+- [x] Set title/description metadata and a temporary favicon; verify keyboard-only navigation.
+- [x] Render and locally verify a basic homepage at mobile, tablet, and desktop widths.
+- [ ] Create an early Vercel preview from the GitHub repo — deferred by Vensly.
+- [x] Run lint, TypeScript checking and production build.
 Deliverables: runnable repository, shared layout and live preview URL.
 
 Acceptance gate: npm run dev works; preview builds; no TypeScript, lint or production-build errors; desktop/mobile shell is legible.
