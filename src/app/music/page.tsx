@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/layout/container/container';
 import { InteractiveSynthesizer } from '@/components/visuals/interactive-synthesizer/interactive-synthesizer';
+import { AcousticStringLab } from '@/components/music/acoustic-string-lab/acoustic-string-lab';
+import { PolyrhythmMatrix } from '@/components/music/polyrhythm-matrix/polyrhythm-matrix';
 
 export const metadata: Metadata = {
   title: 'Music Lab',
@@ -11,8 +13,19 @@ export const metadata: Metadata = {
 
 export default function MusicPage() {
   return (
-    <div className="py-[var(--section-space)]">
+    <div className="pt-3 sm:pt-4 pb-[var(--section-space)]">
       <Container>
+        {/* Back to Homepage Button */}
+        <div className="mb-6">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-4 py-2 font-mono text-xs font-semibold text-muted transition-all hover:border-accent hover:bg-surface hover:text-foreground hover:shadow-md"
+          >
+            <span className="transition-transform duration-200 group-hover:-translate-x-1 text-accent">←</span>
+            <span>Back to homepage</span>
+          </Link>
+        </div>
+
         {/* Header */}
         <header className="mb-14 max-w-3xl">
           <p className="font-mono text-xs uppercase tracking-widest text-accent">
@@ -37,7 +50,7 @@ export default function MusicPage() {
               Instrument Lab Overview
             </h2>
             <p className="mt-3 text-muted max-w-2xl leading-relaxed">
-              A sandbox for experimental browser instruments. Each instrument explores sound synthesis, physical acoustic modeling, or pitch detection—sound starts only when you choose to play.
+              A sandbox for experimental browser instruments. Each instrument explores sound synthesis, physical acoustic modeling, or polyrhythmic sequencing—sound starts strictly on user interaction.
             </p>
           </div>
 
@@ -53,7 +66,7 @@ export default function MusicPage() {
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-foreground">Interactive Synthesizer</h3>
                 <p className="mt-2 text-xs leading-relaxed text-muted">
-                  3D mechanical keyboard running Web Audio oscillator synthesis with dynamic key physics and envelope triggers.
+                  Solid 3D mechanical keyboard running Web Audio oscillator synthesis with dynamic key physics, realistic chassis, and OLED spectrum.
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-muted">
@@ -63,61 +76,74 @@ export default function MusicPage() {
               </div>
             </div>
 
-            {/* Instrument 2: Guitar & String Modeling (Future Iteration) */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-border bg-surface/20 p-6 opacity-85">
+            {/* Instrument 2: Acoustic String Lab (Active) */}
+            <div className="relative flex flex-col justify-between rounded-2xl border border-accent-secondary/40 bg-surface/40 p-6 shadow-lg shadow-accent-secondary/5 backdrop-blur-sm">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-border bg-surface px-2.5 py-0.5 font-mono text-[11px] text-muted">
-                    ◌ In Development
+                  <span className="rounded-full border border-accent-secondary/40 bg-accent-secondary/10 px-2.5 py-0.5 font-mono text-[11px] text-accent-secondary">
+                    ● Active Instrument
                   </span>
                   <span className="font-mono text-xs text-muted">02 / Strings</span>
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-foreground">Acoustic String Lab</h3>
                 <p className="mt-2 text-xs leading-relaxed text-muted">
-                  Physical modeling synthesis simulating nylon and steel string vibration, tension harmonics, and fingerboard fretwork.
+                  Physical modeling synthesis simulating 6-string acoustic vibration, tension harmonics, customizable tunings, and interactive fretboard strumming.
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-muted">
                 <span className="rounded bg-surface px-2 py-0.5 border border-border">Karplus-Strong</span>
                 <span className="rounded bg-surface px-2 py-0.5 border border-border">Harmonics</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">Canvas API</span>
+                <span className="rounded bg-surface px-2 py-0.5 border border-border">Interactive Fretboard</span>
               </div>
             </div>
 
-            {/* Instrument 3: Percussion & Polyrhythms (Future Iteration) */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-border bg-surface/20 p-6 opacity-85">
+            {/* Instrument 3: Polyrhythm Matrix (Active) */}
+            <div className="relative flex flex-col justify-between rounded-2xl border border-amber-400/40 bg-surface/40 p-6 shadow-lg shadow-amber-400/5 backdrop-blur-sm">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-border bg-surface px-2.5 py-0.5 font-mono text-[11px] text-muted">
-                    ◌ In Development
+                  <span className="rounded-full border border-amber-400/40 bg-amber-400/10 px-2.5 py-0.5 font-mono text-[11px] text-amber-300">
+                    ● Active Instrument
                   </span>
                   <span className="font-mono text-xs text-muted">03 / Percussion</span>
                 </div>
                 <h3 className="mt-4 text-xl font-bold text-foreground">Polyrhythm Matrix</h3>
                 <p className="mt-2 text-xs leading-relaxed text-muted">
-                  Euclidean rhythm generator and synthesized membrane drums exploring odd meters and syncopated acoustic pulses.
+                  16-step procedural drum sequencer and Euclidean rhythm generator. Synthesizes kicks, snares, hats, and claves with real-time tempo control.
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-muted">
                 <span className="rounded bg-surface px-2 py-0.5 border border-border">Euclidean Math</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">AudioBuffer</span>
+                <span className="rounded bg-surface px-2 py-0.5 border border-border">Step Sequencer</span>
                 <span className="rounded bg-surface px-2 py-0.5 border border-border">BPM Sync</span>
               </div>
             </div>
           </div>
 
-          {/* ================= FEATURED PLAYABLE SYNTHESIZER ================= */}
-          <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-background/80 p-4 sm:p-8">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">Playable Synthesizer Stage</h3>
-                <p className="text-xs text-muted">Click or tap keys to synthesize notes. Sound is strictly opt-in.</p>
+          {/* ================= PLAYABLE INSTRUMENT SUITE ================= */}
+          <div className="mt-14 space-y-12">
+            {/* Stage 1: Synthesizer */}
+            <div className="overflow-hidden rounded-2xl border border-border bg-background/80 p-4 sm:p-8">
+              <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
+                <div>
+                  <div className="inline-flex items-center gap-2 font-mono text-xs text-accent">
+                    <span className="size-2 rounded-full bg-accent" />
+                    <span>Instrument 01 // 3D Audio Synthesis</span>
+                  </div>
+                  <h3 className="mt-1 text-xl font-bold text-foreground">Interactive Synthesizer Stage</h3>
+                  <p className="text-xs text-muted">Click or tap keys to synthesize notes. Solid chassis with accurate key action.</p>
+                </div>
+                <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-xs text-accent">
+                  Web Audio Ready
+                </span>
               </div>
-              <span className="rounded-full border border-accent/40 bg-accent/10 px-3 py-1 font-mono text-xs text-accent">
-                AudioContext Ready
-              </span>
+              <InteractiveSynthesizer />
             </div>
-            <InteractiveSynthesizer />
+
+            {/* Stage 2: Acoustic String Lab */}
+            <AcousticStringLab />
+
+            {/* Stage 3: Polyrhythm Drum Matrix */}
+            <PolyrhythmMatrix />
           </div>
         </section>
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { playNote } from '@/components/visuals/audio-synth/audio-synth';
@@ -75,44 +75,20 @@ export function SynthesizerModel({ isPaused = false, audioEnabled = true }: Synt
 
   const [activeKey, setActiveKey] = useState<string | null>(null);
 
-  // Target and smoothed scroll progress
-  const targetScrollRef = useRef(0);
-  const smoothedScrollRef = useRef(0);
-
-  // Track window scroll for dispersion
-  useEffect(() => {
-    function handleScroll() {
-      const scrollY = window.scrollY || window.pageYOffset;
-      const progress = Math.min(Math.max(scrollY / 600, 0), 1);
-      targetScrollRef.current = progress;
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   // Frame animation loop
   useFrame((state, delta) => {
     if (!rootGroupRef.current) return;
 
-    // Smooth scroll interpolation with spring damping
-    smoothedScrollRef.current = THREE.MathUtils.lerp(
-      smoothedScrollRef.current,
-      targetScrollRef.current,
-      delta * 6
-    );
-    const dispersion = smoothedScrollRef.current;
     const time = state.clock.getElapsedTime();
 
     if (!isPaused) {
       // Gentle harmonic idle floating
-      rootGroupRef.current.position.y = Math.sin(time * 1.2) * 0.06 - dispersion * 0.7;
+      rootGroupRef.current.position.y = Math.sin(time * 1.2) * 0.04;
 
       // Pointer parallax tracking
-      const targetRotX = 0.42 + state.pointer.y * 0.15 + dispersion * 0.3;
-      const targetRotY = -0.32 + state.pointer.x * 0.22 + dispersion * 0.35;
-      const targetRotZ = -0.06 + dispersion * 0.12;
+      const targetRotX = 0.42 + state.pointer.y * 0.12;
+      const targetRotY = -0.32 + state.pointer.x * 0.18;
+      const targetRotZ = -0.04;
 
       rootGroupRef.current.rotation.x = THREE.MathUtils.damp(
         rootGroupRef.current.rotation.x,
@@ -134,51 +110,36 @@ export function SynthesizerModel({ isPaused = false, audioEnabled = true }: Synt
       );
     }
 
-    // 1. Chassis movement on scroll
+    // 1. Chassis stays firmly positioned
     if (chassisRef.current) {
-      chassisRef.current.position.z = -dispersion * 1.4;
-      chassisRef.current.position.y = -dispersion * 0.4;
+      chassisRef.current.position.set(0, 0, 0);
     }
 
-    // 2. Animate White Keys dispersion
+    // 2. Animate White Keys accurately (accurate key press motion, no dispersion)
     whiteKeyRefs.current.forEach((mesh, i) => {
       if (!mesh) return;
       const xBase = WHITE_KEY_OFFSET + i * WHITE_KEY_SPACING;
-      const fanAngle = (i - (WHITE_KEY_COUNT - 1) / 2) * 0.12;
       const isPressed = activeKey === `w-${i}`;
 
-      const disperseX = Math.sin(fanAngle) * dispersion * 1.4;
-      const disperseY = Math.abs(Math.sin(fanAngle)) * dispersion * 0.85 + dispersion * 0.5;
-      const disperseZ = Math.cos(fanAngle) * dispersion * 1.1;
-      const disperseRotX = dispersion * (0.25 + (i % 3) * 0.05);
-      const disperseRotY = fanAngle * dispersion * 0.8;
-
-      mesh.position.x = xBase + disperseX;
-      mesh.position.y = (isPressed ? -0.04 : 0) + disperseY;
-      mesh.position.z = disperseZ;
-      mesh.rotation.x = disperseRotX;
-      mesh.rotation.y = disperseRotY;
+      mesh.position.x = xBase;
+      mesh.position.y = isPressed ? -0.045 : 0;
+      mesh.position.z = 0;
+      mesh.rotation.x = isPressed ? 0.035 : 0;
+      mesh.rotation.y = 0;
     });
 
-    // 3. Animate Black Keys dispersion
+    // 3. Animate Black Keys accurately (accurate key press motion, no dispersion)
     blackKeyRefs.current.forEach((mesh, idx) => {
       if (!mesh) return;
       const offsetIndex = BLACK_KEY_INDICES[idx];
       const xBase = WHITE_KEY_OFFSET + offsetIndex * WHITE_KEY_SPACING;
-      const fanAngle = (offsetIndex - (WHITE_KEY_COUNT - 1) / 2) * 0.14;
       const isPressed = activeKey === `b-${idx}`;
 
-      const disperseX = Math.sin(fanAngle) * dispersion * 1.7;
-      const disperseY = (0.7 + Math.cos(fanAngle)) * dispersion * 1.0;
-      const disperseZ = dispersion * 1.3;
-      const disperseRotX = dispersion * -0.25;
-      const disperseRotY = fanAngle * dispersion * 0.9;
-
-      mesh.position.x = xBase + disperseX;
-      mesh.position.y = (isPressed ? -0.045 : 0) + disperseY;
-      mesh.position.z = disperseZ;
-      mesh.rotation.x = disperseRotX;
-      mesh.rotation.y = disperseRotY;
+      mesh.position.x = xBase;
+      mesh.position.y = isPressed ? -0.04 : 0;
+      mesh.position.z = 0;
+      mesh.rotation.x = isPressed ? 0.035 : 0;
+      mesh.rotation.y = 0;
     });
 
     // 4. Animate 3D Equalizer Spectrum Bars on the OLED screen
@@ -191,23 +152,16 @@ export function SynthesizerModel({ isPaused = false, audioEnabled = true }: Synt
       bar.position.y = (bar.scale.y * 0.18) / 2;
     });
 
-    // 5. Floating particle shards dispersion animation
+    // 5. Ambient particles float gently around the chassis without explosion
     if (particlesRef.current) {
       const posAttr = particlesRef.current.geometry.attributes.position as THREE.BufferAttribute;
       const posArray = posAttr.array as Float32Array;
 
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         const i3 = i * 3;
-        const vx = PARTICLE_VELOCITIES[i3];
-        const vy = PARTICLE_VELOCITIES[i3 + 1];
-        const vz = PARTICLE_VELOCITIES[i3 + 2];
-
-        const angle = time * 0.5 + i;
-        const radius = dispersion * 3.2;
-
-        posArray[i3] = INITIAL_POSITIONS[i3] + vx * dispersion + Math.cos(angle) * radius * 0.35;
-        posArray[i3 + 1] = INITIAL_POSITIONS[i3 + 1] + vy * dispersion + Math.sin(time + i) * 0.2;
-        posArray[i3 + 2] = INITIAL_POSITIONS[i3 + 2] + vz * dispersion + Math.sin(angle) * radius * 0.35;
+        posArray[i3] = INITIAL_POSITIONS[i3] + Math.sin(time * 0.6 + i) * 0.08;
+        posArray[i3 + 1] = INITIAL_POSITIONS[i3 + 1] + Math.cos(time * 0.5 + i) * 0.08;
+        posArray[i3 + 2] = INITIAL_POSITIONS[i3 + 2] + Math.sin(time * 0.4 + i) * 0.05;
       }
       posAttr.needsUpdate = true;
     }

@@ -63,7 +63,7 @@ export function SynthesizerScene({
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
           <span className="font-mono text-[0.68rem] text-muted">
-            Click / touch keys • Scroll to disperse
+            Click / touch keys • Solid 3D Instrument
           </span>
         </div>
 

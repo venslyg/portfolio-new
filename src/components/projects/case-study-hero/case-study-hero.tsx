@@ -8,26 +8,36 @@ type CaseStudyHeroProps = {
 export function CaseStudyHero({ project }: CaseStudyHeroProps) {
   return (
     <header className="mb-12">
-      {/* Breadcrumb */}
-      <nav aria-label="Breadcrumbs" className="mb-6">
-        <ol className="flex items-center gap-2 font-mono text-xs text-muted">
-          <li>
-            <Link href="/" className="transition-colors hover:text-foreground">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden="true">/</li>
-          <li>
-            <Link href="/projects" className="transition-colors hover:text-foreground">
-              Work
-            </Link>
-          </li>
-          <li aria-hidden="true">/</li>
-          <li aria-current="page" className="text-accent">
-            {project.title}
-          </li>
-        </ol>
-      </nav>
+      {/* Back to Homepage Button & Breadcrumbs */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+        <Link
+          href="/"
+          className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-4 py-2 font-mono text-xs font-semibold text-muted transition-all hover:border-accent hover:bg-surface hover:text-foreground hover:shadow-md"
+        >
+          <span className="transition-transform duration-200 group-hover:-translate-x-1 text-accent">←</span>
+          <span>Back to homepage</span>
+        </Link>
+
+        <nav aria-label="Breadcrumbs">
+          <ol className="flex items-center gap-2 font-mono text-xs text-muted">
+            <li>
+              <Link href="/" className="transition-colors hover:text-foreground">
+                Home
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <Link href="/projects" className="transition-colors hover:text-foreground">
+                Work
+              </Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li aria-current="page" className="text-accent">
+              {project.title}
+            </li>
+          </ol>
+        </nav>
+      </div>
 
       {/* Eyebrow & Number */}
       <div className="mb-4 flex items-center justify-between gap-4 font-mono text-xs">

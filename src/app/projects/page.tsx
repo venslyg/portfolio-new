@@ -14,8 +14,19 @@ export default function ProjectsPage() {
   const allProjects = getAllProjects();
 
   return (
-    <div className="py-[var(--section-space)]">
+    <div className="pt-3 sm:pt-4 pb-[var(--section-space)]">
       <Container>
+        {/* Back to Homepage Button */}
+        <div className="mb-6">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-4 py-2 font-mono text-xs font-semibold text-muted transition-all hover:border-accent hover:bg-surface hover:text-foreground hover:shadow-md"
+          >
+            <span className="transition-transform duration-200 group-hover:-translate-x-1 text-accent">←</span>
+            <span>Back to homepage</span>
+          </Link>
+        </div>
+
         {/* Page Header */}
         <header className="mb-14 max-w-3xl">
           <p className="font-mono text-xs uppercase tracking-widest text-accent">

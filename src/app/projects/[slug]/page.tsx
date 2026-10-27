@@ -43,7 +43,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const related = getRelatedProjects(slug);
 
   return (
-    <div className="py-[var(--section-space)]">
+    <div className="pt-3 sm:pt-4 pb-[var(--section-space)]">
       <Container>
         <article>
           {/* Header */}
