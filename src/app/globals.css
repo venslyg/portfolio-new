@@ -64,6 +64,15 @@
   .skip-link:focus {
     transform: translateY(0);
   }
+  .bg-pinstripe {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02) 1px,
+      transparent 1px,
+      transparent 18px
+    );
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

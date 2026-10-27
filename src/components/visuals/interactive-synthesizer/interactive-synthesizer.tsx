@@ -4,6 +4,11 @@ import { useSyncExternalStore } from 'react';
 import dynamic from 'next/dynamic';
 import { SynthesizerPreview } from '@/components/visuals/synthesizer-preview/synthesizer-preview';
 
+type InteractiveSynthesizerProps = {
+  className?: string;
+  isFullWidth?: boolean;
+};
+
 // Dynamically import the 3D WebGL scene with SSR disabled.
 // Uses the static SynthesizerPreview as the loading fallback.
 const SynthesizerScene = dynamic(
@@ -49,7 +54,10 @@ function getServerSnapshot(): boolean {
   return false;
 }
 
-export function InteractiveSynthesizer() {
+export function InteractiveSynthesizer({
+  className = '',
+  isFullWidth = false,
+}: InteractiveSynthesizerProps) {
   const canRender3D = useSyncExternalStore(
     subscribe,
     getClientSnapshot,
@@ -60,5 +68,5 @@ export function InteractiveSynthesizer() {
     return <SynthesizerPreview />;
   }
 
-  return <SynthesizerScene />;
+  return <SynthesizerScene className={className} isFullWidth={isFullWidth} />;
 }
