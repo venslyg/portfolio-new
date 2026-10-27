@@ -20,8 +20,8 @@ export function SynthesizerScene({
     <div
       className={`relative w-full overflow-hidden transition-all duration-300 ${
         isFullWidth
-          ? 'h-[360px] sm:h-[480px] lg:h-[600px] xl:h-[640px]'
-          : 'h-[360px] sm:h-[440px] rounded-2xl border border-border/80 bg-gradient-to-b from-surface/30 to-background/90'
+          ? 'h-[280px] sm:h-[440px] lg:h-[600px] xl:h-[640px]'
+          : 'h-[280px] sm:h-[440px] rounded-2xl border border-border/80 bg-gradient-to-b from-surface/30 to-background/90'
       } ${className}`}
       style={{ touchAction: 'pan-y' }}
     >

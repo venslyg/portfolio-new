@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <defs>
+    <linearGradient id="pointerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C4B5FD" />
+      <stop offset="50%" stop-color="#A78BFA" />
+      <stop offset="100%" stop-color="#67E8F9" />
+    </linearGradient>
+    <filter id="pointerShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.9" />
+      <feDropShadow dx="0" dy="0" stdDeviation="2" flood-color="#A78BFA" flood-opacity="0.6" />
+    </filter>
+  </defs>
+  <g filter="url(#pointerShadow)">
+    <!-- Aerodynamic dark outline -->
+    <path d="M4 2 L4 17.5 L7.5 14 L11 20 L13.5 18.5 L10 12.5 L16 12.5 Z" fill="#0B0C10" stroke="#0B0C10" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Cyber electric gradient fill -->
+    <path d="M4 2 L4 17.5 L7.5 14 L11 20 L13.5 18.5 L10 12.5 L16 12.5 Z" fill="url(#pointerGrad)"/>
+    <!-- Precision pointer focal pip with cyan glow -->
+    <circle cx="4.5" cy="2.5" r="1.5" fill="#FFFFFF" stroke="#67E8F9" stroke-width="0.8" />
+  </g>
+</svg>

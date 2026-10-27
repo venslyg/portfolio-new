@@ -23,9 +23,9 @@
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans), Arial, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
-  --text-display: clamp(2.75rem, 5.6vw, 4.75rem);
-  --text-display--line-height: 1.05;
-  --text-heading: clamp(1.875rem, 4vw, 3rem);
+  --text-display: clamp(2rem, 5.5vw, 4.75rem);
+  --text-display--line-height: 1.08;
+  --text-heading: clamp(1.5rem, 3.8vw, 3rem);
   --text-heading--line-height: 1.15;
   --radius-control: 0.75rem;
 }
@@ -77,7 +77,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   body {
-    cursor: default;
+    cursor: url('/cursors/theme-cursor.svg') 3 2, default;
   }
   a,
   button,
@@ -85,8 +85,9 @@
   textarea,
   select,
   [role='button'],
-  [tabindex='0'] {
-    cursor: pointer;
+  [tabindex='0'],
+  .cursor-pointer {
+    cursor: url('/cursors/theme-cursor-pointer.svg') 4 2, pointer;
   }
 }
 

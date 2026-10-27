@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button/button';
+import { ViewCvButton } from '@/components/ui/view-cv-button/view-cv-button';
 import { InteractiveSynthesizer } from '@/components/visuals/interactive-synthesizer/interactive-synthesizer';
 
 export function HeroSection() {
@@ -15,7 +16,7 @@ export function HeroSection() {
         aria-hidden="true"
       />
 
-      <div className="mx-auto w-full max-w-[1700px] px-6 sm:px-10 lg:px-16">
+      <div className="mx-auto w-full max-w-[1700px] px-4 sm:px-10 lg:px-16">
         <div className="grid items-center gap-6 lg:grid-cols-[1fr_1.2fr] xl:grid-cols-[0.95fr_1.25fr] lg:gap-8">
           {/* Hero Typography & CTAs */}
           <div className="z-10 py-2 lg:py-8">
@@ -45,6 +46,7 @@ export function HeroSection() {
               <Button href="#work">
                 View work <span aria-hidden="true">↗</span>
               </Button>
+              <ViewCvButton variant="hero" />
               <Button href="#contact" variant="secondary">
                 Let’s talk
               </Button>

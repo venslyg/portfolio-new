@@ -142,7 +142,7 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
         {projects.map((project, idx) => (
           <div
             key={project.slug}
-            className={`w-[85vw] max-w-[480px] shrink-0 transition-opacity duration-300 sm:w-[420px] lg:w-[460px] ${
+            className={`w-[82vw] max-w-[340px] shrink-0 transition-opacity duration-300 sm:w-[350px] md:w-[370px] lg:w-[390px] ${
               idx === activeIndex ? 'opacity-100' : 'opacity-85 hover:opacity-100'
             }`}
             style={{ scrollSnapAlign: 'start' }}

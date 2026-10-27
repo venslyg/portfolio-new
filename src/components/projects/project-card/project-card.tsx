@@ -123,73 +123,78 @@ export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
       <article
         id={project.slug}
         onClick={handleOpen}
-        className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all duration-300 hover:border-accent/50 hover:bg-white/[0.06] hover:shadow-[0_14px_44px_0_rgba(167,139,250,0.18),inset_0_1px_1px_rgba(255,255,255,0.18)] hover:-translate-y-1 cursor-pointer"
+        className="group relative flex aspect-square w-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all duration-300 hover:border-accent/50 hover:bg-white/[0.06] hover:shadow-[0_14px_44px_0_rgba(167,139,250,0.18),inset_0_1px_1px_rgba(255,255,255,0.18)] hover:-translate-y-1 cursor-pointer"
       >
-        {/* Compact Artwork Banner */}
-        <ProjectArtwork visual={project.visual} />
+        {/* Artwork Banner with Real Project Image (44% height) */}
+        <div className="relative h-[44%] w-full overflow-hidden shrink-0">
+          <ProjectArtwork visual={project.visual} image={project.image} title={project.title} />
+        </div>
 
-        {/* Compact Card Content */}
-        <div className="flex flex-1 flex-col p-4 sm:p-5">
-          {/* Category & Number Eyebrow */}
-          <div className="mb-2 flex items-center justify-between gap-2 font-mono text-[0.7rem] text-muted">
-            <span className="flex items-center gap-1.5">
-              <span aria-hidden="true">{getCategoryIcon(project.tag)}</span>
-              <span>{project.category}</span>
-            </span>
-            <span className="font-semibold text-accent">{project.number}</span>
+        {/* Card Content (56% height, 1:1 balanced distribution) */}
+        <div className="flex h-[56%] flex-col justify-between p-3.5 sm:p-4 min-h-0">
+          <div>
+            {/* Category & Number Eyebrow */}
+            <div className="mb-1 flex items-center justify-between gap-2 font-mono text-[0.68rem] text-muted">
+              <span className="flex items-center gap-1.5 truncate">
+                <span aria-hidden="true">{getCategoryIcon(project.tag)}</span>
+                <span className="truncate">{project.category}</span>
+              </span>
+              <span className="font-semibold text-accent shrink-0">{project.number}</span>
+            </div>
+
+            {/* Project Title */}
+            <h3 className="line-clamp-1 text-base sm:text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent">
+              {project.title}
+            </h3>
+
+            {/* Summary */}
+            <p className="mt-1 line-clamp-2 text-[0.78rem] leading-snug text-muted">
+              {project.summary}
+            </p>
           </div>
 
-          {/* Project Title */}
-          <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent sm:text-xl">
-            {project.title}
-          </h3>
+          <div>
+            {/* Technology Pills with Matching Icons (compact 1-row fit) */}
+            <ul aria-label={project.title + ' technologies'} className="mb-2 flex flex-wrap items-center gap-1 overflow-hidden max-h-6">
+              {project.stack.slice(0, 3).map(technology => (
+                <li
+                  key={technology}
+                  className="inline-flex items-center gap-1 rounded-full border border-white/[0.08] bg-white/[0.04] px-2 py-0.5 font-mono text-[0.6rem] text-muted backdrop-blur-sm transition-colors group-hover:border-white/15 group-hover:bg-white/[0.08] group-hover:text-foreground"
+                >
+                  {getTechIcon(technology)}
+                  <span className="truncate max-w-[80px]">{technology}</span>
+                </li>
+              ))}
+              {project.stack.length > 3 && (
+                <li className="inline-flex items-center rounded-full border border-white/[0.06] bg-white/[0.02] px-1.5 py-0.5 font-mono text-[0.58rem] text-muted/70">
+                  +{project.stack.length - 3}
+                </li>
+              )}
+            </ul>
 
-          {/* Compact Summary */}
-          <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted sm:text-sm">
-            {project.summary}
-          </p>
-
-          {/* Role Tag */}
-          <p className="mt-2 text-xs text-muted">
-            <span className="font-medium text-foreground">Role: </span>
-            <span>{project.role}</span>
-          </p>
-
-          {/* Technology Pills with Matching Icons */}
-          <ul aria-label={project.title + ' technologies'} className="mt-3 flex flex-wrap gap-1.5">
-            {project.stack.map(technology => (
-              <li
-                key={technology}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-0.5 font-mono text-[0.62rem] text-muted backdrop-blur-sm transition-colors group-hover:border-white/15 group-hover:bg-white/[0.08] group-hover:text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
+            {/* Action Button: Opens Details Popup */}
+            <div className="flex items-center justify-between border-t border-white/[0.06] pt-2">
+              <button
+                type="button"
+                onClick={e => {
+                  e.stopPropagation();
+                  handleOpen();
+                }}
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-foreground focus-visible:rounded-control cursor-pointer"
+                aria-label={`View project details for ${project.title}`}
               >
-                {getTechIcon(technology)}
-                <span>{technology}</span>
-              </li>
-            ))}
-          </ul>
+                <span>View Details</span>
+                <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                  →
+                </span>
+              </button>
 
-          {/* Action Button: Opens Details Popup */}
-          <div className="mt-auto pt-4 flex items-center justify-between">
-            <button
-              type="button"
-              onClick={e => {
-                e.stopPropagation();
-                handleOpen();
-              }}
-              className="inline-flex min-h-9 items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-foreground focus-visible:rounded-control cursor-pointer"
-              aria-label={`View project details for ${project.title}`}
-            >
-              <span>View Project Details</span>
-              <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </button>
-
-            {project.liveUrl && (
-              <span className="rounded-full border border-accent/40 bg-accent/15 px-2.5 py-0.5 font-mono text-[10px] text-accent font-medium shadow-[0_0_12px_rgba(167,139,250,0.25)]">
-                Live
-              </span>
-            )}
+              {project.liveUrl && (
+                <span className="rounded-full border border-accent/40 bg-accent/15 px-2 py-0.5 font-mono text-[9px] text-accent font-medium shadow-[0_0_10px_rgba(167,139,250,0.25)]">
+                  Live
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </article>

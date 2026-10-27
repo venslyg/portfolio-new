@@ -20,6 +20,7 @@ export type Project = {
   highlights: readonly string[];
   outcomeOrLearning: string;
   permissionStatus: ProjectPermissionStatus;
+  image: string;
   repoUrl?: string;
   liveUrl?: string;
   relatedSlugs: readonly string[];
@@ -38,6 +39,7 @@ export const projects: readonly Project[] = [
     stack: ['Spring Boot', 'Angular', 'Firebase', 'PostgreSQL', 'TypeScript'],
     featured: true,
     visual: 'systems',
+    image: '/images/projects/nehara-book-shop.jpg',
     problem:
       'Nehara Book Shop required an efficient digital storefront and an inventory-integrated administrative dashboard with seamless customer authentication.',
     approach:
@@ -71,6 +73,7 @@ export const projects: readonly Project[] = [
     stack: ['Spring Boot', 'Angular', 'Flutter', 'PostgreSQL'],
     featured: true,
     visual: 'systems',
+    image: '/images/projects/singha-pos.jpg',
     problem:
       'Hardware retail stores experience high checkout volume requiring rapid barcode billing, instant thermal receipt printing, and real-time multi-store stock ledger updates.',
     approach:
@@ -103,6 +106,7 @@ export const projects: readonly Project[] = [
     stack: ['Angular', 'TypeScript', 'RxJS', 'REST APIs'],
     featured: true,
     visual: 'records',
+    image: '/images/projects/pmb-traceability.jpg',
     problem:
       'National agricultural grain distribution requires rigorous batch-level traceability, storage bin tracking, and consignment intake logging to prevent logistics bottlenecks.',
     approach:
@@ -134,6 +138,7 @@ export const projects: readonly Project[] = [
     stack: ['Go', 'Angular', 'PostgreSQL', 'TypeScript'],
     featured: true,
     visual: 'systems',
+    image: '/images/projects/parish-records.jpg',
     problem:
       'Parish family records in Katuneriya existed in traditional paper books, making genealogy searches, member verifications, and sacrament tracking vulnerable to loss and slow retrieval.',
     approach:
@@ -165,6 +170,7 @@ export const projects: readonly Project[] = [
     stack: ['Flutter', 'Firebase', 'SQLite', 'Dart'],
     featured: true,
     visual: 'records',
+    image: '/images/projects/agentry.jpg',
     problem:
       'Field agents regularly visit remote sites where cellular data is intermittent or absent, making cloud-only CRM tools unusable and risking critical record loss.',
     approach:
@@ -196,6 +202,7 @@ export const projects: readonly Project[] = [
     stack: ['HTML', 'CSS', 'JavaScript', 'Responsive Design'],
     featured: true,
     visual: 'community',
+    image: '/images/projects/youth-ministry.jpg',
     problem:
       'The national youth fellowship required an accessible, high-performance digital touchpoint for event updates, ministry resources, and community announcements across diverse devices.',
     approach:
@@ -228,6 +235,7 @@ export const projects: readonly Project[] = [
     stack: ['Angular', 'Ionic', 'Pitchy', 'Web Audio API', 'TypeScript'],
     featured: true,
     visual: 'music',
+    image: '/images/projects/key-detective.jpg',
     problem:
       'Musicians playing in live church acoustic settings frequently need fast, accurate pitch recognition and musical key detection without bulky hardware or disruptive manual tuning.',
     approach:
@@ -259,6 +267,7 @@ export const projects: readonly Project[] = [
     stack: ['C#', '.NET', 'Microsoft SQL', 'XML'],
     featured: true,
     visual: 'systems',
+    image: '/images/projects/garment-management.jpg',
     problem:
       'Apparel manufacturing operations face heavy administrative friction coordinating raw fabric procurement, employee shift output, cutting/stitching stages, and warehouse stock.',
     approach:
@@ -290,6 +299,7 @@ export const projects: readonly Project[] = [
     stack: ['Java', 'Spring Boot', 'React', 'MySQL', 'REST APIs'],
     featured: true,
     visual: 'records',
+    image: '/images/projects/hospital-management.jpg',
     problem:
       'Clinical facilities struggle with overlapping doctor consultations, ward occupancy tracking, and delayed patient appointment bookings without a synchronized medical portal.',
     approach:

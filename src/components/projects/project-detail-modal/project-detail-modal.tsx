@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useSyncExternalStore } from 'react';
+import Image from 'next/image';
 import { createPortal } from 'react-dom';
 import type { Project } from '@/content/projects';
 
@@ -88,6 +89,20 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               {project.summary}
             </p>
           </div>
+
+          {/* Project Image Preview */}
+          {project.image && (
+            <div className="relative h-48 sm:h-64 w-full overflow-hidden rounded-2xl border border-white/10 shadow-lg">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 800px"
+                className="object-cover object-top"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121422] via-transparent to-transparent pointer-events-none" />
+            </div>
+          )}
 
           {/* Quick Meta Grid & Live Links */}
           <div className="grid gap-4 sm:grid-cols-2 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 font-mono text-xs backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
