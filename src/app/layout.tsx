@@ -15,12 +15,47 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://vensly.dev'),
   title: {
     default: 'VENSLY. — Engineering ideas in rhythm',
     template: '%s | VENSLY.',
   },
   description:
     "Vensly Benaya's developer portfolio. Full-stack software engineering, thoughtful interfaces, and creative explorations inspired by music.",
+  keywords: [
+    'Vensly Benaya',
+    'Full-Stack Software Engineer',
+    'Angular',
+    'Spring Boot',
+    'Flutter',
+    'React',
+    'Next.js',
+    'TypeScript',
+    'Creative Technologist',
+    'Web Audio',
+  ],
+  authors: [{ name: 'Vensly Benaya', url: 'https://github.com/venslyg' }],
+  creator: 'Vensly Benaya',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    siteName: 'VENSLY. — Portfolio',
+    title: 'VENSLY. — Engineering ideas in rhythm',
+    description:
+      "Full-stack software engineer crafting thoughtful web applications, cross-platform mobile tools, and creative music experiments.",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'VENSLY. — Engineering ideas in rhythm',
+    description:
+      "Full-stack software engineer crafting thoughtful web applications, cross-platform mobile tools, and creative music experiments.",
+    creator: '@venslyg',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
