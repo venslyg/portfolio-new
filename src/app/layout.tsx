@@ -52,6 +52,11 @@ export const metadata: Metadata = {
       "Full-stack software engineer crafting thoughtful web applications, cross-platform mobile tools, and creative music experiments.",
     creator: '@venslyg',
   },
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
   robots: {
     index: true,
     follow: true,

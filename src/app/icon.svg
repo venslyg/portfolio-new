@@ -1,5 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#0B0C10"/>
-  <path d="M14 17h9l9 27 9-27h9L36 50h-8Z" fill="#A78BFA"/>
-  <circle cx="51" cy="48" r="4" fill="#67E8F9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <defs>
+    <linearGradient id="fav-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA" />
+      <stop offset="100%" stop-color="#67E8F9" />
+    </linearGradient>
+  </defs>
+  <!-- Background rounded squircle matching site dark theme -->
+  <rect width="32" height="32" rx="7" fill="#0B0C10" />
+  <rect x="0.5" y="0.5" width="31" height="31" rx="6.5" stroke="#191B24" />
+
+  <!-- Monogram V + Soundwave Treble Node -->
+  <path d="M7 8 L16 25 L25 8" stroke="url(#fav-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+  <path d="M12 16 Q 16 11 20 17" stroke="#67E8F9" stroke-width="1.8" stroke-linecap="round" opacity="0.9" />
+  <circle cx="25" cy="8" r="2.2" fill="#A78BFA" />
+  <circle cx="7" cy="8" r="1.8" fill="#67E8F9" />
 </svg>

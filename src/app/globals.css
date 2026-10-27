@@ -75,6 +75,21 @@
   }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: url('/cursors/music-note-cursor.svg') 4 2, auto;
+  }
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role='button'],
+  [tabindex='0'] {
+    cursor: pointer;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { profile } from '@/content/profile';
 
@@ -22,23 +23,22 @@ export function Footer() {
         <div className="grid gap-10 pt-4 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1.3fr] lg:gap-16">
           {/* Column 1: Brand & Philosophy */}
           <div>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-accent/40 bg-surface/80 font-mono text-sm font-bold text-accent shadow-sm">
-                VB
-              </div>
-              <div>
-                <Link
-                  href="/"
-                  className="text-base font-bold tracking-tight text-foreground transition-colors hover:text-accent"
-                  aria-label="Vensly home"
-                >
-                  VENSLY GUNASEKARA<span className="text-accent">.</span>
-                </Link>
-                <p className="font-mono text-[0.68rem] tracking-wider text-accent-secondary uppercase">
-                  Full-Stack Software Engineer
-                </p>
-              </div>
-            </div>
+            <Link
+              href="/"
+              className="inline-block transition-opacity hover:opacity-85"
+              aria-label="Vensly Gunasekara home"
+            >
+              <Image
+                src="/brand-logo.svg"
+                alt="VENSLY. Software & Sound"
+                width={170}
+                height={34}
+                className="h-8 w-auto"
+              />
+            </Link>
+            <p className="mt-2 font-mono text-[0.68rem] tracking-wider text-accent-secondary uppercase">
+              Vensly Gunasekara {'//'} Full-Stack Software Engineer
+            </p>
 
             <p className="mt-4 max-w-md text-xs leading-relaxed text-muted">
               Merging technical software engineering rigor with musical rhythm to craft resilient,

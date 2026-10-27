@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" fill="none" aria-label="Vensly Gunasekara Portfolio Logo">
+  <defs>
+    <linearGradient id="vensly-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA" />
+      <stop offset="60%" stop-color="#818CF8" />
+      <stop offset="100%" stop-color="#67E8F9" />
+    </linearGradient>
+    <linearGradient id="wave-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#67E8F9" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#A78BFA" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Monogram Symbol: V intertwined with a musical soundwave / clef crest -->
+  <g transform="translate(6, 6)">
+    <!-- Dynamic soundwave ribbons forming left arm of V -->
+    <path d="M4 6 L18 34 L25 20 L20 10" stroke="url(#vensly-grad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Resonating musical crest forming right arm of V with treble node -->
+    <path d="M18 34 L32 6" stroke="url(#wave-grad)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Intersecting soundwave pulse -->
+    <path d="M12 20 Q 20 12 28 22" stroke="#67E8F9" stroke-width="2" stroke-linecap="round" opacity="0.85" />
+    <!-- Clef node dot with glow -->
+    <circle cx="32" cy="6" r="3" fill="#A78BFA" filter="url(#glow)" />
+    <circle cx="4" cy="6" r="2.5" fill="#67E8F9" />
+  </g>
+
+  <!-- Wordmark: VENSLY. -->
+  <text x="56" y="29" font-family="system-ui, -apple-system, 'Inter', 'Outfit', sans-serif" font-size="20" font-weight="800" letter-spacing="0.18em" fill="#F4F4F7">
+    VENSLY<tspan fill="#A78BFA">.</tspan>
+  </text>
+  <!-- Subtitle -->
+  <text x="57" y="39" font-family="'JetBrains Mono', 'Fira Code', monospace" font-size="7.5" font-weight="500" letter-spacing="0.22em" fill="#94A3B8">
+    SOFTWARE &amp; SOUND
+  </text>
+</svg>

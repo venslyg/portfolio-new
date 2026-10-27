@@ -262,7 +262,45 @@ export const toolsList: readonly ToolItem[] = [
       </svg>
     ),
   },
-] as const;
+  {
+    name: 'Java',
+    category: 'Backend',
+    icon: (
+      <svg className="h-10 w-10" viewBox="0 0 128 128">
+        <path
+          d="M48.2 99.1c0 0-6.1 3.5 4.3 4.7 12.6 1.5 19.1 1.4 33.1-.7 0 0 4.1 2.6 8.3 4.9-24.1 10.3-56.1-1.3-45.7-8.9zm-2.8-15.6c0 0-6.8 4.9 3.5 6.1 14.2 1.6 24.8 1.8 43.5-1 0 0 2.9 2.9 6.2 4.9-30.8 9.3-64.8.4-53.2-10zm25.9-35.8c4.6 5.3 1.2 10.1-4.7 15.6-7.1 6.5-12 12.2-3.8 20.8 0 0-17.7-9.2-9.4-22.3 7-11.2 12.8-10.4 17.9-14.1zm12.3 22.8c6.8 7.9-4.3 14.8-4.3 14.8s11.5-5.9 5.8-16.1c-5.4-9.6-18.7-14.4-12.8-26.6-15.7 6.4-3.1 18.2 11.3 27.9z"
+          fill="#E76F00"
+        />
+        <path
+          d="M62.5 117.8c18.5-1.2 37.1-9.7 37.1-9.7s-3.7 3.9-9.1 6.9c-14.7 8.2-46.7 8.2-56.2.2 0 0 4.3 2.6 10.8 3.5 5.5.7 11.5.3 17.4-.9zm26.4-78.2c-4.1 4.7-8.3 8.1-8.3 8.1s2.5-1.2 5.5-3.6c8.2-6.5 14.2-16.4-1.2-25.1 0 0 21.8 5.7 4 20.6z"
+          fill="#5382A1"
+        />
+      </svg>
+    ),
+  },
+  {
+    name: 'Go',
+    category: 'Backend',
+    icon: (
+      <svg className="h-10 w-10" viewBox="0 0 128 128">
+        <path
+          d="M36.1 50.8c-2.4 0-4.3 1.9-4.3 4.3s1.9 4.3 4.3 4.3c2.4 0 4.3-1.9 4.3-4.3.1-2.4-1.8-4.3-4.3-4.3zm55.8 0c-2.4 0-4.3 1.9-4.3 4.3s1.9 4.3 4.3 4.3c2.4 0 4.3-1.9 4.3-4.3 0-2.4-1.9-4.3-4.3-4.3z"
+          fill="#00ACD7"
+        />
+        <path
+          d="M118 63.8c-1.4-2.8-4.6-4.5-9.3-5.2 2-3.1 2.8-6.4 2.2-9.6-1.3-6.5-7.5-10.7-15.3-10.3-4.1.2-7.8 1.7-10.8 4.1-4.8-2.6-10.4-4-16.6-4-8.8 0-16.7 2.9-22.6 7.6-3.1-2.6-7.1-4.1-11.5-4.1-8.8 0-16 6.3-16.9 14.6-3.8 1.4-6.3 3.6-7.3 6.6-1.5 4.5.3 9.4 4.5 12.8-1.5 3.3-1.7 6.9-.5 10.3 2 5.8 7.7 9.8 15 10.5 4.3 7 12.5 11.7 22.3 12.1h1.5c9.8 0 18.2-4.5 22.8-11.3 4.1-.1 8-.9 11.5-2.5 7.1-3.2 11.3-9.1 11.6-16.3 4.5-3.9 6.2-9.4 4.7-14.7z"
+          fill="#00ACD7"
+        />
+        <path
+          d="M45.5 69.5c0 5.4-4.4 9.8-9.8 9.8s-9.8-4.4-9.8-9.8 4.4-9.8 9.8-9.8c5.4 0 9.8 4.4 9.8 9.8zm56.6 0c0 5.4-4.4 9.8-9.8 9.8s-9.8-4.4-9.8-9.8 4.4-9.8 9.8-9.8c5.4 0 9.8 4.4 9.8 9.8z"
+          fill="#FFFFFF"
+        />
+        <circle cx="37.8" cy="69.5" r="4.2" fill="#000000" />
+        <circle cx="89.8" cy="69.5" r="4.2" fill="#000000" />
+      </svg>
+    ),
+  },
+];
 
 export function ToolsGrid() {
   return (
@@ -270,14 +308,13 @@ export function ToolsGrid() {
       {toolsList.map(tool => (
         <div
           key={tool.name}
-          className="group relative flex aspect-square flex-col items-center justify-center gap-3 rounded-2xl bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-accent/20 sm:p-5"
+          title={tool.name}
+          aria-label={tool.name}
+          className="group relative flex aspect-square items-center justify-center rounded-2xl bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-accent/20 sm:p-5"
         >
-          <div className="flex h-12 w-12 items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <div className="flex h-14 w-14 items-center justify-center transition-transform duration-300 group-hover:scale-110">
             {tool.icon}
           </div>
-          <span className="font-sans text-xs font-semibold tracking-tight text-slate-800 transition-colors group-hover:text-black sm:text-sm">
-            {tool.name}
-          </span>
         </div>
       ))}
     </div>

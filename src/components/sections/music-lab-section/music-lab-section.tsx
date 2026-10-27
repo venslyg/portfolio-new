@@ -1,6 +1,7 @@
 import { Section } from '@/components/layout/section/section';
 import { SectionHeading } from '@/components/ui/section-heading/section-heading';
 import { Button } from '@/components/ui/button/button';
+import { InterstitialKnot } from '@/components/three/interstitial-knot/interstitial-knot';
 
 export function MusicLabSection() {
   return (
@@ -22,15 +23,15 @@ export function MusicLabSection() {
             </Button>
           </div>
         </div>
-        <div className="rounded-2xl border border-accent/30 bg-background p-8 sm:p-10">
-          <p aria-hidden="true" className="mb-6 text-6xl text-accent">
-            ♮
+        <div className="relative rounded-2xl border border-accent/30 bg-background/80 p-6 sm:p-8 backdrop-blur-sm overflow-hidden flex flex-col items-center text-center">
+          <InterstitialKnot />
+          <h3 className="text-xl font-medium text-foreground">Listen. Understand. Build.</h3>
+          <p className="mt-3 leading-relaxed text-muted text-sm max-w-sm">
+            Pitch, patterns, and practical acoustic software: digital signal processing engineered for live performance.
           </p>
-          <h3 className="text-xl font-medium">Listen. Understand. Build.</h3>
-          <p className="mt-4 leading-relaxed text-muted">
-            Pitch, patterns, and a practical idea: software that supports the people making music.
+          <p className="mt-6 border-t border-border/80 pt-4 font-mono text-xs text-accent-secondary">
+            Interactive Instrument Lab &amp; Experiments
           </p>
-          <p className="mt-7 border-t border-border pt-5 font-mono text-xs text-accent-secondary">More musical experiments to come.</p>
         </div>
       </div>
     </Section>
