@@ -123,7 +123,7 @@ export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
       <article
         id={project.slug}
         onClick={handleOpen}
-        className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-border/70 bg-surface/60 transition-all duration-300 hover:border-accent/60 hover:shadow-xl hover:shadow-accent/5 cursor-pointer"
+        className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all duration-300 hover:border-accent/50 hover:bg-white/[0.06] hover:shadow-[0_14px_44px_0_rgba(167,139,250,0.18),inset_0_1px_1px_rgba(255,255,255,0.18)] hover:-translate-y-1 cursor-pointer"
       >
         {/* Compact Artwork Banner */}
         <ProjectArtwork visual={project.visual} />
@@ -160,7 +160,7 @@ export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
             {project.stack.map(technology => (
               <li
                 key={technology}
-                className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-background/50 px-2.5 py-0.5 font-mono text-[0.62rem] text-muted transition-colors group-hover:border-border"
+                className="inline-flex items-center gap-1.5 rounded-full border border-white/[0.08] bg-white/[0.04] px-2.5 py-0.5 font-mono text-[0.62rem] text-muted backdrop-blur-sm transition-colors group-hover:border-white/15 group-hover:bg-white/[0.08] group-hover:text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
               >
                 {getTechIcon(technology)}
                 <span>{technology}</span>
@@ -186,7 +186,7 @@ export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
             </button>
 
             {project.liveUrl && (
-              <span className="rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-mono text-[10px] text-accent font-medium">
+              <span className="rounded-full border border-accent/40 bg-accent/15 px-2.5 py-0.5 font-mono text-[10px] text-accent font-medium shadow-[0_0_12px_rgba(167,139,250,0.25)]">
                 Live
               </span>
             )}

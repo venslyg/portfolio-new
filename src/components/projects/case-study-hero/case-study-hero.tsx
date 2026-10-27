@@ -12,7 +12,7 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         <Link
           href="/"
-          className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-4 py-2 font-mono text-xs font-semibold text-muted transition-all hover:border-accent hover:bg-surface hover:text-foreground hover:shadow-md"
+          className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 font-mono text-xs font-semibold text-muted backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all hover:border-accent hover:bg-white/[0.1] hover:text-foreground hover:shadow-[0_4px_20px_rgba(167,139,250,0.2)]"
         >
           <span className="transition-transform duration-200 group-hover:-translate-x-1 text-accent">←</span>
           <span>Back to homepage</span>

@@ -101,7 +101,7 @@ export function AcousticStringLab() {
   }, []);
 
   return (
-    <div className="rounded-2xl border border-border/80 bg-surface/40 p-6 sm:p-8 backdrop-blur-md shadow-2xl">
+    <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6 sm:p-8 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)]">
       {/* Header and Controls */}
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between border-b border-border/60 pb-6">
         <div>

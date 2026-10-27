@@ -19,7 +19,7 @@ export function HeroSection() {
         <div className="grid items-center gap-6 lg:grid-cols-[1fr_1.2fr] xl:grid-cols-[0.95fr_1.25fr] lg:gap-8">
           {/* Hero Typography & CTAs */}
           <div className="z-10 py-2 lg:py-8">
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border/70 bg-surface/40 px-3.5 py-1.5 backdrop-blur-sm">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-1.5 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
               <span className="h-1.5 w-1.5 rounded-full bg-accent-secondary" />
               <p className="font-mono text-xs tracking-[0.16em] text-accent-secondary uppercase">
                 Vensly Gunasekara {'//'} Full-Stack Software Engineer
@@ -52,7 +52,7 @@ export function HeroSection() {
 
             {/* Quick interactive hint */}
             <div className="mt-6 flex items-center gap-2.5 text-xs font-mono text-muted/80 sm:mt-8">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-border bg-surface text-[10px]">
+              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-[10px] backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
                 ♫
               </span>
               <span>Tap keys to play • Scroll down to see keys disperse in 3D</span>

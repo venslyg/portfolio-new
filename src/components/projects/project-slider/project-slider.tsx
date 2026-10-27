@@ -91,7 +91,7 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
         {/* Slide Counter & Hint */}
         <div className="flex items-center gap-3">
-          <span className="rounded-full border border-border/80 bg-surface/60 px-3 py-1 font-mono text-xs tracking-wider text-accent">
+          <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1 font-mono text-xs tracking-wider text-accent backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
             {String(activeIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
           </span>
           <span className="hidden font-mono text-xs text-muted/80 sm:inline">
@@ -105,10 +105,10 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
             type="button"
             onClick={() => scroll('left')}
             disabled={!canScrollLeft}
-            className={`flex h-11 w-11 items-center justify-center rounded-control border text-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent ${
+            className={`flex h-11 w-11 items-center justify-center rounded-control border text-sm backdrop-blur-md transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
               canScrollLeft
-                ? 'border-border bg-surface text-foreground hover:border-accent hover:bg-surface/80'
-                : 'cursor-not-allowed border-border/40 bg-surface/20 text-muted/40'
+                ? 'border-white/10 bg-white/[0.05] text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_4px_16px_rgba(0,0,0,0.2)] hover:border-accent hover:bg-white/[0.12] hover:shadow-[0_4px_20px_rgba(167,139,250,0.25)]'
+                : 'cursor-not-allowed border-white/[0.04] bg-white/[0.02] text-muted/30'
             }`}
             aria-label="Previous project"
           >
@@ -118,10 +118,10 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
             type="button"
             onClick={() => scroll('right')}
             disabled={!canScrollRight}
-            className={`flex h-11 w-11 items-center justify-center rounded-control border text-sm transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent ${
+            className={`flex h-11 w-11 items-center justify-center rounded-control border text-sm backdrop-blur-md transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
               canScrollRight
-                ? 'border-border bg-surface text-foreground hover:border-accent hover:bg-surface/80'
-                : 'cursor-not-allowed border-border/40 bg-surface/20 text-muted/40'
+                ? 'border-white/10 bg-white/[0.05] text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_4px_16px_rgba(0,0,0,0.2)] hover:border-accent hover:bg-white/[0.12] hover:shadow-[0_4px_20px_rgba(167,139,250,0.25)]'
+                : 'cursor-not-allowed border-white/[0.04] bg-white/[0.02] text-muted/30'
             }`}
             aria-label="Next project"
           >
@@ -159,10 +159,10 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
             key={project.slug}
             type="button"
             onClick={() => scrollToIndex(idx)}
-            className={`h-2 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent ${
+            className={`h-2 rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
               idx === activeIndex
-                ? 'w-7 bg-accent'
-                : 'w-2 bg-border hover:bg-muted/60'
+                ? 'w-7 bg-accent shadow-[0_0_12px_rgba(167,139,250,0.6)]'
+                : 'w-2 bg-white/20 hover:bg-white/40'
             }`}
             aria-label={`Go to slide ${idx + 1}: ${project.title}`}
           />

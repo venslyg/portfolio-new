@@ -70,7 +70,7 @@ export default function AboutPage() {
                 Code meets music
               </h2>
             </div>
-            <div className="rounded-2xl border border-border bg-surface/40 p-8 sm:p-10">
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8 sm:p-10 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)]">
               <h3 className="text-xl font-semibold text-foreground">Listening before playing.</h3>
               <p className="mt-4 leading-relaxed text-muted">
                 Music and software share an innate symmetry: rhythm, harmonic progression, timing, and restraint.
@@ -96,7 +96,7 @@ export default function AboutPage() {
         </section>
 
         {/* Experience Timeline */}
-        <section aria-labelledby="experience-heading" className="my-16 border-t border-border pt-14">
+        <section aria-labelledby="experience-heading" className="my-16 border-t border-white/[0.08] pt-14">
           <div className="grid gap-8 lg:grid-cols-[1fr_1.8fr]">
             <div>
               <span className="font-mono text-xs uppercase tracking-widest text-accent">
@@ -110,7 +110,7 @@ export default function AboutPage() {
               {experience.map((item, index) => (
                 <div
                   key={index}
-                  className="relative rounded-2xl border border-border bg-surface/30 p-6 transition-colors hover:border-accent/40 sm:p-8"
+                  className="relative rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all duration-300 hover:border-accent/40 hover:bg-white/[0.06] hover:shadow-[0_12px_40px_rgba(167,139,250,0.15)] sm:p-8"
                 >
                   <span className="font-mono text-xs text-accent">{item.period}</span>
                   <h3 className="mt-2 text-xl font-semibold text-foreground">{item.title}</h3>
@@ -123,7 +123,7 @@ export default function AboutPage() {
         </section>
 
         {/* Technical Capabilities Matrix */}
-        <section aria-labelledby="skills-heading" className="my-16 border-t border-border pt-14">
+        <section aria-labelledby="skills-heading" className="my-16 border-t border-white/[0.08] pt-14">
           <div className="mb-10 max-w-xl">
             <span className="font-mono text-xs uppercase tracking-widest text-accent">
               Core Competencies
@@ -140,7 +140,7 @@ export default function AboutPage() {
             {skillGroups.map(group => (
               <div
                 key={group.title}
-                className="rounded-2xl border border-border bg-surface/40 p-6"
+                className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all duration-300 hover:border-accent/30 hover:bg-white/[0.05]"
               >
                 <h3 className="font-semibold text-foreground">{group.title}</h3>
                 <p className="mt-1 text-xs text-muted">{group.description}</p>
@@ -161,7 +161,7 @@ export default function AboutPage() {
         </section>
 
         {/* Contact CTA */}
-        <section className="mt-20 rounded-2xl border border-border bg-surface/50 p-8 text-center sm:p-12">
+        <section className="mt-20 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8 text-center sm:p-12 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)]">
           <h2 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
             Let’s collaborate on your next project.
           </h2>

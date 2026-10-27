@@ -47,22 +47,22 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
       {/* Blurred Dim Backdrop */}
       <div
         onClick={onClose}
-        className="absolute inset-0 bg-background/85 backdrop-blur-md transition-opacity cursor-pointer"
+        className="absolute inset-0 bg-background/80 backdrop-blur-xl transition-opacity cursor-pointer"
         aria-hidden="true"
       />
 
       {/* Modal Dialog Card */}
       <div
         ref={modalContentRef}
-        className="relative z-10 flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-border/80 bg-surface/95 shadow-2xl backdrop-blur-xl animate-in zoom-in-95 duration-200"
+        className="relative z-10 flex max-h-[92vh] w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-white/15 bg-[#121422]/85 shadow-[0_24px_70px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.15)] backdrop-blur-2xl animate-in zoom-in-95 duration-200"
       >
         {/* Sticky Modal Header */}
-        <div className="flex shrink-0 items-center justify-between border-b border-border/70 bg-surface/90 px-6 py-4 backdrop-blur-md">
+        <div className="flex shrink-0 items-center justify-between border-b border-white/10 bg-white/[0.02] px-6 py-4 backdrop-blur-xl">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs uppercase tracking-widest text-accent">
               Case Study {'//'} {project.number}
             </span>
-            <span className="rounded-full border border-border bg-background/60 px-2.5 py-0.5 font-mono text-[11px] text-muted">
+            <span className="rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 font-mono text-[11px] text-muted">
               {project.category}
             </span>
           </div>
@@ -70,7 +70,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
           <button
             type="button"
             onClick={onClose}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-surface text-muted transition-colors hover:border-accent hover:bg-background hover:text-foreground cursor-pointer"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-muted transition-all hover:border-accent hover:bg-white/[0.15] hover:text-foreground backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] cursor-pointer"
             aria-label="Close project details"
           >
             <span aria-hidden="true" className="text-base font-bold">✕</span>
@@ -90,7 +90,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
           </div>
 
           {/* Quick Meta Grid & Live Links */}
-          <div className="grid gap-4 sm:grid-cols-2 rounded-2xl border border-border/60 bg-background/50 p-5 font-mono text-xs">
+          <div className="grid gap-4 sm:grid-cols-2 rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 font-mono text-xs backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
             <div>
               <span className="text-muted/70 uppercase">Role</span>
               <p className="mt-1 font-semibold text-foreground">{project.role}</p>
@@ -102,7 +102,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
             <div>
               <span className="text-muted/70 uppercase">Visibility Status</span>
               <p className="mt-1 flex items-center gap-1.5 font-semibold text-foreground">
-                <span className={`h-2 w-2 rounded-full ${project.permissionStatus === 'public' ? 'bg-emerald-400' : 'bg-amber-400'}`} />
+                <span className={`h-2 w-2 rounded-full ${project.permissionStatus === 'public' ? 'bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]' : 'bg-amber-400'}`} />
                 <span>{project.permissionStatus === 'public' ? 'Public Project' : 'Client Confidential Summary'}</span>
               </p>
             </div>
@@ -126,7 +126,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
           {/* Live Action Bar if Project has Live URL */}
           {project.liveUrl && (
-            <div className="rounded-2xl border border-accent/40 bg-accent/10 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div className="rounded-2xl border border-accent/40 bg-accent/10 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 backdrop-blur-md shadow-[0_4px_25px_rgba(167,139,250,0.15),inset_0_1px_1px_rgba(255,255,255,0.1)]">
               <div>
                 <span className="font-mono text-xs font-semibold text-accent uppercase tracking-wider">
                   Live Public Deployment
@@ -156,7 +156,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
               {project.stack.map(tech => (
                 <li
                   key={tech}
-                  className="rounded-full border border-border/80 bg-surface px-3 py-1 font-mono text-xs text-foreground/90 shadow-sm"
+                  className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1 font-mono text-xs text-foreground/90 backdrop-blur-sm shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
                 >
                   {tech}
                 </li>
@@ -166,7 +166,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
           {/* Problem & Approach */}
           <div className="grid gap-6 md:grid-cols-2">
-            <div className="rounded-2xl border border-border/70 bg-surface/40 p-5">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
               <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-rose-300">
                 The Challenge
               </h3>
@@ -174,7 +174,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                 {project.problem}
               </p>
             </div>
-            <div className="rounded-2xl border border-border/70 bg-surface/40 p-5">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
               <h3 className="font-mono text-xs font-bold uppercase tracking-wider text-accent-secondary">
                 The Solution & Approach
               </h3>
@@ -186,14 +186,14 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
 
           {/* Architecture Highlights */}
           {project.architecture.length > 0 && (
-            <div className="rounded-2xl border border-border/80 bg-background/40 p-6">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
               <h3 className="font-mono text-xs uppercase tracking-wider text-accent-secondary">
                 System Architecture
               </h3>
               <ul className="mt-4 space-y-3 font-mono text-xs text-muted">
                 {project.architecture.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <span className="size-2 rounded-full bg-accent mt-1.5 shrink-0" />
+                    <span className="size-2 rounded-full bg-accent mt-1.5 shrink-0 shadow-[0_0_8px_rgba(167,139,250,0.6)]" />
                     <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -211,7 +211,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                 {project.highlights.map((highlight, idx) => (
                   <li
                     key={idx}
-                    className="flex items-start gap-3 rounded-xl border border-border/60 bg-surface/30 p-3.5 text-xs text-foreground/90 leading-relaxed"
+                    className="flex items-start gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] p-3.5 text-xs text-foreground/90 leading-relaxed backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
                   >
                     <span className="font-mono text-accent shrink-0 font-bold">✓</span>
                     <span>{highlight}</span>
@@ -222,7 +222,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
           )}
 
           {/* Outcome & Engineering Insight */}
-          <div className="rounded-2xl border border-accent/30 bg-surface/60 p-5">
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-5 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
             <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
               Outcome & Engineering Insight
             </h3>
@@ -233,9 +233,9 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
         </div>
 
         {/* Sticky Modal Footer */}
-        <div className="flex shrink-0 items-center justify-between border-t border-border/70 bg-surface/90 px-6 py-4 backdrop-blur-md">
+        <div className="flex shrink-0 items-center justify-between border-t border-white/10 bg-white/[0.02] px-6 py-4 backdrop-blur-xl">
           <span className="font-mono text-[11px] text-muted hidden sm:inline-block">
-            Press <kbd className="rounded border border-border bg-background px-1.5 py-0.5 text-foreground">ESC</kbd> to close
+            Press <kbd className="rounded border border-white/15 bg-white/[0.06] px-1.5 py-0.5 text-foreground">ESC</kbd> to close
           </span>
           <div className="flex items-center gap-3 w-full sm:w-auto justify-end">
             {project.liveUrl && (
@@ -243,7 +243,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-accent/40 bg-accent/15 px-4 font-mono text-xs font-semibold text-accent hover:bg-accent hover:text-background transition-colors cursor-pointer"
+                className="inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl border border-accent/40 bg-accent/15 px-4 font-mono text-xs font-semibold text-accent hover:bg-accent hover:text-background transition-colors cursor-pointer shadow-[0_0_12px_rgba(167,139,250,0.25)]"
               >
                 <span>Live View</span>
                 <span aria-hidden="true">↗</span>
@@ -252,7 +252,7 @@ export function ProjectDetailModal({ project, onClose }: ProjectDetailModalProps
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex min-h-10 items-center justify-center rounded-xl border border-border bg-surface px-5 font-mono text-xs font-semibold text-foreground hover:bg-background transition-colors cursor-pointer"
+              className="inline-flex min-h-10 items-center justify-center rounded-xl border border-white/15 bg-white/[0.05] px-5 font-mono text-xs font-semibold text-foreground hover:bg-white/[0.12] transition-colors cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"
             >
               Close
             </button>

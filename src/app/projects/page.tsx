@@ -20,7 +20,7 @@ export default function ProjectsPage() {
         <div className="mb-6">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-4 py-2 font-mono text-xs font-semibold text-muted transition-all hover:border-accent hover:bg-surface hover:text-foreground hover:shadow-md"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 font-mono text-xs font-semibold text-muted backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all hover:border-accent hover:bg-white/[0.1] hover:text-foreground hover:shadow-[0_4px_20px_rgba(167,139,250,0.2)]"
           >
             <span className="transition-transform duration-200 group-hover:-translate-x-1 text-accent">←</span>
             <span>Back to homepage</span>
@@ -47,10 +47,10 @@ export default function ProjectsPage() {
         {/* Professional Ethics & Confidentiality Notice */}
         <section
           aria-labelledby="confidentiality-heading"
-          className="mt-20 rounded-2xl border border-border bg-surface/40 p-8 sm:p-10"
+          className="mt-20 rounded-3xl border border-white/[0.08] bg-white/[0.03] p-8 sm:p-10 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)]"
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
-            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl border border-accent/30 bg-accent/10 font-mono text-lg font-bold text-accent">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl border border-accent/40 bg-accent/15 font-mono text-lg font-bold text-accent shadow-[0_0_15px_rgba(167,139,250,0.25)]">
               §
             </div>
             <div>

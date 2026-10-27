@@ -28,7 +28,7 @@ export function ContactSection() {
   }
 
   return (
-    <Section id="contact" labelledBy="contact-heading" className="border-t border-border/80 bg-surface/20">
+    <Section id="contact" labelledBy="contact-heading" className="border-t border-white/[0.08] bg-white/[0.01] backdrop-blur-md">
       <div className="mx-auto max-w-[1200px]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
           <div className="flex-1">
@@ -45,14 +45,14 @@ export function ContactSection() {
         </div>
 
         {/* ================= MAIN INTERACTIVE CONTACT CARD ================= */}
-        <div className="mt-12 rounded-3xl border border-border/80 bg-gradient-to-b from-surface/80 via-surface/40 to-background/90 p-6 sm:p-10 shadow-2xl backdrop-blur-md">
+        <div className="mt-12 rounded-3xl border border-white/15 bg-white/[0.03] p-6 sm:p-10 shadow-[0_16px_50px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.12)] backdrop-blur-2xl">
           <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
             {/* Left: Direct Contact Hub (Email & Phone) */}
             <div className="flex flex-col justify-between space-y-8">
               {/* Email Section */}
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/40 bg-accent/10 text-accent">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/40 bg-accent/15 text-accent shadow-[0_0_12px_rgba(167,139,250,0.2)]">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
@@ -74,7 +74,7 @@ export function ContactSection() {
                 <div className="mt-4 flex flex-wrap items-center gap-3">
                   <a
                     href={`mailto:${profile.email}`}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-accent px-5 text-xs font-semibold text-background shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-accent px-5 text-xs font-semibold text-background shadow-[0_4px_20px_rgba(167,139,250,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-foreground hover:shadow-[0_6px_25px_rgba(244,244,247,0.4)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
                   >
                     <span>Send an Email</span>
                     <span aria-hidden="true">↗</span>
@@ -83,10 +83,10 @@ export function ContactSection() {
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-control border px-4 text-xs font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
+                    className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-control border px-4 text-xs font-semibold backdrop-blur-md transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
                       copied
-                        ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400'
-                        : 'border-border bg-surface text-foreground hover:border-accent hover:bg-surface/80'
+                        ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.3)]'
+                        : 'border-white/15 bg-white/[0.05] text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-accent hover:bg-white/[0.12]'
                     }`}
                     aria-label="Copy email address to clipboard"
                   >
@@ -97,9 +97,9 @@ export function ContactSection() {
               </div>
 
               {/* Direct Phone & WhatsApp Callout */}
-              <div className="border-t border-border/60 pt-6">
+              <div className="border-t border-white/10 pt-6">
                 <div className="flex items-center gap-2">
-                  <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-400">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-500/15 text-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.2)]">
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
@@ -123,7 +123,7 @@ export function ContactSection() {
                     href={profile.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-emerald-500 px-5 text-xs font-semibold text-white shadow-lg shadow-emerald-500/20 transition-transform hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 cursor-pointer"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-emerald-500 px-5 text-xs font-semibold text-white shadow-[0_4px_20px_rgba(16,185,129,0.35),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 cursor-pointer"
                   >
                     <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
                       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
@@ -134,7 +134,7 @@ export function ContactSection() {
 
                   <a
                     href={`tel:${profile.phoneRaw}`}
-                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control border border-border bg-surface px-4 text-xs font-semibold text-foreground hover:border-accent hover:bg-surface/80 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control border border-white/15 bg-white/[0.05] px-4 text-xs font-semibold text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] backdrop-blur-md hover:border-accent hover:bg-white/[0.12] transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
                   >
                     <span>Call Phone</span>
                     <span aria-hidden="true">↗</span>
@@ -143,10 +143,10 @@ export function ContactSection() {
                   <button
                     type="button"
                     onClick={handleCopyPhone}
-                    className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-control border px-4 text-xs font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
+                    className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-control border px-4 text-xs font-semibold backdrop-blur-md transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
                       phoneCopied
-                        ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400'
-                        : 'border-border bg-surface text-foreground hover:border-accent hover:bg-surface/80'
+                        ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.3)]'
+                        : 'border-white/15 bg-white/[0.05] text-foreground shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-accent hover:bg-white/[0.12]'
                     }`}
                     aria-label="Copy phone number to clipboard"
                   >
@@ -157,13 +157,13 @@ export function ContactSection() {
               </div>
 
               <div className="flex items-center gap-2 text-xs font-mono text-muted/70">
-                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
                 <span>Available for calls, WhatsApp messages & engineering contracts</span>
               </div>
             </div>
 
             {/* Right: Social & Professional Connect Cards */}
-            <div className="flex flex-col gap-4 border-t border-border/60 pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-0">
+            <div className="flex flex-col gap-4 border-t border-white/10 pt-6 lg:border-t-0 lg:border-l lg:border-white/10 lg:pl-10 lg:pt-0">
               <p className="font-mono text-xs tracking-wider text-muted uppercase">
                 Professional & Instant Connect
               </p>
@@ -173,10 +173,10 @@ export function ContactSection() {
                 href={profile.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-500/15 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 cursor-pointer"
+                className="group flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.08] p-4 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-500/15 hover:shadow-[0_8px_25px_rgba(16,185,129,0.2)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-500/20 text-emerald-400 transition-colors group-hover:border-emerald-400">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-500/20 text-emerald-400 transition-colors group-hover:border-emerald-400 shadow-[0_0_10px_rgba(16,185,129,0.25)]">
                     <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
                       <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
                     </svg>
@@ -198,10 +198,10 @@ export function ContactSection() {
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-2xl border border-border/80 bg-surface/50 p-4 transition-all duration-300 hover:border-accent hover:bg-surface hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
+                className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] transition-all duration-300 hover:border-accent hover:bg-white/[0.07] hover:shadow-[0_8px_25px_rgba(167,139,250,0.15)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground transition-colors group-hover:border-accent group-hover:text-accent">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] text-foreground transition-colors group-hover:border-accent group-hover:text-accent shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]">
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path
                         fillRule="evenodd"
@@ -227,10 +227,10 @@ export function ContactSection() {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-2xl border border-border/80 bg-surface/50 p-4 transition-all duration-300 hover:border-accent hover:bg-surface hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
+                className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4 backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.06)] transition-all duration-300 hover:border-accent hover:bg-white/[0.07] hover:shadow-[0_8px_25px_rgba(167,139,250,0.15)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground transition-colors group-hover:border-accent group-hover:text-accent">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.05] text-foreground transition-colors group-hover:border-accent group-hover:text-accent shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)]">
                     <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                     </svg>
@@ -250,21 +250,21 @@ export function ContactSection() {
           </div>
 
           {/* Discussion Topic Starters */}
-          <div className="mt-8 border-t border-border/60 pt-6">
+          <div className="mt-8 border-t border-white/10 pt-6">
             <p className="font-mono text-xs tracking-wider text-muted uppercase">
               Areas of Discussion & Collaboration
             </p>
             <div className="mt-3 flex flex-wrap gap-2 text-xs">
-              <span className="rounded-full border border-border bg-surface/80 px-3.5 py-1.5 font-mono text-muted">
+              <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 font-mono text-muted backdrop-blur-sm shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
                 🌐 Full-Stack Architecture
               </span>
-              <span className="rounded-full border border-border bg-surface/80 px-3.5 py-1.5 font-mono text-muted">
+              <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 font-mono text-muted backdrop-blur-sm shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
                 📱 Cross-Platform Mobile Apps
               </span>
-              <span className="rounded-full border border-border bg-surface/80 px-3.5 py-1.5 font-mono text-muted">
+              <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 font-mono text-muted backdrop-blur-sm shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
                 🎵 Music Tech & Web Audio
               </span>
-              <span className="rounded-full border border-border bg-surface/80 px-3.5 py-1.5 font-mono text-muted">
+              <span className="rounded-full border border-white/[0.08] bg-white/[0.04] px-3.5 py-1.5 font-mono text-muted backdrop-blur-sm shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
                 ⚡ Backend APIs & PostgreSQL
               </span>
             </div>

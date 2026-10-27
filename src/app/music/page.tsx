@@ -19,7 +19,7 @@ export default function MusicPage() {
         <div className="mb-6">
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 rounded-full border border-border/80 bg-surface/60 px-4 py-2 font-mono text-xs font-semibold text-muted transition-all hover:border-accent hover:bg-surface hover:text-foreground hover:shadow-md"
+            className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 font-mono text-xs font-semibold text-muted backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.08)] transition-all hover:border-accent hover:bg-white/[0.1] hover:text-foreground hover:shadow-[0_4px_20px_rgba(167,139,250,0.2)]"
           >
             <span className="transition-transform duration-200 group-hover:-translate-x-1 text-accent">←</span>
             <span>Back to homepage</span>
@@ -41,7 +41,7 @@ export default function MusicPage() {
         </header>
 
         {/* ================= INSTRUMENT LAB OVERVIEW ================= */}
-        <section aria-labelledby="lab-overview-heading" className="my-14 border-t border-border pt-12">
+        <section aria-labelledby="lab-overview-heading" className="my-14 border-t border-white/[0.08] pt-12">
           <div className="mb-8">
             <span className="font-mono text-xs uppercase tracking-widest text-accent-secondary">
               Virtual Acoustics // Experimental Instruments
@@ -56,10 +56,10 @@ export default function MusicPage() {
 
           <div className="grid gap-6 md:grid-cols-3">
             {/* Instrument 1: 3D Synthesizer (Active) */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-accent/40 bg-surface/40 p-6 shadow-lg shadow-accent/5 backdrop-blur-sm">
+            <div className="relative flex flex-col justify-between rounded-3xl border border-accent/40 bg-white/[0.03] p-6 shadow-[0_12px_36px_rgba(167,139,250,0.12),inset_0_1px_1px_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:border-accent hover:bg-white/[0.06]">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-mono text-[11px] text-accent">
+                  <span className="rounded-full border border-accent/40 bg-accent/15 px-2.5 py-0.5 font-mono text-[11px] text-accent shadow-[0_0_10px_rgba(167,139,250,0.25)]">
                     ● Active Instrument
                   </span>
                   <span className="font-mono text-xs text-muted">01 / Synth</span>
@@ -70,17 +70,17 @@ export default function MusicPage() {
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-muted">
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">Web Audio</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">R3F 3D</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">No Autoplay</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">Web Audio</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">R3F 3D</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">No Autoplay</span>
               </div>
             </div>
 
             {/* Instrument 2: Acoustic String Lab (Active) */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-accent-secondary/40 bg-surface/40 p-6 shadow-lg shadow-accent-secondary/5 backdrop-blur-sm">
+            <div className="relative flex flex-col justify-between rounded-3xl border border-accent-secondary/40 bg-white/[0.03] p-6 shadow-[0_12px_36px_rgba(103,232,249,0.12),inset_0_1px_1px_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:border-accent-secondary hover:bg-white/[0.06]">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-accent-secondary/40 bg-accent-secondary/10 px-2.5 py-0.5 font-mono text-[11px] text-accent-secondary">
+                  <span className="rounded-full border border-accent-secondary/40 bg-accent-secondary/15 px-2.5 py-0.5 font-mono text-[11px] text-accent-secondary shadow-[0_0_10px_rgba(103,232,249,0.25)]">
                     ● Active Instrument
                   </span>
                   <span className="font-mono text-xs text-muted">02 / Strings</span>
@@ -91,17 +91,17 @@ export default function MusicPage() {
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-muted">
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">Karplus-Strong</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">Harmonics</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">Interactive Fretboard</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">Karplus-Strong</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">Harmonics</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">Interactive Fretboard</span>
               </div>
             </div>
 
             {/* Instrument 3: Polyrhythm Matrix (Active) */}
-            <div className="relative flex flex-col justify-between rounded-2xl border border-amber-400/40 bg-surface/40 p-6 shadow-lg shadow-amber-400/5 backdrop-blur-sm">
+            <div className="relative flex flex-col justify-between rounded-3xl border border-amber-400/40 bg-white/[0.03] p-6 shadow-[0_12px_36px_rgba(251,191,36,0.12),inset_0_1px_1px_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:border-amber-400 hover:bg-white/[0.06]">
               <div>
                 <div className="flex items-center justify-between">
-                  <span className="rounded-full border border-amber-400/40 bg-amber-400/10 px-2.5 py-0.5 font-mono text-[11px] text-amber-300">
+                  <span className="rounded-full border border-amber-400/40 bg-amber-400/15 px-2.5 py-0.5 font-mono text-[11px] text-amber-300 shadow-[0_0_10px_rgba(251,191,36,0.25)]">
                     ● Active Instrument
                   </span>
                   <span className="font-mono text-xs text-muted">03 / Percussion</span>
@@ -112,9 +112,9 @@ export default function MusicPage() {
                 </p>
               </div>
               <div className="mt-6 flex flex-wrap gap-2 text-[11px] font-mono text-muted">
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">Euclidean Math</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">Step Sequencer</span>
-                <span className="rounded bg-surface px-2 py-0.5 border border-border">BPM Sync</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">Euclidean Math</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">Step Sequencer</span>
+                <span className="rounded-full bg-white/[0.04] px-2.5 py-0.5 border border-white/10 backdrop-blur-sm">BPM Sync</span>
               </div>
             </div>
           </div>
@@ -122,7 +122,7 @@ export default function MusicPage() {
           {/* ================= PLAYABLE INSTRUMENT SUITE ================= */}
           <div className="mt-14 space-y-12">
             {/* Stage 1: Synthesizer */}
-            <div className="overflow-hidden rounded-2xl border border-border bg-background/80 p-4 sm:p-8">
+            <div className="overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02] p-4 sm:p-8 backdrop-blur-2xl shadow-[0_16px_40px_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.08)]">
               <div className="mb-4 flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <div className="inline-flex items-center gap-2 font-mono text-xs text-accent">

@@ -297,9 +297,9 @@ export function ToolsGrid() {
           </div>
 
           {/* Hover Tooltip displaying Technology Name */}
-          <div className="pointer-events-none absolute -bottom-7 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg border border-accent/40 bg-surface/95 px-3 py-1 font-mono text-xs font-semibold text-foreground opacity-0 shadow-xl backdrop-blur-md transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 translate-y-1 z-30">
+          <div className="pointer-events-none absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-lg border border-white/20 bg-[#121424]/90 px-3.5 py-1 font-mono text-xs font-semibold text-foreground opacity-0 shadow-[0_8px_32px_0_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-xl transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 translate-y-1 z-30">
             {tool.name}
-            <div className="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-surface/95" />
+            <div className="absolute -top-1 left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[#121424]/90" />
           </div>
         </div>
       ))}

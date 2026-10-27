@@ -4,7 +4,7 @@ import { profile } from '@/content/profile';
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border/80 bg-background bg-pinstripe pt-16 pb-16 overflow-hidden">
+    <footer className="relative border-t border-white/[0.08] bg-background/80 backdrop-blur-2xl bg-pinstripe pt-16 pb-16 overflow-hidden">
       {/* Ambient background glow */}
       <div
         className="pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[320px] w-[600px] -translate-x-1/2 rounded-full bg-accent/5 blur-[140px]"
