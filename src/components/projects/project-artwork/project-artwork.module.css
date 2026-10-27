@@ -1,7 +1,7 @@
 .artwork {
   position: relative;
   display: grid;
-  height: 13rem;
+  height: 7.5rem;
   place-items: center;
   overflow: hidden;
   border-bottom: 1px solid var(--border);

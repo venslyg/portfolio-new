@@ -6,7 +6,7 @@ import { experience, profile, skillGroups } from '@/content/profile';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Learn about Vensly Benaya — full-stack software engineer, NIBM graduate, developer at The Heaven’s Code, and musician exploring code through rhythm.',
+    'Learn about Vensly Gunasekara — full-stack software engineer, NIBM graduate, developer at The Heaven’s Code, and musician exploring code through rhythm.',
 };
 
 export default function AboutPage() {

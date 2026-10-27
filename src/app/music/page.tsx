@@ -6,7 +6,7 @@ import { InteractiveSynthesizer } from '@/components/visuals/interactive-synthes
 export const metadata: Metadata = {
   title: 'Music Lab',
   description:
-    'Explore the intersection of audio engineering, pitch detection, and interactive synthesis in Vensly Benaya’s Music Lab.',
+    'Explore the intersection of audio engineering, pitch detection, and interactive synthesis in Vensly Gunasekara’s Music Lab.',
 };
 
 export default function MusicPage() {

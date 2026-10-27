@@ -22,7 +22,7 @@ export function HeroSection() {
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-border/70 bg-surface/40 px-3.5 py-1.5 backdrop-blur-sm">
               <span className="h-1.5 w-1.5 rounded-full bg-accent-secondary" />
               <p className="font-mono text-xs tracking-[0.16em] text-accent-secondary uppercase">
-                Vensly Benaya {'//'} Full-Stack Software Engineer
+                Vensly Gunasekara {'//'} Full-Stack Software Engineer
               </p>
             </div>
 

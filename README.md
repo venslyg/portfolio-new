@@ -1,6 +1,6 @@
 # VENSLY. — Code in Rhythm
 
-Vensly Benaya's portfolio: full-stack software engineering meets music.
+Vensly Gunasekara's portfolio: full-stack software engineering meets music.
 
 ## Phase status (Milestone A Complete — frontend-v1)
 

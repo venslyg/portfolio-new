@@ -21,9 +21,9 @@ export const metadata: Metadata = {
     template: '%s | VENSLY.',
   },
   description:
-    "Vensly Benaya's developer portfolio. Full-stack software engineering, thoughtful interfaces, and creative explorations inspired by music.",
+    "Vensly Gunasekara's developer portfolio. Full-stack software engineering, thoughtful interfaces, and creative explorations inspired by music.",
   keywords: [
-    'Vensly Benaya',
+    'Vensly Gunasekara',
     'Full-Stack Software Engineer',
     'Angular',
     'Spring Boot',
@@ -34,8 +34,8 @@ export const metadata: Metadata = {
     'Creative Technologist',
     'Web Audio',
   ],
-  authors: [{ name: 'Vensly Benaya', url: 'https://github.com/venslyg' }],
-  creator: 'Vensly Benaya',
+  authors: [{ name: 'Vensly Gunasekara', url: 'https://github.com/venslyg' }],
+  creator: 'Vensly Gunasekara',
   openGraph: {
     type: 'website',
     locale: 'en_US',

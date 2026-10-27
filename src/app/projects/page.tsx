@@ -7,7 +7,7 @@ import { getAllProjects } from '@/content/projects';
 export const metadata: Metadata = {
   title: 'Work & Projects',
   description:
-    'Explore full-stack web applications, cross-platform mobile tools, and enterprise architecture engineered by Vensly Benaya.',
+    'Explore full-stack web applications, cross-platform mobile tools, and enterprise architecture engineered by Vensly Gunasekara.',
 };
 
 export default function ProjectsPage() {

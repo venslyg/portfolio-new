@@ -1,5 +1,5 @@
 VENSLY. — Code in Rhythm
-Project: Vensly Benaya's interactive developer portfolio
+Project: Vensly Gunasekara's interactive developer portfolio
 Product direction: Professional full-stack engineering meets music and 3D interaction
 Stack: Next.js App Router, TypeScript, Tailwind CSS, Three.js / React Three Fiber, Vercel
 Status: Phase 5 implemented and verified locally; production quality, SEO, sitemap, robots, OpenGraph, accessibility, and mobile audits passed. Phase 6 (Vercel Release) ready for approval.
@@ -43,7 +43,7 @@ Target audience
 2. Potential software clients: want proof of problem-solving and a direct route to request work.
 3. Developers and creative technologists: appreciate architecture, thoughtful interactions, and experiments.
 Public content from the CV (verify before publishing)
-- Name: G. Vensly Benaya; title: Full-Stack Software Engineer.
+- Name: G. Vensly Gunasekara; title: Full-Stack Software Engineer.
 - Experience: full-stack developer at The Heaven's Code, following an internship there.
 - Education: Diploma and Higher National Diploma in Software Engineering at NIBM.
 - Personal projects to prioritize: Key Detective (Ionic/Angular and pitch detection), Agentry (Flutter/Firebase/SQLite), and the youth ministry website.
@@ -413,5 +413,6 @@ Paid services or deployment side effects	Discuss provider choice and costs befor
 - Vercel Git deployment guide
 - Vercel environment variables
 Current next step: Review Phase 2 copy and visual design. Phase 3 may begin only after Vensly approves it. Vercel connection remains deferred.
+
 
 
