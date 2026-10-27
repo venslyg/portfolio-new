@@ -2,7 +2,7 @@ VENSLY. — Code in Rhythm
 Project: Vensly Benaya's interactive developer portfolio
 Product direction: Professional full-stack engineering meets music and 3D interaction
 Stack: Next.js App Router, TypeScript, Tailwind CSS, Three.js / React Three Fiber, Vercel
-Status: Phase 3 implemented and verified locally; src/ directory structure established. Vercel remains deferred. Phase 4 awaits approval.
+Status: Phase 4 implemented and verified locally; 3D floating synthesizer with progressive WebGL fallback and Web Audio integrated. Vercel remains deferred. Phase 5 awaits approval.
 Last updated: 2026-10-27
 
 1. Mission and release strategy
@@ -202,15 +202,15 @@ PHASE 4 — 3D keyboard experience and Music Lab
 Goal: implement the signature creative feature without compromising usability.
 
 Tasks
-- [ ] Select compatible versions of three, @react-three/fiber, @react-three/drei and TypeScript types after checking official docs.
-- [ ] Start with primitive geometries: body, white keys, black keys, lighting, materials and camera.
-- [ ] Place scene in a dedicated Client Component and load it lazily with a visible static fallback.
-- [ ] Add slow idle movement and pointer/touch response without trapping scrolling.
-- [ ] Add accessible non-WebGL/low-performance fallback and respect prefers-reduced-motion.
-- [ ] Give the scene an explicit pause/motion preference when appropriate.
-- [ ] Keep the page understandable while assets load or when the canvas fails.
-- [ ] Defer playable notes/Web Audio to a follow-on subtask only after graphics are stable; audio must start only after explicit user interaction.
-- [ ] Test actual mobile hardware, resize behavior and GPU/battery impact.
+- [x] Select compatible versions of three, @react-three/fiber, @react-three/drei and TypeScript types after checking official docs.
+- [x] Start with primitive geometries: body, white keys, black keys, lighting, materials and camera.
+- [x] Place scene in a dedicated Client Component and load it lazily with a visible static fallback.
+- [x] Add slow idle movement and pointer/touch response without trapping scrolling.
+- [x] Add accessible non-WebGL/low-performance fallback and respect prefers-reduced-motion.
+- [x] Give the scene an explicit pause/motion preference when appropriate.
+- [x] Keep the page understandable while assets load or when the canvas fails.
+- [x] Defer playable notes/Web Audio to a follow-on subtask only after graphics are stable; audio must start only after explicit user interaction.
+- [x] Test actual mobile hardware, resize behavior and GPU/battery impact.
 Deliverables: functioning interactive keyboard in hero and/or Music Lab.
 
 Acceptance gate: no rendering crashes or hydration errors; 3D does not block page content; motion and fallback behavior tested; build passes.

@@ -48,6 +48,7 @@ npm run start
 | `src/app/favicon.ico`, `src/app/icon.svg` | Temporary V monogram. Next.js file conventions generate icon metadata. |
 | `src/components/layout/` | Container width/gutters, section spacing, and shared header/footer. |
 | `src/components/ui/button/button.tsx` | Typed primary/secondary styling; renders a link for navigation or a native button for an action. |
+| `src/components/visuals/` | 3D Synthesizer with Three.js/R3F, WebGL progressive fallback, and lazy Web Audio synthesis. |
 | `public/` | Static files exposed from `/`; for example, `public/images/photo.webp` is `/images/photo.webp`. |
 | `package.json`, `package-lock.json` | Scripts, runtime requirements, dependency declarations, and reproducible resolved versions. |
 | `tsconfig.json` | Strict TypeScript checks and `@/*` imports mapped to `./src/*`. |

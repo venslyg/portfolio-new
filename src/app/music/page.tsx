@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Container } from '@/components/layout/container/container';
-import { SynthesizerPreview } from '@/components/visuals/synthesizer-preview/synthesizer-preview';
+import { InteractiveSynthesizer } from '@/components/visuals/interactive-synthesizer/interactive-synthesizer';
 
 export const metadata: Metadata = {
   title: 'Music Lab',
@@ -60,7 +60,7 @@ export default function MusicPage() {
           </div>
 
           <div className="mt-10 overflow-hidden rounded-2xl border border-border bg-background/60 p-4 sm:p-8">
-            <SynthesizerPreview />
+            <InteractiveSynthesizer />
           </div>
         </section>
 

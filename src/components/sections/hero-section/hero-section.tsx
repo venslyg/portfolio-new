@@ -1,6 +1,6 @@
 import { Section } from '@/components/layout/section/section';
 import { Button } from '@/components/ui/button/button';
-import { SynthesizerPreview } from '@/components/visuals/synthesizer-preview/synthesizer-preview';
+import { InteractiveSynthesizer } from '@/components/visuals/interactive-synthesizer/interactive-synthesizer';
 
 export function HeroSection() {
   return (
@@ -26,7 +26,7 @@ export function HeroSection() {
             </Button>
           </div>
         </div>
-        <SynthesizerPreview />
+        <InteractiveSynthesizer />
       </div>
     </Section>
   );
