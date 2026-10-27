@@ -1,69 +1,25 @@
 import Link from 'next/link';
-import { Container } from '@/components/layout/container/container';
 import { profile } from '@/content/profile';
 
 export function Footer() {
-  const currentYear = 2026;
-
   return (
-    <footer className="relative border-t border-border/80 bg-background bg-pinstripe pt-16 pb-12 overflow-hidden">
+    <footer className="relative border-t border-border/80 bg-background bg-pinstripe pt-16 pb-16 overflow-hidden">
       {/* Ambient background glow */}
       <div
-        className="pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[380px] w-[600px] -translate-x-1/2 rounded-full bg-accent/5 blur-[140px]"
+        className="pointer-events-none absolute bottom-0 left-1/2 -z-10 h-[320px] w-[600px] -translate-x-1/2 rounded-full bg-accent/5 blur-[140px]"
         aria-hidden="true"
       />
 
-      <Container className="flex flex-col gap-12">
-        {/* ================= INSPIRATIONAL MOTTO (Matching Reference Image) ================= */}
+      <div className="mx-auto flex w-full max-w-[1700px] flex-col gap-12 px-6 sm:px-10 lg:px-16">
+        {/* ================= INSPIRATIONAL MOTTO ================= */}
         <div className="text-center">
           <p className="font-mono text-xs tracking-[0.24em] text-muted/70 uppercase">
             &ldquo;WE ARE NOT JUST WRITING CODE. WE ARE COMPOSING DIGITAL EXPERIENCES.&rdquo;
           </p>
         </div>
 
-        {/* ================= CURRENT HORIZON / AVAILABILITY CARD (Matching Reference Image) ================= */}
-        <div className="relative overflow-hidden rounded-2xl border border-border/70 bg-surface/50 p-7 sm:p-9 backdrop-blur-md transition-all hover:border-accent/40">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex-1">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="font-mono text-sm font-semibold tracking-wider text-foreground">
-                  2026 — 2027
-                </span>
-                <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-mono text-[0.65rem] tracking-wider text-accent uppercase">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-                  AVAILABLE FOR WORK
-                </span>
-              </div>
-
-              <h2 className="mt-3 text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-                Ready to compose your next high-impact software system?
-              </h2>
-
-              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted">
-                Specializing in high-performance web systems, full-stack Next.js and React applications,
-                reactive mobile platforms, and creative interactive audio experiences.
-              </p>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex min-h-11 items-center justify-center rounded-control bg-accent px-5 py-2.5 text-xs font-semibold tracking-wide text-background shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
-              >
-                Start a conversation ↗
-              </a>
-              <Link
-                href="/projects"
-                className="inline-flex min-h-11 items-center justify-center rounded-control border border-border bg-surface/80 px-5 py-2.5 text-xs font-semibold tracking-wide text-foreground transition-colors hover:border-accent hover:bg-surface focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
-              >
-                Explore case studies
-              </Link>
-            </div>
-          </div>
-        </div>
-
-        {/* ================= 3-COLUMN FOOTER LAYOUT (Matching Reference Image) ================= */}
-        <div className="grid gap-10 pt-4 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1.2fr] lg:gap-14">
+        {/* ================= 3-COLUMN FOOTER LAYOUT ================= */}
+        <div className="grid gap-10 pt-4 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1.3fr] lg:gap-16">
           {/* Column 1: Brand & Philosophy */}
           <div>
             <div className="flex items-center gap-3">
@@ -84,15 +40,10 @@ export function Footer() {
               </div>
             </div>
 
-            <p className="mt-4 max-w-sm text-xs leading-relaxed text-muted">
+            <p className="mt-4 max-w-md text-xs leading-relaxed text-muted">
               Merging technical software engineering rigor with musical rhythm to craft resilient,
               purpose-driven digital products across web and mobile ecosystems.
             </p>
-
-            <div className="mt-5 flex items-center gap-2 text-xs font-mono text-muted/70">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              <span>Based in Sri Lanka {'//'} Open to remote worldwide</span>
-            </div>
           </div>
 
           {/* Column 2: Navigation Links */}
@@ -207,25 +158,7 @@ export function Footer() {
             </ul>
           </div>
         </div>
-
-        {/* ================= BOTTOM BAR ================= */}
-        <div className="flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-8 text-xs text-muted sm:flex-row">
-          <p>© {currentYear} Vensly Benaya. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <span className="font-mono text-[0.68rem] text-muted/60">
-              Built with Next.js & Three.js
-            </span>
-            <Link
-              href="/#home"
-              className="inline-flex min-h-11 items-center gap-2 font-mono text-[0.68rem] text-accent transition-colors hover:text-accent-secondary focus-visible:rounded-control"
-              aria-label="Scroll back to top of page"
-            >
-              <span>Back to top</span>
-              <span aria-hidden="true">↑</span>
-            </Link>
-          </div>
-        </div>
-      </Container>
+      </div>
     </footer>
   );
 }

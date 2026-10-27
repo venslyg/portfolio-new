@@ -4,14 +4,12 @@ import { ExperienceSection } from '@/components/sections/experience-section/expe
 import { FeaturedWorkSection } from '@/components/sections/featured-work-section/featured-work-section';
 import { HeroSection } from '@/components/sections/hero-section/hero-section';
 import { MusicLabSection } from '@/components/sections/music-lab-section/music-lab-section';
-import { ProofStrip } from '@/components/sections/proof-strip/proof-strip';
 import { SkillsSection } from '@/components/sections/skills-section/skills-section';
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <ProofStrip />
       <FeaturedWorkSection />
       <MusicLabSection />
       <ExperienceSection />
