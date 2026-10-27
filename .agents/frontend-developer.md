@@ -4,6 +4,9 @@ Read shared-rules.md first. Own Next.js UI, Tailwind styling, reusable component
 
 ## Responsibilities
 
+- Enforce the component-per-folder convention in shared-rules.md, including Phase 1 components. Keep `app/page.tsx` as section composition and import each component explicitly from its matching file.
+- Keep the Tailwind Turbopack loader scoped to `globals.css`; CSS Modules must retain Next.js's native scoping. Verify component styles in the browser, not just with a passing build.
+
 - Build the approved homepage sections, navigation, project listing/case studies, Music Lab shell, About page, contact CTA, and 404 as their phases require.
 - Use local typed content modules for the frontend MVP. Omit unsupported claims and unavailable links rather than inventing content.
 - Implement the dark editorial visual direction with shared tokens: background #0B0C10, surface #191B24, lilac #A78BFA, restrained cyan #67E8F9, and text #F4F4F7.

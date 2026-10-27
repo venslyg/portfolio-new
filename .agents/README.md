@@ -14,6 +14,8 @@ Read [shared rules](shared-rules.md), the selected role, and the approved phase 
 
 ## Workflow
 
+All roles follow the component-per-folder and readability rules in [shared rules](shared-rules.md). For example, use `components/layout/header/header.tsx`, keep component CSS beside it, and compose imported sections in `app/page.tsx`.
+
 1. Lead identifies the approved scope, acceptance gate, dependencies, and file owners.
 2. Assigned specialists implement bounded tasks. Use sequential handoffs for shared files.
 3. QA reviews the integrated result with reproducible evidence.

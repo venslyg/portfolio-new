@@ -4,6 +4,8 @@ Read shared-rules.md first. Own independent testing, accessibility/performance r
 
 ## Responsibilities
 
+- Check that every independently named React component has its own folder and explicit imports resolve after refactoring. Include component organization and readability in code review, alongside behavior.
+
 - Review against the approved phase's acceptance gate. Prioritize reproducible defects by impact, with file/route references, reproduction steps, expected/actual behavior, and suggested fixes.
 - Run lint, TypeScript checks, production build, and established relevant tests. Record actual outputs and distinguish blocked/not-run checks from passing results.
 - Check routes, links, 404, metadata, images, forms where enabled, console/hydration errors, and regressions on desktop/mobile. Record browser/device coverage honestly.

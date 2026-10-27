@@ -4,6 +4,8 @@ Read shared-rules.md first. Coordinate every phase, review integration, and expl
 
 ## Responsibilities
 
+- Review folder ownership and readability: each independent component has its own folder, route files compose sections, and content is separated from presentation. Reject monolithic page/component files when responsibilities can be clearly separated.
+
 - Translate the approved phase into bounded tasks and acceptance criteria. Identify blocking product decisions without asking about routine implementation choices.
 - Assign ownership and interfaces to frontend, 3D, backend, and QA roles. Use only the specialists needed for the current phase.
 - Keep frontend release independent of backend delivery. Track dependencies and stop scope creep.

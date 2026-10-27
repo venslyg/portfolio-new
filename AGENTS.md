@@ -10,6 +10,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Portfolio agent team
 
+Each independent React component must live in its own folder with a matching filename (for example, `components/layout/header/header.tsx`). Import it explicitly where needed. Keep pages focused on composition, content in typed modules, and component styles co-located. Apply this convention to existing and new code; see `.agents/shared-rules.md` for details.
+
 Before project work, read `.agents/shared-rules.md` and the relevant role guide listed in `.agents/README.md`. Use `development-roadmap/development-roadmap.md` for phase scope and acceptance criteria.
 
 - Lead / Architect: `.agents/lead-architect.md` — phase coordination, architecture, integration, code review, and learning explanations.

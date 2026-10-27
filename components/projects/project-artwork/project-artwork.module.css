@@ -1,0 +1,93 @@
+.artwork {
+  position: relative;
+  display: grid;
+  height: 13rem;
+  place-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+.music {
+  background: radial-gradient(ellipse at center, #41305a, #191822 75%);
+}
+.records {
+  background: radial-gradient(ellipse at center, #21434a, #161e25 75%);
+}
+.community {
+  background: radial-gradient(ellipse at center, #4b3541, #231c27 75%);
+}
+.label {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.5rem;
+  color: #c7c1d3;
+  font: 0.55rem var(--font-geist-mono);
+  letter-spacing: 0.15em;
+}
+.waveform {
+  display: flex;
+  height: 5rem;
+  align-items: center;
+  gap: 0.4rem;
+  transform: rotate(-8deg);
+}
+.waveform span {
+  width: 0.35rem;
+  min-height: 0.4rem;
+  border-radius: 1rem;
+  background: linear-gradient(#d6c6ff, #a78bfa);
+}
+.recordsStack {
+  display: grid;
+  width: 10rem;
+  gap: 0.5rem;
+  transform: rotate(-10deg);
+}
+.record {
+  display: flex;
+  height: 2rem;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem;
+  border: 1px solid #73bcc16b;
+  border-radius: 0.35rem;
+  background: #182f37;
+  box-shadow: 8px 8px #0002;
+}
+.record i {
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 50%;
+  background: #86d6df;
+}
+.record span {
+  height: 0.2rem;
+  width: 2.5rem;
+  background: #7c9fa5;
+}
+.record span:last-child {
+  width: 1.3rem;
+  margin-left: auto;
+}
+.communityMark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  transform: rotate(-12deg);
+}
+.communityMark span {
+  height: 2.6rem;
+  width: 2.6rem;
+  border-radius: 50% 50% 15% 50%;
+  background: #dfb5cb;
+}
+.communityMark span:nth-child(2) {
+  transform: rotate(90deg);
+  background: #ba91c9;
+}
+.communityMark span:nth-child(3) {
+  transform: rotate(-90deg);
+  background: #a78bfa;
+}
+.communityMark span:nth-child(4) {
+  transform: rotate(180deg);
+}

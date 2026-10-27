@@ -2,7 +2,7 @@
 
 ## Scope and sources
 
-- Follow the user's current instructions and root AGENTS.md. Use development-roadmap/development-roadmap.md as the phase and product source; README.md currently contains scaffold instructions.
+- Follow the user's current instructions and root AGENTS.md. Use development-roadmap/development-roadmap.md as the phase and product source; README.md documents the implemented architecture, setup, and verification.
 - Read the relevant installed Next.js guides in node_modules/next/dist/docs/ before writing application code. Respect deprecations and inspect actual package versions and scripts.
 - Inspect repository changes first. Preserve unrelated work and the generated Next.js instruction block.
 - Work only within the authorized task or phase. Team setup does not approve any implementation phase. Stop at phase completion; Vensly approves progression.
@@ -10,6 +10,12 @@
 - Current routes live in app/. The roadmap's src/ tree is a proposal; do not migrate or create empty folders merely to match it.
 
 ## Implementation
+
+- Give every independently named React component its own kebab-case folder and matching file, e.g. `components/layout/header/header.tsx`. Apply this to existing components when refactoring and to every new component.
+- Next.js convention files such as `app/page.tsx` and `app/layout.tsx` stay in their required route locations and compose imported components.
+- Import components explicitly from their own files at the point of composition. Keep route files and layouts focused on composing components; extract distinct sections and reusable UI instead of accumulating JSX in one file.
+- Co-locate component-specific CSS Modules, tests, and private helpers in that component's folder when needed. Keep shared content in typed `content/` modules and reusable hooks in their own `hooks/<hook-name>/` folders. Do not create empty files or unnecessary barrel exports.
+- Prioritize readability: descriptive names, short focused components, typed props, readable multiline markup, and explicit data flow. Keep global CSS for tokens and shared base styles; avoid unrelated component selectors there.
 
 - Prefer small typed components and modules, Server Components for content, and narrow Client Component boundaries for browser interaction.
 - Use Tailwind and shared CSS design tokens. Keep layouts responsive, semantic, keyboard accessible, and reduced-motion aware.

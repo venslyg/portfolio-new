@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   color-scheme: dark;
@@ -23,7 +23,7 @@
   --color-border: var(--border);
   --font-sans: var(--font-geist-sans), Arial, sans-serif;
   --font-mono: var(--font-geist-mono), monospace;
-  --text-display: clamp(2.75rem, 7.5vw, 6rem);
+  --text-display: clamp(2.75rem, 5.6vw, 4.75rem);
   --text-display--line-height: 1.05;
   --text-heading: clamp(1.875rem, 4vw, 3rem);
   --text-heading--line-height: 1.15;
@@ -43,7 +43,9 @@
     outline: 2px solid var(--accent-secondary);
     outline-offset: 5px;
   }
-  [id] { scroll-margin-top: 2rem; }
+  [id] {
+    scroll-margin-top: 7rem;
+  }
 }
 
 @layer components {
@@ -59,11 +61,15 @@
     color: var(--background);
     font-weight: 600;
   }
-  .skip-link:focus { transform: translateY(0); }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
