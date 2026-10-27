@@ -1,17 +1,23 @@
 import { Section } from '@/components/layout/section/section';
 import { SectionHeading } from '@/components/ui/section-heading/section-heading';
 import { Button } from '@/components/ui/button/button';
+import { ResonanceGyroscope } from '@/components/three/resonance-gyroscope/resonance-gyroscope';
 
 export function AboutSection() {
   return (
     <Section id="about" labelledBy="about-heading">
-      <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-start">
-        <SectionHeading
-          id="about-heading"
-          eyebrow="05 // Beyond the code"
-          title="A developer with a musical side."
-          description="Software engineering rigor meets musical creative curiosity."
-        />
+      <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+        <div>
+          <SectionHeading
+            id="about-heading"
+            eyebrow="05 // Beyond the code"
+            title="A developer with a musical side."
+            description="Software engineering rigor meets musical creative curiosity."
+          />
+          <div className="mt-6 flex justify-start">
+            <ResonanceGyroscope />
+          </div>
+        </div>
         <div className="space-y-6 text-base leading-relaxed text-muted sm:text-lg">
           <p>
             I’m Vensly, a full-stack developer at The Heaven’s Code. My work spans web and mobile applications, with a foundation in

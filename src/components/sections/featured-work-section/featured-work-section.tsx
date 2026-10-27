@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Section } from '@/components/layout/section/section';
 import { ProjectSlider } from '@/components/projects/project-slider/project-slider';
 import { SectionHeading } from '@/components/ui/section-heading/section-heading';
+import { HolographicDisc } from '@/components/three/holographic-disc/holographic-disc';
 import { getAllProjects } from '@/content/projects';
 
 export function FeaturedWorkSection() {
@@ -9,12 +10,19 @@ export function FeaturedWorkSection() {
 
   return (
     <Section id="work" labelledBy="work-heading">
-      <SectionHeading
-        id="work-heading"
-        eyebrow="01 // Selected work"
-        title="Built around real needs."
-        description="Personal projects across music, mobile, and community. Slide through to explore the engineering and architectural highlights."
-      />
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div className="flex-1">
+          <SectionHeading
+            id="work-heading"
+            eyebrow="01 // Selected work"
+            title="Built around real needs."
+            description="Personal projects across music, mobile, and community. Slide through to explore the engineering and architectural highlights."
+          />
+        </div>
+        <div className="hidden md:flex shrink-0 items-center justify-center">
+          <HolographicDisc />
+        </div>
+      </div>
 
       <div className="mt-8">
         <ProjectSlider projects={projects} />

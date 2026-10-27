@@ -5,6 +5,8 @@ import { Section } from '@/components/layout/section/section';
 import { SectionHeading } from '@/components/ui/section-heading/section-heading';
 import { profile } from '@/content/profile';
 
+import { SignalBeacon } from '@/components/three/signal-beacon/signal-beacon';
+
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
 
@@ -19,12 +21,19 @@ export function ContactSection() {
   return (
     <Section id="contact" labelledBy="contact-heading" className="border-t border-border/80 bg-surface/20">
       <div className="mx-auto max-w-[1200px]">
-        <SectionHeading
-          id="contact-heading"
-          eyebrow="06 // Get in touch"
-          title="Have an idea? Let’s compose something great."
-          description="Whether you have an upcoming project, an engineering role, or a conversation about software and audio tech, my inbox is open."
-        />
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+          <div className="flex-1">
+            <SectionHeading
+              id="contact-heading"
+              eyebrow="06 // Get in touch"
+              title="Have an idea? Let’s compose something great."
+              description="Whether you have an upcoming project, an engineering role, or a conversation about software and audio tech, my inbox is open."
+            />
+          </div>
+          <div className="hidden sm:flex shrink-0 items-center justify-center">
+            <SignalBeacon />
+          </div>
+        </div>
 
         {/* ================= MAIN INTERACTIVE CONTACT CARD ================= */}
         <div className="mt-12 rounded-3xl border border-border/80 bg-gradient-to-b from-surface/80 via-surface/40 to-background/90 p-6 sm:p-10 shadow-2xl backdrop-blur-md">

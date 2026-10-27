@@ -157,7 +157,7 @@ export const toolsList: readonly ToolItem[] = [
     name: 'GitHub',
     category: 'Tools',
     icon: (
-      <svg className="h-10 w-10" viewBox="0 0 24 24" fill="#181717">
+      <svg className="h-10 w-10" viewBox="0 0 24 24" fill="#FFFFFF">
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -202,7 +202,7 @@ export const toolsList: readonly ToolItem[] = [
       <svg className="h-10 w-10" viewBox="0 0 128 128">
         <path
           d="M64 4c-33.1 0-60 26.9-60 60s26.9 60 60 60 60-26.9 60-60S97.1 4 64 4zm18.7 87.2c-4.8 2.2-10.7 3.5-17.2 3.5-18.4 0-29.3-10.4-29.3-27.8 0-17.9 11.5-28.7 30.6-28.7 6.1 0 11.6 1.1 15.9 3.1l-2.4 8.7c-3.6-1.6-8.2-2.6-13.1-2.6-12.7 0-20.1 7.2-20.1 19.3 0 11.6 7 18.7 19.4 18.7 5.1 0 10.1-1.1 14.1-2.8l2.1 8.6z"
-          fill="#003B57"
+          fill="#007ACC"
         />
       </svg>
     ),
@@ -238,17 +238,12 @@ export const toolsList: readonly ToolItem[] = [
     category: 'Frontend',
     icon: (
       <svg className="h-10 w-10" viewBox="0 0 180 180" fill="none">
-        <mask id="mask0" maskUnits="userSpaceOnUse" x="0" y="0" width="180" height="180">
-          <circle cx="90" cy="90" r="90" fill="black" />
-        </mask>
-        <g mask="url(#mask0)">
-          <circle cx="90" cy="90" r="90" fill="black" />
-          <path
-            d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
-            fill="url(#paint0_linear)"
-          />
-          <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear)" />
-        </g>
+        <circle cx="90" cy="90" r="86" fill="#111218" stroke="#353847" strokeWidth="4" />
+        <path
+          d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z"
+          fill="url(#paint0_linear)"
+        />
+        <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear)" />
         <defs>
           <linearGradient id="paint0_linear" x1="109" y1="116.5" x2="144.5" y2="160.5" gradientUnits="userSpaceOnUse">
             <stop stopColor="white" />
@@ -310,9 +305,9 @@ export function ToolsGrid() {
           key={tool.name}
           title={tool.name}
           aria-label={tool.name}
-          className="group relative flex aspect-square items-center justify-center rounded-2xl bg-white p-4 shadow-md transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-accent/20 sm:p-5"
+          className="group relative flex aspect-square items-center justify-center rounded-2xl border border-border/50 bg-surface/30 p-4 transition-all duration-300 hover:-translate-y-2 hover:border-accent/60 hover:bg-surface/70 hover:shadow-[0_0_24px_rgba(167,139,250,0.25)] sm:p-5"
         >
-          <div className="flex h-14 w-14 items-center justify-center transition-transform duration-300 group-hover:scale-110">
+          <div className="flex h-14 w-14 items-center justify-center transition-transform duration-300 group-hover:scale-125 group-hover:drop-shadow-[0_0_12px_rgba(103,232,249,0.5)]">
             {tool.icon}
           </div>
         </div>
