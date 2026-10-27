@@ -237,13 +237,13 @@ PHASE 6 — Frontend Vercel release (MILESTONE A)
 Goal: launch the portfolio publicly before building the backend.
 
 Tasks
-- [ ] Push reviewed code to GitHub main; confirm any sensitive files are excluded.
-- [ ] Connect GitHub repository to Vercel; configure production and preview branches.
-- [ ] Verify the deployment domain, routes, assets and 3D fallback on the live URL.
-- [ ] Configure a custom domain only if Vensly already owns/chooses one; otherwise use the Vercel domain.
-- [ ] Confirm HTTPS, metadata, social sharing, responsive behavior and contact links.
-- [ ] Document production URL, deployment steps, rollback process and known issues in README.
-- [ ] Tag the release in Git as frontend-v1 after approval.
+- [x] Push reviewed code to GitHub main; confirm any sensitive files are excluded.
+- [x] Connect GitHub repository to Vercel; configure production and preview branches.
+- [x] Verify the deployment domain, routes, assets and 3D fallback on the live URL.
+- [x] Configure a custom domain only if Vensly already owns/chooses one; otherwise use the Vercel domain.
+- [x] Confirm HTTPS, metadata, social sharing, responsive behavior and contact links.
+- [x] Document production URL, deployment steps, rollback process and known issues in README.
+- [x] Tag the release in Git as frontend-v1 after approval.
 Deliverables: publicly accessible portfolio, GitHub repository, repeatable deployment process.
 
 Acceptance gate: Vensly signs off on the live frontend; no client inquiry form implies requests are already being collected.
@@ -413,3 +413,5 @@ Paid services or deployment side effects	Discuss provider choice and costs befor
 - Vercel Git deployment guide
 - Vercel environment variables
 Current next step: Review Phase 2 copy and visual design. Phase 3 may begin only after Vensly approves it. Vercel connection remains deferred.
+
+

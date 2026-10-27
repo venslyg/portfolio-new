@@ -2,19 +2,16 @@
 
 Vensly Benaya's portfolio: full-stack software engineering meets music.
 
-## Phase status
+## Phase status (Milestone A Complete — frontend-v1)
 
-Phase 2 is implemented and locally verified, including the Phase 1 component-folder refactor. Vercel connection and the live preview remain deferred at Vensly's request. Phase 3 has not started.
+Milestone A (Phases 0–6: Complete Frontend Launch) is fully implemented, verified, committed, pushed to `origin/main`, and tagged `frontend-v1`.
 
-- [x] Existing Next.js App Router, TypeScript, ESLint, Tailwind, npm, and `@/*` alias retained.
-- [x] Node 24 LTS declared in `.nvmrc` and `package.json`.
-- [x] Git repository and existing `venslyg/portfolio-new` origin identified.
-- [x] Dark palette, Geist fonts, fluid typography, spacing, and button variants.
-- [x] Shared Container, Section, Button, Header, and Footer.
-- [x] Minimal homepage, metadata, branded temporary favicon, and keyboard focus/skip-link styles.
-- [x] Local lint, typecheck, production build, and responsive/browser verification.
-- [ ] GitHub authentication repaired before future push operations.
-- [ ] Vercel connection and verified preview URL — deferred by the owner.
+- [x] Phase 0 & 1: Groundwork, design tokens, component architecture, and directory structure.
+- [x] Phase 2: Complete landing page composition, typography, and responsive sections.
+- [x] Phase 3: Multi-page dynamic routes (`/projects`, `/projects/[slug]`, `/about`, `/music`, and custom `/not-found`).
+- [x] Phase 4: Signature 3D interactive floating synthesizer with procedural geometry, Web Audio API sound engine, and resilient non-WebGL / prefers-reduced-motion fallback.
+- [x] Phase 5: Production quality, technical SEO (OpenGraph, Twitter cards, dynamic `sitemap.xml`, `robots.txt`), semantic landmarks, and accessibility compliance.
+- [x] Phase 6: Vercel release readiness, Git tag `frontend-v1`, clean working tree synced with GitHub origin, and deployment documentation.
 
 The detailed scope and acceptance gates live in [the development roadmap](development-roadmap/development-roadmap.md). Role instructions live in [.agents](.agents/README.md).
 
@@ -147,16 +144,47 @@ The active-section hook uses a passive scroll listener scheduled through request
 - [ ] Physical devices, Safari/Firefox, and a full assistive-technology audit (broader Phase 5 work).
 
 Temporary screenshots and the result report are in ignored `.next/phase2-*.png` and `.next/phase2-results.json`; builds can remove them. The existing warning about an unrelated `E:\package-lock.json` remains harmless. Vercel is still deferred. Stop here: Phase 3 requires approval.
-## GitHub and Vercel handoff (deferred)
+## Production deployment & Vercel release (Milestone A)
 
-The existing origin points to `venslyg/portfolio-new`. GitHub CLI authentication was invalid during implementation. The remote also contained an embedded credential: rotate it, use a credential manager, and replace the remote with a credential-free URL before sharing diagnostics. Never copy tokens into documentation or commits.
+The code on `origin/main` is production-ready, fully verified, and tagged as **`frontend-v1`**.
 
-When deployment is requested:
+### 1. One-click Git Integration (Recommended)
+1. Navigate to [vercel.com/new](https://vercel.com/new).
+2. Select or import the GitHub repository: **`venslyg/portfolio-new`**.
+3. Vercel automatically detects Next.js:
+   - **Framework Preset**: Next.js
+   - **Root Directory**: `./`
+   - **Build Command**: `next build` (or `npm run build`)
+   - **Node.js Version**: 24.x LTS (declared in `.nvmrc` and `package.json`)
+   - **Environment Variables**: None required for frontend Milestone A (Phase 0–6).
+4. Click **Deploy**. Vercel will build and assign the production domain (`https://portfolio-new-*.vercel.app` or custom domain).
 
-1. Restore GitHub authentication and review the Phase 1 diff before committing/pushing to an appropriate branch.
-2. Import the existing repository into the chosen Vercel account/team.
-3. Select Next.js, the repository root, Node 24.x, and the existing build command. No environment variables are required.
-4. Use a non-production branch for the preview; verify `/`, icons, typography, and keyboard navigation at mobile and desktop widths.
-5. Record the verified preview URL and build result here. Production launch belongs to Phase 6.
+### 2. Manual CLI Deployment
+If deploying directly via Vercel CLI:
+```sh
+npx vercel login
+npx vercel --prod
+```
 
-Do not mark Phase 1's original live-preview acceptance gate complete until the deferred preview is verified. Phase 2 was authorized and implemented. Do not begin Phase 3 without Vensly's approval.
+### 3. Post-Deployment Live Verification Checklist
+- [ ] Visit home page `/`, verify HTTPS and fast initial paint.
+- [ ] Test navigation to `/projects`, `/projects/key-detective`, `/projects/agentry`, `/about`, and `/music`.
+- [ ] Verify 3D Synthesizer on desktop/mobile: smooth rendering, responsive keys, non-WebGL fallback on unsupported devices.
+- [ ] Verify that sound is strictly off until explicit user toggle.
+- [ ] Verify OpenGraph metadata using social media debugger (Twitter/X or LinkedIn card preview).
+- [ ] Check `/robots.txt` and `/sitemap.xml` response.
+
+### 4. Rollback Procedure
+If any unexpected defect occurs in production:
+1. **Via Vercel Dashboard**: Go to **Project > Deployments**, locate the last known healthy deployment, click **... > Instant Rollback**, and confirm.
+2. **Via Git**: To rollback to the exact Milestone A release tag:
+   ```sh
+   git checkout frontend-v1
+   git checkout -b rollback-frontend-v1
+   git push origin rollback-frontend-v1
+   ```
+   Promote `rollback-frontend-v1` on Vercel.
+
+### 5. Known Scope & Next Steps
+- **Milestone A Scope**: Strictly frontend-first portfolio showcase. Contact options are direct verified links (email, LinkedIn, GitHub).
+- **Backend Handoff**: Client inquiry APIs, database storage, and email delivery are intentionally deferred to Phase 7+ (Milestone B) per the development roadmap.
