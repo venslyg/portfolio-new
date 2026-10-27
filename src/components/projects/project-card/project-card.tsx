@@ -1,10 +1,13 @@
-import Link from 'next/link';
-import type { ReactNode } from 'react';
+'use client';
+
+import { useState, type ReactNode } from 'react';
 import { ProjectArtwork } from '@/components/projects/project-artwork/project-artwork';
+import { ProjectDetailModal } from '@/components/projects/project-detail-modal/project-detail-modal';
 import type { Project } from '@/content/projects';
 
 type ProjectCardProps = {
   project: Project;
+  onOpenDetails?: (project: Project) => void;
 };
 
 // Mini matching SVG icons for technologies
@@ -104,69 +107,97 @@ function getCategoryIcon(tag: Project['tag']): string {
   }
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
+export function ProjectCard({ project, onOpenDetails }: ProjectCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  function handleOpen() {
+    if (onOpenDetails) {
+      onOpenDetails(project);
+    } else {
+      setIsModalOpen(true);
+    }
+  }
+
   return (
-    <article
-      id={project.slug}
-      className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-border/70 bg-surface/60 transition-all duration-300 hover:border-accent/60 hover:shadow-xl hover:shadow-accent/5"
-    >
-      {/* Compact Artwork Banner */}
-      <ProjectArtwork visual={project.visual} />
+    <>
+      <article
+        id={project.slug}
+        onClick={handleOpen}
+        className="group flex h-full scroll-mt-28 flex-col overflow-hidden rounded-2xl border border-border/70 bg-surface/60 transition-all duration-300 hover:border-accent/60 hover:shadow-xl hover:shadow-accent/5 cursor-pointer"
+      >
+        {/* Compact Artwork Banner */}
+        <ProjectArtwork visual={project.visual} />
 
-      {/* Compact Card Content */}
-      <div className="flex flex-1 flex-col p-4 sm:p-5">
-        {/* Category & Number Eyebrow */}
-        <div className="mb-2 flex items-center justify-between gap-2 font-mono text-[0.7rem] text-muted">
-          <span className="flex items-center gap-1.5">
-            <span aria-hidden="true">{getCategoryIcon(project.tag)}</span>
-            <span>{project.category}</span>
-          </span>
-          <span className="font-semibold text-accent">{project.number}</span>
-        </div>
-
-        {/* Project Title */}
-        <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent sm:text-xl">
-          {project.title}
-        </h3>
-
-        {/* Compact Summary */}
-        <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted sm:text-sm">
-          {project.summary}
-        </p>
-
-        {/* Role Tag */}
-        <p className="mt-2 text-xs text-muted">
-          <span className="font-medium text-foreground">Role: </span>
-          <span>{project.role}</span>
-        </p>
-
-        {/* Technology Pills with Matching Icons */}
-        <ul aria-label={project.title + ' technologies'} className="mt-3 flex flex-wrap gap-1.5">
-          {project.stack.map(technology => (
-            <li
-              key={technology}
-              className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-background/50 px-2.5 py-0.5 font-mono text-[0.62rem] text-muted transition-colors group-hover:border-border"
-            >
-              {getTechIcon(technology)}
-              <span>{technology}</span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Action Link */}
-        <div className="mt-auto pt-4">
-          <Link
-            href={`/projects/${project.slug}`}
-            className="inline-flex min-h-9 items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-foreground focus-visible:rounded-control"
-            aria-label={`Read case study for ${project.title}`}
-          >
-            <span>Read case study</span>
-            <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
-              →
+        {/* Compact Card Content */}
+        <div className="flex flex-1 flex-col p-4 sm:p-5">
+          {/* Category & Number Eyebrow */}
+          <div className="mb-2 flex items-center justify-between gap-2 font-mono text-[0.7rem] text-muted">
+            <span className="flex items-center gap-1.5">
+              <span aria-hidden="true">{getCategoryIcon(project.tag)}</span>
+              <span>{project.category}</span>
             </span>
-          </Link>
+            <span className="font-semibold text-accent">{project.number}</span>
+          </div>
+
+          {/* Project Title */}
+          <h3 className="text-lg font-semibold tracking-tight text-foreground transition-colors group-hover:text-accent sm:text-xl">
+            {project.title}
+          </h3>
+
+          {/* Compact Summary */}
+          <p className="mt-1.5 line-clamp-2 text-xs leading-relaxed text-muted sm:text-sm">
+            {project.summary}
+          </p>
+
+          {/* Role Tag */}
+          <p className="mt-2 text-xs text-muted">
+            <span className="font-medium text-foreground">Role: </span>
+            <span>{project.role}</span>
+          </p>
+
+          {/* Technology Pills with Matching Icons */}
+          <ul aria-label={project.title + ' technologies'} className="mt-3 flex flex-wrap gap-1.5">
+            {project.stack.map(technology => (
+              <li
+                key={technology}
+                className="inline-flex items-center gap-1.5 rounded-full border border-border/80 bg-background/50 px-2.5 py-0.5 font-mono text-[0.62rem] text-muted transition-colors group-hover:border-border"
+              >
+                {getTechIcon(technology)}
+                <span>{technology}</span>
+              </li>
+            ))}
+          </ul>
+
+          {/* Action Button: Opens Details Popup */}
+          <div className="mt-auto pt-4 flex items-center justify-between">
+            <button
+              type="button"
+              onClick={e => {
+                e.stopPropagation();
+                handleOpen();
+              }}
+              className="inline-flex min-h-9 items-center gap-1.5 text-xs font-semibold text-accent transition-colors hover:text-foreground focus-visible:rounded-control cursor-pointer"
+              aria-label={`View project details for ${project.title}`}
+            >
+              <span>View Project Details</span>
+              <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </button>
+
+            {project.liveUrl && (
+              <span className="rounded-full border border-accent/40 bg-accent/10 px-2.5 py-0.5 font-mono text-[10px] text-accent font-medium">
+                Live
+              </span>
+            )}
+          </div>
         </div>
-      </div>
-    </article>
+      </article>
+
+      {/* Render standalone modal if onOpenDetails is not provided by parent */}
+      {!onOpenDetails && isModalOpen && (
+        <ProjectDetailModal project={project} onClose={() => setIsModalOpen(false)} />
+      )}
+    </>
   );
 }

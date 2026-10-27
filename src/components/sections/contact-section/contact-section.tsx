@@ -9,12 +9,21 @@ import { SignalBeacon } from '@/components/three/signal-beacon/signal-beacon';
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
+  const [phoneCopied, setPhoneCopied] = useState(false);
 
   function handleCopyEmail() {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
       navigator.clipboard.writeText(profile.email);
       setCopied(true);
       setTimeout(() => setCopied(false), 2400);
+    }
+  }
+
+  function handleCopyPhone() {
+    if (typeof navigator !== 'undefined' && navigator.clipboard) {
+      navigator.clipboard.writeText(profile.phone);
+      setPhoneCopied(true);
+      setTimeout(() => setPhoneCopied(false), 2400);
     }
   }
 
@@ -38,8 +47,9 @@ export function ContactSection() {
         {/* ================= MAIN INTERACTIVE CONTACT CARD ================= */}
         <div className="mt-12 rounded-3xl border border-border/80 bg-gradient-to-b from-surface/80 via-surface/40 to-background/90 p-6 sm:p-10 shadow-2xl backdrop-blur-md">
           <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
-            {/* Left: Email Action Hub */}
-            <div className="flex flex-col justify-between">
+            {/* Left: Direct Contact Hub (Email & Phone) */}
+            <div className="flex flex-col justify-between space-y-8">
+              {/* Email Section */}
               <div>
                 <div className="flex items-center gap-2">
                   <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-accent/40 bg-accent/10 text-accent">
@@ -57,58 +67,138 @@ export function ContactSection() {
                   </p>
                 </div>
 
-                <h3 className="mt-4 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
+                <h3 className="mt-3 text-xl font-bold tracking-tight text-foreground sm:text-2xl">
                   {profile.email}
                 </h3>
 
-                <p className="mt-2 text-xs text-muted sm:text-sm">
-                  Click below to open your preferred mail client or copy the address directly.
-                </p>
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-accent px-5 text-xs font-semibold text-background shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
+                  >
+                    <span>Send an Email</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-control border px-4 text-xs font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
+                      copied
+                        ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400'
+                        : 'border-border bg-surface text-foreground hover:border-accent hover:bg-surface/80'
+                    }`}
+                    aria-label="Copy email address to clipboard"
+                  >
+                    <span aria-hidden="true">{copied ? '✓' : '📋'}</span>
+                    <span>{copied ? 'Copied Email' : 'Copy Address'}</span>
+                  </button>
+                </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <a
-                  href={`mailto:${profile.email}`}
-                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-control bg-accent px-6 text-sm font-semibold text-background shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-accent/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
-                >
-                  <span>Send an Email</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
+              {/* Direct Phone & WhatsApp Callout */}
+              <div className="border-t border-border/60 pt-6">
+                <div className="flex items-center gap-2">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-emerald-500/40 bg-emerald-500/10 text-emerald-400">
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                      />
+                    </svg>
+                  </span>
+                  <p className="font-mono text-xs tracking-wider text-emerald-400 uppercase">
+                    Direct Mobile & WhatsApp
+                  </p>
+                </div>
 
-                <button
-                  type="button"
-                  onClick={handleCopyEmail}
-                  className={`inline-flex min-h-12 items-center justify-center gap-2 rounded-control border px-5 text-sm font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent ${
-                    copied
-                      ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400'
-                      : 'border-border bg-surface text-foreground hover:border-accent hover:bg-surface/80'
-                  }`}
-                  aria-label="Copy email address to clipboard"
-                >
-                  <span aria-hidden="true">{copied ? '✓' : '📋'}</span>
-                  <span>{copied ? 'Copied to Clipboard!' : 'Copy Address'}</span>
-                </button>
+                <h3 className="mt-3 text-xl font-bold tracking-tight text-foreground sm:text-2xl font-mono">
+                  {profile.phone}
+                </h3>
+
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <a
+                    href={profile.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control bg-emerald-500 px-5 text-xs font-semibold text-white shadow-lg shadow-emerald-500/20 transition-transform hover:-translate-y-0.5 hover:bg-emerald-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 cursor-pointer"
+                  >
+                    <svg className="h-4 w-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                    </svg>
+                    <span>WhatsApp Me</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+
+                  <a
+                    href={`tel:${profile.phoneRaw}`}
+                    className="inline-flex min-h-11 items-center justify-center gap-2 rounded-control border border-border bg-surface px-4 text-xs font-semibold text-foreground hover:border-accent hover:bg-surface/80 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
+                  >
+                    <span>Call Phone</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+
+                  <button
+                    type="button"
+                    onClick={handleCopyPhone}
+                    className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-control border px-4 text-xs font-semibold transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer ${
+                      phoneCopied
+                        ? 'border-emerald-500 bg-emerald-500/15 text-emerald-400'
+                        : 'border-border bg-surface text-foreground hover:border-accent hover:bg-surface/80'
+                    }`}
+                    aria-label="Copy phone number to clipboard"
+                  >
+                    <span aria-hidden="true">{phoneCopied ? '✓' : '📋'}</span>
+                    <span>{phoneCopied ? 'Copied Number' : 'Copy'}</span>
+                  </button>
+                </div>
               </div>
 
-              <div className="mt-6 flex items-center gap-2 text-xs font-mono text-muted/70">
-                <span className="h-2 w-2 rounded-full bg-accent-secondary" />
-                <span>Typically responds within 24 hours</span>
+              <div className="flex items-center gap-2 text-xs font-mono text-muted/70">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span>Available for calls, WhatsApp messages & engineering contracts</span>
               </div>
             </div>
 
             {/* Right: Social & Professional Connect Cards */}
             <div className="flex flex-col gap-4 border-t border-border/60 pt-6 lg:border-t-0 lg:border-l lg:pl-10 lg:pt-0">
               <p className="font-mono text-xs tracking-wider text-muted uppercase">
-                Professional Networks
+                Professional & Instant Connect
               </p>
+
+              {/* WhatsApp Quick Chat Card */}
+              <a
+                href={profile.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-4 transition-all duration-300 hover:border-emerald-400 hover:bg-emerald-500/15 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-emerald-400 cursor-pointer"
+              >
+                <div className="flex items-center gap-3.5">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-emerald-500/40 bg-emerald-500/20 text-emerald-400 transition-colors group-hover:border-emerald-400">
+                    <svg className="h-5 w-5 fill-current" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold text-foreground group-hover:text-emerald-400">
+                      WhatsApp Me
+                    </h4>
+                    <p className="font-mono text-xs text-muted">+94 77 034 1303</p>
+                  </div>
+                </div>
+                <span className="font-mono text-xs text-emerald-400 transition-transform group-hover:translate-x-1">
+                  ↗
+                </span>
+              </a>
 
               {/* GitHub Card */}
               <a
                 href={profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-2xl border border-border/80 bg-surface/50 p-4 transition-all duration-300 hover:border-accent hover:bg-surface hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                className="group flex items-center justify-between rounded-2xl border border-border/80 bg-surface/50 p-4 transition-all duration-300 hover:border-accent hover:bg-surface hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground transition-colors group-hover:border-accent group-hover:text-accent">
@@ -137,7 +227,7 @@ export function ContactSection() {
                 href={profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between rounded-2xl border border-border/80 bg-surface/50 p-4 transition-all duration-300 hover:border-accent hover:bg-surface hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
+                className="group flex items-center justify-between rounded-2xl border border-border/80 bg-surface/50 p-4 transition-all duration-300 hover:border-accent hover:bg-surface hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent cursor-pointer"
               >
                 <div className="flex items-center gap-3.5">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background/80 text-foreground transition-colors group-hover:border-accent group-hover:text-accent">
@@ -149,7 +239,7 @@ export function ContactSection() {
                     <h4 className="text-sm font-semibold text-foreground group-hover:text-accent">
                       LinkedIn
                     </h4>
-                    <p className="font-mono text-xs text-muted">Vensly Gunasekara</p>
+                    <p className="font-mono text-xs text-muted">gvbenaya</p>
                   </div>
                 </div>
                 <span className="font-mono text-xs text-accent transition-transform group-hover:translate-x-1">

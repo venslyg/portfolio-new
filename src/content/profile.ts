@@ -1,10 +1,13 @@
-// Public profile facts checked against the supplied CV. Email display approved by Vensly.
+// Public profile facts checked against the supplied CV.
 export const profile = {
   name: 'Vensly Gunasekara',
   role: 'Full-Stack Software Engineer',
   email: 'venslygunasekara2002@gmail.com',
+  phone: '+94 77 034 1303',
+  phoneRaw: '+94770341303',
+  whatsapp: 'https://wa.me/94770341303',
   github: 'https://github.com/venslyg',
-  linkedin: 'https://www.linkedin.com/in/vensly-gunasekara/',
+  linkedin: 'https://www.linkedin.com/in/gvbenaya/',
 } as const;
 
 export const technologies = ['Angular', 'Spring Boot', 'Flutter', 'React', 'PostgreSQL'];
