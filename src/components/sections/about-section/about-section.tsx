@@ -16,9 +16,14 @@ export function AboutSection() {
             Music adds a different kind of curiosity. I enjoy finding places where that interest and software can come together—like tools
             for musicians.
           </p>
-          <Button href="#contact" variant="secondary">
-            Start a conversation <span aria-hidden="true">↗</span>
-          </Button>
+          <div className="flex flex-wrap gap-4 pt-2">
+            <Button href="/about" variant="primary">
+              Read my journey <span aria-hidden="true">→</span>
+            </Button>
+            <Button href="#contact" variant="secondary">
+              Start a conversation <span aria-hidden="true">↗</span>
+            </Button>
+          </div>
         </div>
       </div>
     </Section>

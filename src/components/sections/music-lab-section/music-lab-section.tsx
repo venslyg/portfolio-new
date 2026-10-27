@@ -13,9 +13,14 @@ export function MusicLabSection() {
             title="Where logic finds its rhythm."
             description="Music is part of my life outside the editor—and sometimes the reason I open it. Key Detective brings pitch detection into a tool for live church musicians."
           />
-          <Button href="#key-detective" variant="secondary">
-            Explore Key Detective <span aria-hidden="true">↗</span>
-          </Button>
+          <div className="flex flex-wrap gap-4">
+            <Button href="/music" variant="primary">
+              Explore Music Lab <span aria-hidden="true">→</span>
+            </Button>
+            <Button href="/projects/key-detective" variant="secondary">
+              Key Detective Case Study <span aria-hidden="true">↗</span>
+            </Button>
+          </div>
         </div>
         <div className="rounded-2xl border border-accent/30 bg-background p-8 sm:p-10">
           <p aria-hidden="true" className="mb-6 text-6xl text-accent">

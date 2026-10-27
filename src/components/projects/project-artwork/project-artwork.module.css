@@ -15,6 +15,31 @@
 .community {
   background: radial-gradient(ellipse at center, #4b3541, #231c27 75%);
 }
+.systems {
+  background: radial-gradient(ellipse at center, #233a52, #111a24 75%);
+}
+.systemsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 9rem;
+  transform: rotate(-6deg);
+}
+.systemsNode {
+  height: 2.2rem;
+  border: 1px solid #60a5fa66;
+  border-radius: 0.35rem;
+  background: #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.systemsNode span {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #38bdf8;
+}
 .label {
   position: absolute;
   bottom: 1rem;

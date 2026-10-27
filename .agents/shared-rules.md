@@ -7,12 +7,12 @@
 - Inspect repository changes first. Preserve unrelated work and the generated Next.js instruction block.
 - Work only within the authorized task or phase. Team setup does not approve any implementation phase. Stop at phase completion; Vensly approves progression.
 - Frontend ships first in Phases 0–6. Do not add authentication, a database, CMS, or working inquiry submissions to that release. Backend starts only when requested in Phases 7–9.
-- Current routes live in app/. The roadmap's src/ tree is a proposal; do not migrate or create empty folders merely to match it.
+- Current application code lives under src/ (e.g. src/app/, src/components/, src/content/, src/hooks/). Paths are aliased with @/* mapping to ./src/*.
 
 ## Implementation
 
-- Give every independently named React component its own kebab-case folder and matching file, e.g. `components/layout/header/header.tsx`. Apply this to existing components when refactoring and to every new component.
-- Next.js convention files such as `app/page.tsx` and `app/layout.tsx` stay in their required route locations and compose imported components.
+- Give every independently named React component its own kebab-case folder and matching file, e.g. `src/components/layout/header/header.tsx`. Apply this to existing components when refactoring and to every new component.
+- Next.js convention files such as `src/app/page.tsx` and `src/app/layout.tsx` stay in their required route locations and compose imported components.
 - Import components explicitly from their own files at the point of composition. Keep route files and layouts focused on composing components; extract distinct sections and reusable UI instead of accumulating JSX in one file.
 - Co-locate component-specific CSS Modules, tests, and private helpers in that component's folder when needed. Keep shared content in typed `content/` modules and reusable hooks in their own `hooks/<hook-name>/` folders. Do not create empty files or unnecessary barrel exports.
 - Prioritize readability: descriptive names, short focused components, typed props, readable multiline markup, and explicit data flow. Keep global CSS for tokens and shared base styles; avoid unrelated component selectors there.

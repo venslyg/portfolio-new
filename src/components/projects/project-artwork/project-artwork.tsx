@@ -1,7 +1,7 @@
-import type { FeaturedProject } from '@/content/featured-projects';
+import type { ProjectVisual } from '@/content/projects';
 import styles from './project-artwork.module.css';
 
-type ProjectArtworkProps = { visual: FeaturedProject['visual'] };
+type ProjectArtworkProps = { visual: ProjectVisual };
 
 export function ProjectArtwork({ visual }: ProjectArtworkProps) {
   return (
@@ -30,6 +30,15 @@ export function ProjectArtwork({ visual }: ProjectArtworkProps) {
           <span />
           <span />
           <span />
+        </div>
+      )}
+      {visual === 'systems' && (
+        <div className={styles.systemsGrid}>
+          {[0, 1, 2, 3, 4, 5].map(node => (
+            <div key={node} className={styles.systemsNode}>
+              <span />
+            </div>
+          ))}
         </div>
       )}
       <span className={styles.label}>PROJECT STUDY / {visual.toUpperCase()}</span>

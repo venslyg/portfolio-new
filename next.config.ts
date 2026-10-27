@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   turbopack: {
     rules: {
       // Only the Tailwind entry needs this loader; CSS Modules use Next.js scoping.
-      "globals.css": {
+      "**/globals.css": {
         loaders: ["@tailwindcss/turbopack"],
         as: "*.css",
       },

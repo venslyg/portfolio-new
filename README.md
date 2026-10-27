@@ -42,18 +42,18 @@ npm run start
 
 | File/directory | Responsibility |
 | --- | --- |
-| `app/layout.tsx` | Shared document wrapper: HTML language, fonts, metadata, header, main landmark, and footer. `children` is the current page. |
-| `app/page.tsx` | The `/` route. App Router maps folders and special `page.tsx` files to URLs. |
-| `app/globals.css` | Tailwind import, shared CSS design tokens, typography, focus styling, and reduced-motion behavior. |
-| `app/favicon.ico`, `app/icon.svg` | Temporary V monogram. Next.js file conventions generate icon metadata. |
-| `components/layout/` | Container width/gutters, section spacing, and shared header/footer. |
-| `components/ui/button/button.tsx` | Typed primary/secondary styling; renders a link for navigation or a native button for an action. |
+| `src/app/layout.tsx` | Shared document wrapper: HTML language, fonts, metadata, header, main landmark, and footer. `children` is the current page. |
+| `src/app/page.tsx` | The `/` route. App Router maps folders and special `page.tsx` files to URLs. |
+| `src/app/globals.css` | Tailwind import, shared CSS design tokens, typography, focus styling, and reduced-motion behavior. |
+| `src/app/favicon.ico`, `src/app/icon.svg` | Temporary V monogram. Next.js file conventions generate icon metadata. |
+| `src/components/layout/` | Container width/gutters, section spacing, and shared header/footer. |
+| `src/components/ui/button/button.tsx` | Typed primary/secondary styling; renders a link for navigation or a native button for an action. |
 | `public/` | Static files exposed from `/`; for example, `public/images/photo.webp` is `/images/photo.webp`. |
 | `package.json`, `package-lock.json` | Scripts, runtime requirements, dependency declarations, and reproducible resolved versions. |
-| `tsconfig.json` | Strict TypeScript checks and `@/*` imports mapped to the repository root. |
-| `next.config.ts` | Next.js/Turbopack settings. The Tailwind loader applies only to `globals.css`, preserving native CSS Module scoping. |
+| `tsconfig.json` | Strict TypeScript checks and `@/*` imports mapped to `./src/*`. |
+| `next.config.ts` | Next.js/Turbopack settings. The Tailwind loader applies to `**/globals.css`, preserving native CSS Module scoping. |
 
-The existing root `app/` organization is retained, as permitted by the roadmap's incremental structure guidance and team rules. The proposed `src/` migration is unnecessary for this foundation; future components can grow beside `app/` without duplicate application trees.
+The application code is organized cleanly under `src/` (`src/app/`, `src/components/`, `src/content/`, `src/hooks/`), cleanly isolating application source from root repository configuration and agent guides. Paths are mapped via the `@/*` alias to `./src/*`.
 
 TSX combines typed TypeScript logic with JSX markup. Component prop types catch invalid usage before deployment. `Container` and `Section` share layout decisions so pages do not independently drift in width or spacing.
 
