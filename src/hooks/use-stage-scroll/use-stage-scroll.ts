@@ -56,20 +56,9 @@ export function useStageScroll() {
       const direction = delta > 0 ? 1 : delta < 0 ? -1 : 0;
 
       // Determine active story step based on scroll progress:
-      // Step 0: Initial centered stage (0.00 - 0.12)
-      // Step 1: Main editorial headline (0.12 - 0.42)
-      // Step 2: Architecture & acoustic harmony (0.42 - 0.72)
-      // Step 3: Call to action & work exploration (0.72 - 1.00)
-      let activeStep = 0;
-      if (normalized >= 0.72) {
-        activeStep = 3;
-      } else if (normalized >= 0.42) {
-        activeStep = 2;
-      } else if (normalized >= 0.12) {
-        activeStep = 1;
-      } else {
-        activeStep = 0;
-      }
+      // Step 0: Initial centered stage with scroll prompt (normalized < 0.08)
+      // Step 1: Content revealed, stage glided and dispersing (normalized >= 0.08)
+      const activeStep = normalized >= 0.08 ? 1 : 0;
 
       sharedScrollState.target = normalized;
       sharedScrollState.direction = direction;

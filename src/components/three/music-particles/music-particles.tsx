@@ -19,24 +19,29 @@ function pseudoRandom(seed: number) {
 export function MusicParticles({ scrollRef, reducedMotion = false }: MusicParticlesProps) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  // 48 subtle harmonic frequency particles around the stage and core
+  // 360 harmonic frequency particles around the concert stage and core
+  const count = 360;
   const { positions, colors, initialPositions } = useMemo(() => {
-    const count = 48;
     const pos = new Float32Array(count * 3);
     const initialPos = new Float32Array(count * 3);
     const cols = new Float32Array(count * 3);
 
-    const colorLilac = new THREE.Color('#A78BFA');
-    const colorCyan = new THREE.Color('#67E8F9');
+    const palette = [
+      new THREE.Color('#A78BFA'), // Lilac
+      new THREE.Color('#67E8F9'), // Cyan
+      new THREE.Color('#F472B6'), // Pink
+      new THREE.Color('#38BDF8'), // Sky
+      new THREE.Color('#FBBF24'), // Warm gold
+    ];
 
     for (let i = 0; i < count; i++) {
       const rnd1 = pseudoRandom(i * 3 + 1);
       const rnd2 = pseudoRandom(i * 3 + 2);
       const rnd3 = pseudoRandom(i * 3 + 3);
 
-      const angle = (i / count) * Math.PI * 2 + (rnd1 - 0.5) * 0.5;
-      const radius = 0.6 + rnd2 * 1.5;
-      const y = 0.2 + rnd3 * 0.9;
+      const angle = (i / count) * Math.PI * 2 + (rnd1 - 0.5) * 0.8;
+      const radius = 0.5 + rnd2 * 2.2;
+      const y = -0.2 + rnd3 * 1.6;
       const x = Math.cos(angle) * radius;
       const z = Math.sin(angle) * radius;
 
@@ -48,14 +53,14 @@ export function MusicParticles({ scrollRef, reducedMotion = false }: MusicPartic
       initialPos[i * 3 + 1] = y;
       initialPos[i * 3 + 2] = z;
 
-      const chosenColor = i % 2 === 0 ? colorLilac : colorCyan;
+      const chosenColor = palette[i % palette.length];
       cols[i * 3] = chosenColor.r;
       cols[i * 3 + 1] = chosenColor.g;
       cols[i * 3 + 2] = chosenColor.b;
     }
 
     return { positions: pos, colors: cols, initialPositions: initialPos };
-  }, []);
+  }, [count]);
 
   useFrame(({ clock }) => {
     if (!pointsRef.current) return;
@@ -65,19 +70,19 @@ export function MusicParticles({ scrollRef, reducedMotion = false }: MusicPartic
     const posAttr = pointsRef.current.geometry.attributes.position as THREE.BufferAttribute;
     const array = posAttr.array as Float32Array;
 
-    for (let i = 0; i < 48; i++) {
+    for (let i = 0; i < count; i++) {
       const idx = i * 3;
-      const radialExpansion = 1 + progress * 1.6;
+      const radialExpansion = 1 + progress * 2.8;
 
-      // Vertical elevation into the atmosphere + wide radial scatter
+      // Vertical elevation into the atmosphere + dramatic radial scatter
       array[idx + 1] =
         initialPositions[idx + 1] +
-        progress * 2.85 +
-        (reducedMotion ? 0 : Math.sin(time * 2.2 + i * 0.7) * 0.05);
+        progress * 3.85 +
+        (reducedMotion ? 0 : Math.sin(time * 2.0 + i * 0.3) * 0.05);
 
       array[idx] =
         initialPositions[idx] * radialExpansion +
-        (reducedMotion ? 0 : Math.cos(time * 0.8 + i) * 0.02);
+        (reducedMotion ? 0 : Math.cos(time * 0.7 + i * 0.2) * 0.03);
 
       array[idx + 2] = initialPositions[idx + 2] * radialExpansion;
     }
@@ -88,20 +93,14 @@ export function MusicParticles({ scrollRef, reducedMotion = false }: MusicPartic
   return (
     <points ref={pointsRef} name="music-particles">
       <bufferGeometry>
-        <bufferAttribute
-          attach="attributes-position"
-          args={[positions, 3]}
-        />
-        <bufferAttribute
-          attach="attributes-color"
-          args={[colors, 3]}
-        />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.04}
+        size={0.038}
         vertexColors
         transparent
-        opacity={0.85}
+        opacity={0.88}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
