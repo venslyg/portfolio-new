@@ -67,12 +67,12 @@ export function MusicParticles({ scrollRef, reducedMotion = false }: MusicPartic
 
     for (let i = 0; i < 48; i++) {
       const idx = i * 3;
-      const radialExpansion = 1 + progress * 0.48;
+      const radialExpansion = 1 + progress * 1.6;
 
-      // Vertical elevation into the atmosphere + harmonic oscillation
+      // Vertical elevation into the atmosphere + wide radial scatter
       array[idx + 1] =
         initialPositions[idx + 1] +
-        progress * 1.05 +
+        progress * 2.85 +
         (reducedMotion ? 0 : Math.sin(time * 2.2 + i * 0.7) * 0.05);
 
       array[idx] =
@@ -98,10 +98,10 @@ export function MusicParticles({ scrollRef, reducedMotion = false }: MusicPartic
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.035}
+        size={0.04}
         vertexColors
         transparent
-        opacity={0.8}
+        opacity={0.85}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />

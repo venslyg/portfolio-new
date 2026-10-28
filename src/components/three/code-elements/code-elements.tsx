@@ -17,8 +17,8 @@ function CurlyBracket({ isRight = false, color = '#67E8F9' }: { isRight?: boolea
       new THREE.MeshStandardMaterial({
         color,
         emissive: color,
-        emissiveIntensity: 2.2,
-        roughness: 0.2,
+        emissiveIntensity: 2.5,
+        roughness: 0.15,
       }),
     [color]
   );
@@ -27,7 +27,7 @@ function CurlyBracket({ isRight = false, color = '#67E8F9' }: { isRight?: boolea
   const w = 0.018;
 
   return (
-    <group scale={0.7}>
+    <group scale={0.75}>
       {/* Top Hook */}
       <mesh material={material} position={[-0.04 * dir, 0.12, 0]}>
         <boxGeometry args={[0.07, w, w]} />
@@ -59,15 +59,15 @@ function ArrowOperator({ color = '#A78BFA' }: { color?: string }) {
       new THREE.MeshStandardMaterial({
         color,
         emissive: color,
-        emissiveIntensity: 2.4,
-        roughness: 0.2,
+        emissiveIntensity: 2.8,
+        roughness: 0.15,
       }),
     [color]
   );
   const w = 0.016;
 
   return (
-    <group scale={0.75}>
+    <group scale={0.8}>
       {/* Top Equals Line */}
       <mesh material={material} position={[-0.05, 0.025, 0]}>
         <boxGeometry args={[0.1, w, w]} />
@@ -95,15 +95,15 @@ function TagChevron({ color = '#67E8F9' }: { color?: string }) {
       new THREE.MeshStandardMaterial({
         color,
         emissive: color,
-        emissiveIntensity: 2.2,
-        roughness: 0.2,
+        emissiveIntensity: 2.6,
+        roughness: 0.15,
       }),
     [color]
   );
   const w = 0.015;
 
   return (
-    <group scale={0.7}>
+    <group scale={0.75}>
       {/* Left Chevron < */}
       <group position={[-0.1, 0, 0]}>
         <mesh material={material} position={[0.02, 0.035, 0]} rotation={[0, 0, -Math.PI / 4]}>
@@ -144,24 +144,24 @@ export function CodeElements({ scrollRef, reducedMotion = false }: CodeElementsP
       codeLineCyan: new THREE.MeshStandardMaterial({
         color: '#67E8F9',
         emissive: '#67E8F9',
-        emissiveIntensity: 2.2,
+        emissiveIntensity: 2.6,
       }),
       codeLineLilac: new THREE.MeshStandardMaterial({
         color: '#A78BFA',
         emissive: '#A78BFA',
-        emissiveIntensity: 2.0,
+        emissiveIntensity: 2.4,
       }),
       satelliteChrome: new THREE.MeshStandardMaterial({
         color: '#F4F4F7',
-        metalness: 0.95,
-        roughness: 0.1,
+        metalness: 0.98,
+        roughness: 0.06,
         emissive: '#67E8F9',
-        emissiveIntensity: 0.8,
+        emissiveIntensity: 1.0,
       }),
       satelliteCyan: new THREE.MeshStandardMaterial({
         color: '#67E8F9',
         emissive: '#67E8F9',
-        emissiveIntensity: 2.5,
+        emissiveIntensity: 3.0,
       }),
     };
   }, []);
@@ -193,47 +193,47 @@ export function CodeElements({ scrollRef, reducedMotion = false }: CodeElementsP
     const progress = !reducedMotion && scrollRef?.current ? scrollRef.current.current : 0;
     const time = clock.getElapsedTime();
 
-    // 1. Glyphs orbital drift, vertical floating, and outward radial expansion on scroll
+    // 1. Glyphs orbital drift, vertical floating, and explosive radial expansion
     if (glyphsGroupRef.current) {
       glyphsGroupRef.current.children.forEach((child, idx) => {
         const cfg = glyphConfigs[idx];
         if (cfg) {
           const currentAngle = cfg.angle + (reducedMotion ? 0 : time * cfg.speed);
-          const currentRadius = cfg.radius * (1 + progress * 0.52);
+          const currentRadius = cfg.radius * (1 + progress * 1.45);
           child.position.x = Math.cos(currentAngle) * currentRadius;
           child.position.z = Math.sin(currentAngle) * currentRadius;
-          child.position.y = cfg.y + progress * 0.42 + (reducedMotion ? 0 : Math.sin(time * 1.8 + idx * 1.2) * 0.05);
+          child.position.y = cfg.y + progress * 1.35 + (reducedMotion ? 0 : Math.sin(time * 1.8 + idx * 1.2) * 0.05);
           child.rotation.y = -currentAngle + Math.PI / 2;
         }
       });
     }
 
-    // 2. HUD panels glide outward with graceful opacity fade on deep scroll via refs
+    // 2. HUD panels glide far outward with graceful opacity fade on deep scroll
     if (hudPanel1Ref.current) {
-      hudPanel1Ref.current.position.x = 1.35 + progress * 0.55;
-      hudPanel1Ref.current.position.y = 0.45 + progress * 0.22;
+      hudPanel1Ref.current.position.x = 1.35 + progress * 1.4;
+      hudPanel1Ref.current.position.y = 0.45 + progress * 0.85;
     }
     if (hudPanel2Ref.current) {
-      hudPanel2Ref.current.position.x = -1.38 - progress * 0.55;
-      hudPanel2Ref.current.position.y = 0.52 + progress * 0.22;
+      hudPanel2Ref.current.position.x = -1.38 - progress * 1.4;
+      hudPanel2Ref.current.position.y = 0.52 + progress * 0.85;
     }
     if (hudMatRef.current) {
-      hudMatRef.current.opacity = Math.max(0.08, 0.45 * (1 - progress * 0.8));
+      hudMatRef.current.opacity = Math.max(0.04, 0.45 * (1 - progress * 0.95));
     }
     if (hudWireRef.current) {
-      hudWireRef.current.opacity = Math.max(0.1, 0.5 * (1 - progress * 0.8));
+      hudWireRef.current.opacity = Math.max(0.06, 0.5 * (1 - progress * 0.95));
     }
 
-    // 3. Geometric Satellites orbital motion & expansion
+    // 3. Geometric Satellites wide orbital scatter
     if (satellitesRef.current) {
       satellitesRef.current.children.forEach((child, idx) => {
         const item = satelliteConfigs[idx];
         if (item) {
           const currentAngle = item.angle + (reducedMotion ? 0 : time * item.speed);
-          const currentRadius = item.radius * (1 + progress * 0.45);
+          const currentRadius = item.radius * (1 + progress * 1.35);
           child.position.x = Math.cos(currentAngle) * currentRadius;
           child.position.z = Math.sin(currentAngle) * currentRadius;
-          child.position.y = item.y + progress * 0.35 + (reducedMotion ? 0 : Math.sin(time * 2 + idx) * 0.06);
+          child.position.y = item.y + progress * 1.2 + (reducedMotion ? 0 : Math.sin(time * 2 + idx) * 0.06);
           if (!reducedMotion) {
             child.rotation.x += delta * 1.2;
             child.rotation.y += delta * 1.5;

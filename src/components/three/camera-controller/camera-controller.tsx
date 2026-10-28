@@ -18,7 +18,7 @@ export function CameraController({ scrollRef, reducedMotion = false }: CameraCon
       scrollState.current = THREE.MathUtils.damp(
         scrollState.current,
         scrollState.target,
-        7.5,
+        7.0,
         delta
       );
     }
@@ -27,18 +27,18 @@ export function CameraController({ scrollRef, reducedMotion = false }: CameraCon
 
     const progress = scrollState ? scrollState.current : 0;
 
-    // 2. Camera Choreography (Hero assembled -> Stage activation & dispersion)
-    // Baseline: [0, 2.3, 6.6]
-    const targetX = 0 + progress * 0.42;
-    const targetY = 2.3 + progress * 0.72;
-    const targetZ = 6.6 - progress * 0.38;
+    // 2. Camera Choreography for Large Stage & Dramatic Scroll Dispersion
+    // Baseline: [0, 2.2, 6.4] looking at (0, 0.45, 0)
+    const targetX = 0;
+    const targetY = 2.2 + progress * 1.4;
+    const targetZ = 6.4 + progress * 1.5;
 
     camera.position.x = THREE.MathUtils.damp(camera.position.x, targetX, 7, delta);
     camera.position.y = THREE.MathUtils.damp(camera.position.y, targetY, 7, delta);
     camera.position.z = THREE.MathUtils.damp(camera.position.z, targetZ, 7, delta);
 
-    // Target focal lookAt point (elevates slightly as stage rings separate)
-    const lookAtY = 0.38 + progress * 0.25;
+    // Target focal lookAt point
+    const lookAtY = 0.45 + progress * 0.55;
     camera.lookAt(0, lookAtY, 0);
   });
 

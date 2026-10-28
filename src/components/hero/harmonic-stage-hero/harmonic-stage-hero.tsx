@@ -42,23 +42,23 @@ export function HarmonicStageHero() {
       id="home"
       tabIndex={-1}
       aria-labelledby="hero-title"
-      className="relative w-full overflow-hidden pt-4 pb-12 sm:pt-8 sm:pb-16 lg:py-16 min-h-[calc(100vh-5rem)] flex items-center"
+      className="relative w-full overflow-hidden pt-4 pb-12 sm:pt-8 sm:pb-16 lg:py-12 min-h-[calc(100vh-5rem)] flex items-center"
     >
       {/* Background ambient glowing atmospheric lights */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/3 -z-10 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-accent/10 blur-[140px]"
+        className="pointer-events-none absolute -top-40 left-1/3 -z-10 h-[520px] w-[850px] -translate-x-1/2 rounded-full bg-accent/10 blur-[150px]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute bottom-10 right-10 -z-10 h-[450px] w-[550px] rounded-full bg-accent-secondary/8 blur-[130px]"
+        className="pointer-events-none absolute bottom-8 right-10 -z-10 h-[480px] w-[600px] rounded-full bg-accent-secondary/8 blur-[140px]"
         aria-hidden="true"
       />
 
-      {/* Main Content Layout Container */}
+      {/* Main Content Layout Container: Content on LEFT, 3D Object in CENTER-RIGHT */}
       <div className="mx-auto w-full max-w-[1700px] px-4 sm:px-8 lg:px-16">
-        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_1.25fr] lg:gap-12 xl:grid-cols-[1fr_1.3fr]">
+        <div className="grid items-center gap-6 lg:grid-cols-[1fr_1.35fr] lg:gap-10 xl:grid-cols-[0.9fr_1.4fr]">
           {/* ================= LEFT: EDITORIAL HEADLINE & CTAS ================= */}
-          <div className="z-10 py-2 sm:py-6 lg:py-8">
+          <div className="z-10 py-4 sm:py-6 lg:py-8 flex flex-col items-start text-left max-w-xl xl:max-w-2xl">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-white/[0.04] px-4 py-1.5 backdrop-blur-xl shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
               <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-secondary" />
               <p className="font-mono text-xs tracking-[0.16em] text-accent-secondary uppercase">
@@ -90,11 +90,11 @@ export function HarmonicStageHero() {
             </div>
           </div>
 
-          {/* ================= RIGHT: 3D FLOATING HARMONIC STAGE ================= */}
-          <div className="relative h-[340px] sm:h-[460px] md:h-[520px] lg:h-[620px] xl:h-[680px] w-full flex items-center justify-center">
+          {/* ================= RIGHT-CENTER (GREEN BOX): 3D FLOATING HARMONIC STAGE (BIG) ================= */}
+          <div className="relative h-[440px] sm:h-[560px] md:h-[640px] lg:h-[720px] xl:h-[820px] w-full flex items-center justify-center">
             {/* Atmospheric Stage Glow Backdrop */}
             <div
-              className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/15 via-accent-secondary/5 to-transparent blur-2xl"
+              className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/18 via-accent-secondary/6 to-transparent blur-3xl"
               aria-hidden="true"
             />
 

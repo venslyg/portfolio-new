@@ -23,22 +23,22 @@ export function StageRings({ scrollRef, reducedMotion = false }: StageRingsProps
       purpleEmissive: new THREE.MeshStandardMaterial({
         color: '#A78BFA',
         emissive: '#A78BFA',
-        emissiveIntensity: 3.2,
+        emissiveIntensity: 3.4,
         toneMapped: false,
       }),
       cyanEmissive: new THREE.MeshStandardMaterial({
         color: '#67E8F9',
         emissive: '#67E8F9',
-        emissiveIntensity: 2.8,
+        emissiveIntensity: 3.0,
         toneMapped: false,
       }),
       haloWireframe: new THREE.MeshStandardMaterial({
         color: '#A78BFA',
         wireframe: true,
         transparent: true,
-        opacity: 0.35,
+        opacity: 0.4,
         emissive: '#7C3AED',
-        emissiveIntensity: 0.6,
+        emissiveIntensity: 0.8,
       }),
     };
   }, []);
@@ -46,46 +46,52 @@ export function StageRings({ scrollRef, reducedMotion = false }: StageRingsProps
   useFrame((_, delta) => {
     const progress = !reducedMotion && scrollRef?.current ? scrollRef.current.current : 0;
 
-    // 1. Ring A: Inner Lilac Channel elevation & scale expansion
+    // 1. Ring A: Inner Lilac Channel dramatic elevation & expansion
     if (ringARef.current) {
-      ringARef.current.position.y = 0.12 + progress * 0.36;
-      const s = 1 + progress * 0.08;
+      ringARef.current.position.y = 0.12 + progress * 1.25;
+      const s = 1 + progress * 0.35;
       ringARef.current.scale.set(s, s, s);
     }
 
     // 2. Ring B: Middle Cyan Laser Track separation
     if (ringBRef.current) {
-      ringBRef.current.position.y = 0.095 + progress * 0.18;
+      ringBRef.current.position.y = 0.095 + progress * 0.75;
+      const s = 1 + progress * 0.22;
+      ringBRef.current.scale.set(s, s, s);
     }
 
-    // 3. Ring C: Outer Neon Rim expansion
+    // 3. Ring C: Outer Neon Rim downward drop & wide expansion
     if (ringCRef.current) {
-      ringCRef.current.position.y = 0.02 - progress * 0.04;
-      const s = 1 + progress * 0.12;
+      ringCRef.current.position.y = 0.02 - progress * 0.42;
+      const s = 1 + progress * 0.45;
       ringCRef.current.scale.set(s, s, s);
     }
 
-    // 4. Ring D: Holographic Gyro Halo elevation, dynamic tilt & spin acceleration
+    // 4. Ring D: Holographic Gyro Halo dramatic ascension, tilt & accelerated rotation
     if (outerRingRef.current) {
-      outerRingRef.current.position.y = 0.2 + progress * 0.65;
-      outerRingRef.current.rotation.x = Math.PI / 2.2 + progress * 0.22;
+      outerRingRef.current.position.y = 0.2 + progress * 2.35;
+      outerRingRef.current.rotation.x = Math.PI / 2.2 + progress * 0.55;
+      const s = 1 + progress * 0.38;
+      outerRingRef.current.scale.set(s, s, s);
       if (!reducedMotion) {
-        outerRingRef.current.rotation.z += delta * (0.22 + progress * 0.4);
+        outerRingRef.current.rotation.z += delta * (0.22 + progress * 0.8);
       }
     }
 
-    // 5. Ring E: Counter-Rotating Wave Strip separation
+    // 5. Ring E: Counter-Rotating Secondary Wave Strip separation
     if (innerRingRef.current) {
-      innerRingRef.current.position.y = 0.16 + progress * 0.48;
+      innerRingRef.current.position.y = 0.16 + progress * 1.75;
+      const s = 1 + progress * 0.4;
+      innerRingRef.current.scale.set(s, s, s);
       if (!reducedMotion) {
-        innerRingRef.current.rotation.z -= delta * (0.35 + progress * 0.45);
+        innerRingRef.current.rotation.z -= delta * (0.35 + progress * 0.9);
       }
     }
 
-    // 6. Console Segments radial expansion
+    // 6. Console Segments radial expansion outward
     if (consoleGroupRef.current) {
-      consoleGroupRef.current.position.y = 0.095 + progress * 0.14;
-      const s = 1 + progress * 0.18;
+      consoleGroupRef.current.position.y = 0.095 + progress * 0.55;
+      const s = 1 + progress * 0.65;
       consoleGroupRef.current.scale.set(s, s, s);
     }
   });
