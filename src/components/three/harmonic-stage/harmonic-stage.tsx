@@ -19,7 +19,7 @@ interface HarmonicStageProps {
 export function HarmonicStage({ scrollRef, reducedMotion = false }: HarmonicStageProps) {
   const stageGroupRef = useRef<THREE.Group>(null);
 
-  // Slow, cinematic ambient rotation with dynamic scroll-driven tilt
+  // Slow, cinematic ambient rotation with dynamic scroll-driven tilt and glide
   useFrame(({ clock }, delta) => {
     if (!stageGroupRef.current) return;
 
@@ -29,17 +29,38 @@ export function HarmonicStage({ scrollRef, reducedMotion = false }: HarmonicStag
     if (!reducedMotion) {
       // Rotates with gentle speed increase during scroll dispersion
       stageGroupRef.current.rotation.y += delta * (0.12 + progress * 0.22);
-      stageGroupRef.current.position.y = Math.sin(time * 0.9) * 0.04 - progress * 0.15;
+
+      const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 1024 : true;
+
+      // 1. Horizontal Position: Centered (x = 0) at scroll 0; glides to center-right (x = 1.35) as user scrolls
+      const targetX = isDesktop ? Math.min(Math.max((progress - 0.06) / 0.26, 0), 1) * 1.35 : 0;
+      stageGroupRef.current.position.x = THREE.MathUtils.damp(
+        stageGroupRef.current.position.x,
+        targetX,
+        5.0,
+        delta
+      );
+
+      // 2. Vertical Position & Hover Bobbing
+      const baseY = isDesktop ? -0.05 : -0.45;
+      stageGroupRef.current.position.y =
+        baseY + Math.sin(time * 0.9) * 0.04 - progress * 0.12;
       stageGroupRef.current.rotation.x = 0.42 + progress * 0.12;
+
+      // 3. Responsive Scale (0.96 on desktop, 0.72 on mobile)
+      const targetScale = isDesktop ? 0.96 : 0.72;
+      const currentScale = stageGroupRef.current.scale.x;
+      const nextScale = THREE.MathUtils.damp(currentScale, targetScale, 4.0, delta);
+      stageGroupRef.current.scale.setScalar(nextScale);
     }
   });
 
   return (
     <group
       ref={stageGroupRef}
-      position={[0, 0, 0]}
+      position={[0, -0.05, 0]}
       rotation={[0.42, 0, 0]}
-      scale={0.92}
+      scale={0.96}
       name="harmonic-stage"
     >
       {/* 1. Heavy Stepped Dark Chassis & Podium Plinth */}

@@ -28,18 +28,19 @@ export function CameraController({ scrollRef, reducedMotion = false }: CameraCon
     const progress = scrollState ? scrollState.current : 0;
 
     // 2. Camera Choreography for Large Stage & Dramatic Scroll Dispersion
-    // Baseline: [0, 2.2, 6.4] looking at (0, 0.45, 0)
-    const targetX = 0;
-    const targetY = 2.2 + progress * 1.4;
-    const targetZ = 6.4 + progress * 1.5;
+    const isDesktop = typeof window !== 'undefined' ? window.innerWidth >= 1024 : true;
+    const targetX = isDesktop ? Math.min(Math.max((progress - 0.06) / 0.26, 0), 1) * 0.45 : 0;
+    const targetY = (isDesktop ? 2.1 : 2.5) + progress * 1.5;
+    const targetZ = (isDesktop ? 6.8 : 7.6) + progress * 1.8;
 
-    camera.position.x = THREE.MathUtils.damp(camera.position.x, targetX, 7, delta);
-    camera.position.y = THREE.MathUtils.damp(camera.position.y, targetY, 7, delta);
-    camera.position.z = THREE.MathUtils.damp(camera.position.z, targetZ, 7, delta);
+    camera.position.x = THREE.MathUtils.damp(camera.position.x, targetX, 5, delta);
+    camera.position.y = THREE.MathUtils.damp(camera.position.y, targetY, 5, delta);
+    camera.position.z = THREE.MathUtils.damp(camera.position.z, targetZ, 5, delta);
 
     // Target focal lookAt point
-    const lookAtY = 0.45 + progress * 0.55;
-    camera.lookAt(0, lookAtY, 0);
+    const lookAtX = isDesktop ? targetX * 0.8 : 0;
+    const lookAtY = (isDesktop ? 0.35 : -0.1) + progress * 0.55;
+    camera.lookAt(lookAtX, lookAtY, 0);
   });
 
   return null;

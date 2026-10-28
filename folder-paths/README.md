@@ -10,7 +10,9 @@ This guide details **where every single feature, piece of text, 3D element, inst
 |---|---|
 | **Your Name, Bio, Email, Phone, WhatsApp, LinkedIn, GitHub** | [`src/content/profile.ts`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/content/profile.ts) |
 | **All Projects (Titles, Case Studies, Tags, Links, Images, CV details)** | [`src/content/projects.ts`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/content/projects.ts) |
-| **Hero Headline ("Engineering ideas in rhythm") & Subtitle** | [`src/components/hero/harmonic-stage-hero/harmonic-stage-hero.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/hero/harmonic-stage-hero/harmonic-stage-hero.tsx) |
+| **Hero Headline ("Engineering ideas in rhythm"), Philosophy & CTAs** | [`src/components/hero/hero-story-steps/hero-story-steps.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/hero/hero-story-steps/hero-story-steps.tsx) |
+| **"Scroll to Explore" Indicator (Nuralis-style Mouse & Chevron)** | [`src/components/hero/scroll-prompt/scroll-prompt.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/hero/scroll-prompt/scroll-prompt.tsx) |
+| **Pinned Hero Scrollytelling Runway (`380vh` sticky canvas)** | [`src/components/hero/harmonic-stage-hero/harmonic-stage-hero.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/hero/harmonic-stage-hero/harmonic-stage-hero.tsx) |
 | **3D Piano / Synthesizer, Drum Set & Electric Guitar** | [`src/components/three/stage-instruments/stage-instruments.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/three/stage-instruments/stage-instruments.tsx) |
 | **3D Floating Stage (Size, Chassis, Podium Plinth, Underglow)** | [`src/components/three/harmonic-stage/harmonic-stage.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/three/harmonic-stage/harmonic-stage.tsx) |
 | **3D Harmonic Core, EQ Waveform Bars & Floating Musical Notes** | [`src/components/three/harmonic-core/harmonic-core.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/three/harmonic-core/harmonic-core.tsx) |
@@ -18,7 +20,7 @@ This guide details **where every single feature, piece of text, 3D element, inst
 | **3D Code Brackets (`{ }`, `=>`, `</>`) & Holographic HUD Panels** | [`src/components/three/code-elements/code-elements.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/three/code-elements/code-elements.tsx) |
 | **3D Floating Harmonic Dust Particles** | [`src/components/three/music-particles/music-particles.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/three/music-particles/music-particles.tsx) |
 | **3D Camera Angle, Distance & Scroll Movement** | [`src/components/three/camera-controller/camera-controller.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/three/camera-controller/camera-controller.tsx) |
-| **Scroll Dispersion Tracking & Sensitivity** | [`src/hooks/use-stage-scroll/use-stage-scroll.ts`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/hooks/use-stage-scroll/use-stage-scroll.ts) |
+| **Scroll Dispersion Tracking & Milestones (`0.0 - 1.0`, steps 0-3)** | [`src/hooks/use-stage-scroll/use-stage-scroll.ts`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/hooks/use-stage-scroll/use-stage-scroll.ts) |
 | **Technology Strip Beneath Hero (Pills & Badges)** | [`src/components/sections/proof-strip/proof-strip.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/sections/proof-strip/proof-strip.tsx) |
 | **Selected Work Section & Horizontal Carousel** | [`src/components/sections/featured-work-section/featured-work-section.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/sections/featured-work-section/featured-work-section.tsx) & [`src/components/projects/project-slider/project-slider.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/projects/project-slider/project-slider.tsx) |
 | **Project Card Details & Modal Popup** | [`src/components/projects/project-card/project-card.tsx`](file:///e:/vensly%20learn/portfolio/vensly-portfolio/src/components/projects/project-card/project-card.tsx) |
@@ -89,11 +91,19 @@ This guide details **where every single feature, piece of text, 3D element, inst
 - **`signal-beacon/signal-beacon.tsx`**:
   - The 3D radar beacon in the Contact section.
 
-### 3. `src/components/hero/` — Hero Layout
+### 3. `src/components/hero/` — Hero Layout & Scrollytelling
 - **`harmonic-stage-hero/harmonic-stage-hero.tsx`**:
-  - Controls the hero section grid (`lg:grid-cols-[1fr_1.35fr]`).
-  - Left column: Editorial text block (`Engineering ideas in rhythm.`), badge, and buttons.
-  - Right/center column: Container for the big 3D stage (`h-[720px] xl:h-[820px]`).
+  - The master pinned scrollytelling runway (`h-[380vh]`).
+  - Sticky full-bleed canvas container (`sticky top-0 h-screen w-full`).
+  - Completely eliminates clipping: WebGL canvas spans 100vw × 100vh.
+- **`scroll-prompt/scroll-prompt.tsx`**:
+  - The Nuralis Labs-style animated "Scroll To Explore" mouse and bouncing chevron indicator.
+  - Active only at scroll 0; automatically fades out as scrolling begins.
+- **`hero-story-steps/hero-story-steps.tsx`**:
+  - Staged editorial narrative cards positioned cleanly on the left:
+    - **Step 1**: Main headline (`Engineering ideas in rhythm.`), badge, and subtext.
+    - **Step 2**: Acoustic architecture philosophy (`Where code meets musical cadence.`) & feature pills.
+    - **Step 3**: Available for engineering roles, `Let's talk`, `View CV`, and `Selected Work ↓`.
 
 ### 4. `src/components/sections/` — Homepage Sections
 - **`proof-strip/proof-strip.tsx`**: Technology bridge beneath hero.
