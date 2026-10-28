@@ -50,7 +50,7 @@ export function ViewCvButton({ variant = 'hero', className = '' }: ViewCvButtonP
 
   return (
     <>
-      <div className={`inline-flex items-stretch rounded-full border border-white/20 bg-white/[0.06] p-1 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all hover:border-accent/60 hover:bg-white/[0.1] hover:shadow-[0_0_24px_rgba(167,139,250,0.25)] ${className}`}>
+      <div className={`inline-flex min-h-12 items-center rounded-full border border-white/20 bg-white/[0.06] p-1 backdrop-blur-xl shadow-[0_8px_32px_0_rgba(0,0,0,0.36),inset_0_1px_1px_rgba(255,255,255,0.15)] transition-all hover:border-accent/60 hover:bg-white/[0.1] hover:shadow-[0_0_24px_rgba(167,139,250,0.25)] ${className}`}>
         {/* Main View CV Link */}
         <a
           href={cvPath}

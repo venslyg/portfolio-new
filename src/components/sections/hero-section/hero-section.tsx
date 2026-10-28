@@ -46,18 +46,10 @@ export function HeroSection() {
               <Button href="#work">
                 View work <span aria-hidden="true">↗</span>
               </Button>
-              <ViewCvButton variant="hero" />
               <Button href="#contact" variant="secondary">
                 Let’s talk
               </Button>
-            </div>
-
-            {/* Quick interactive hint */}
-            <div className="mt-6 flex items-center gap-2.5 text-xs font-mono text-muted/80 sm:mt-8">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-[10px] backdrop-blur-md shadow-[inset_0_1px_1px_rgba(255,255,255,0.15)]">
-                ♫
-              </span>
-              <span>Tap keys to play • Scroll down to see keys disperse in 3D</span>
+              <ViewCvButton variant="hero" />
             </div>
           </div>
 

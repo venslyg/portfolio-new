@@ -4,6 +4,7 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { Button } from '@/components/ui/button/button';
+import { ViewCvButton } from '@/components/ui/view-cv-button/view-cv-button';
 
 function subscribeReducedMotion(callback: () => void) {
   const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -165,14 +166,7 @@ export function MusicalDispersionHero() {
               <Button href="#contact" variant="secondary">
                 Let’s talk
               </Button>
-            </div>
-
-            {/* Scroll Cue Hint */}
-            <div className="mt-8 flex items-center gap-3 text-xs font-mono text-muted/80">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-accent/40 bg-surface/80 text-[11px] text-accent">
-                ↓
-              </span>
-              <span>Scroll to disperse 3D soundwaves across the screen &amp; reveal dimensions</span>
+              <ViewCvButton variant="hero" />
             </div>
           </div>
 
