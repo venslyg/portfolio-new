@@ -26,22 +26,15 @@ function SynthesizerKeyboard({
 
   return (
     <group ref={groupRef} position={[-0.85, 0.24, 0.55]} rotation={[0.1, 0.75, -0.05]} scale={0.92}>
-      {/* Chassis Body */}
       <mesh material={materials.synthChassis} position={[0, -0.02, 0]}>
         <boxGeometry args={[whiteKeyCount * keyWidth + 0.08, 0.05, keyLength + 0.08]} />
       </mesh>
-
-      {/* Cyber Neon Accent Strip */}
       <mesh material={materials.cyanNeon} position={[0, 0.015, -keyLength / 2 - 0.015]}>
         <boxGeometry args={[whiteKeyCount * keyWidth + 0.06, 0.008, 0.012]} />
       </mesh>
-
-      {/* OLED / Screen Display */}
       <mesh material={materials.lilacScreen} position={[0, 0.012, -0.045]}>
         <boxGeometry args={[0.22, 0.004, 0.04]} />
       </mesh>
-
-      {/* White Keys */}
       {Array.from({ length: whiteKeyCount }).map((_, i) => {
         const x = (i - (whiteKeyCount - 1) / 2) * keyWidth;
         return (
@@ -50,8 +43,6 @@ function SynthesizerKeyboard({
           </mesh>
         );
       })}
-
-      {/* Black Keys */}
       {blackKeyPattern.map((hasBlack, i) => {
         if (!hasBlack) return null;
         const x = (i - (whiteKeyCount - 1) / 2 + 0.5) * keyWidth;
@@ -61,8 +52,6 @@ function SynthesizerKeyboard({
           </mesh>
         );
       })}
-
-      {/* Pitch Bend / Mod Wheels */}
       <mesh material={materials.cyanNeon} position={[-whiteKeyCount * keyWidth * 0.5 - 0.02, 0.015, 0.02]}>
         <cylinderGeometry args={[0.018, 0.018, 0.012, 16]} />
       </mesh>
@@ -82,7 +71,6 @@ function DrumSet({
 }) {
   return (
     <group ref={groupRef} position={[0.88, 0.26, -0.45]} rotation={[0.05, -0.85, 0.02]} scale={0.88}>
-      {/* Bass Drum (Kick) */}
       <group position={[0, 0.16, 0]} rotation={[Math.PI / 2, 0, 0]}>
         <mesh material={materials.drumShell}>
           <cylinderGeometry args={[0.28, 0.28, 0.26, 32]} />
@@ -101,7 +89,6 @@ function DrumSet({
         </mesh>
       </group>
 
-      {/* Snare Drum on Tripod */}
       <group position={[-0.28, 0.22, 0.22]} rotation={[0.1, 0, 0.05]}>
         <mesh material={materials.drumShell}>
           <cylinderGeometry args={[0.15, 0.15, 0.1, 24]} />
@@ -117,7 +104,6 @@ function DrumSet({
         </mesh>
       </group>
 
-      {/* Mounted High Tom */}
       <group position={[-0.1, 0.42, -0.05]} rotation={[-0.25, 0.1, 0]}>
         <mesh material={materials.drumShell}>
           <cylinderGeometry args={[0.12, 0.12, 0.11, 24]} />
@@ -130,7 +116,6 @@ function DrumSet({
         </mesh>
       </group>
 
-      {/* Floor Tom */}
       <group position={[0.32, 0.18, 0.14]}>
         <mesh material={materials.drumShell}>
           <cylinderGeometry args={[0.17, 0.17, 0.18, 24]} />
@@ -143,7 +128,6 @@ function DrumSet({
         </mesh>
       </group>
 
-      {/* Cymbals (Hi-Hat & Crash) */}
       <group ref={cymbalRef}>
         <group position={[-0.45, 0.38, 0.12]}>
           <mesh material={materials.goldCymbal} rotation={[0, 0, 0.05]}>
@@ -178,8 +162,7 @@ function ElectricGuitar({
   materials: Record<string, THREE.Material>;
 }) {
   return (
-    <group ref={groupRef} position={[0.55, 0.30, 0.85]} rotation={[-0.32, 0.45, 0.38]} scale={0.88}>
-      {/* Guitar Body */}
+    <group ref={groupRef} position={[0.65, 0.30, 0.72]} rotation={[-0.32, 0.45, 0.38]} scale={0.88}>
       <group position={[0, 0, 0]}>
         <mesh material={materials.guitarBody} position={[0, 0, 0]} scale={[1.2, 0.15, 1.3]}>
           <cylinderGeometry args={[0.22, 0.24, 0.22, 32]} />
@@ -201,7 +184,6 @@ function ElectricGuitar({
         </mesh>
       </group>
 
-      {/* Neck & Fretboard */}
       <group position={[0, 0.02, -0.58]}>
         <mesh material={materials.fretboard}>
           <boxGeometry args={[0.062, 0.022, 0.52]} />
@@ -213,7 +195,6 @@ function ElectricGuitar({
         ))}
       </group>
 
-      {/* Headstock & Tuning Pegs */}
       <group position={[0, 0.035, -0.89]} rotation={[-0.15, 0, 0]}>
         <mesh material={materials.guitarBody}>
           <boxGeometry args={[0.075, 0.02, 0.14]} />
@@ -230,14 +211,12 @@ function ElectricGuitar({
         ))}
       </group>
 
-      {/* Laser Strings */}
       {[-0.02, -0.008, 0.004, 0.016].map((x, i) => (
         <mesh key={i} material={materials.cyanStrings} position={[x, 0.035, -0.42]}>
           <cylinderGeometry args={[0.0015, 0.0015, 0.88, 6]} />
         </mesh>
       ))}
 
-      {/* Pickups */}
       <mesh material={materials.chrome} position={[0, 0.022, -0.02]}>
         <boxGeometry args={[0.07, 0.01, 0.025]} />
       </mesh>
@@ -257,43 +236,33 @@ function StudioMicrophone({
   materials: Record<string, THREE.Material>;
 }) {
   return (
-    <group ref={groupRef} position={[-0.42, 0.22, 0.95]} rotation={[0.08, 0.65, -0.05]} scale={0.9}>
-      {/* Heavy Tripod Base */}
+    <group ref={groupRef} position={[-0.52, 0.22, 0.88]} rotation={[0.08, 0.65, -0.05]} scale={0.88}>
       <mesh material={materials.synthChassis} position={[0, 0.02, 0]}>
         <cylinderGeometry args={[0.12, 0.14, 0.03, 16]} />
       </mesh>
-      {/* Chrome Vertical Shaft */}
       <mesh material={materials.chrome} position={[0, 0.38, 0]}>
         <cylinderGeometry args={[0.009, 0.011, 0.72, 12]} />
       </mesh>
-
-      {/* Boom Swivel Joint */}
       <mesh material={materials.blackKey} position={[0, 0.74, 0]}>
         <sphereGeometry args={[0.022, 12, 12]} />
       </mesh>
-      {/* Angled Boom Arm */}
       <group position={[0, 0.74, 0]} rotation={[0, 0, -0.55]}>
         <mesh material={materials.chrome} position={[0.18, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
           <cylinderGeometry args={[0.007, 0.007, 0.42, 12]} />
         </mesh>
-        {/* Boom Counterweight */}
         <mesh material={materials.synthChassis} position={[-0.06, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
           <cylinderGeometry args={[0.018, 0.018, 0.05, 12]} />
         </mesh>
-
-        {/* Elastic Shock Mount Ring */}
         <group position={[0.38, 0, 0]}>
           <mesh material={materials.cyanNeon} rotation={[0, Math.PI / 2, 0]}>
             <torusGeometry args={[0.045, 0.005, 8, 24]} />
           </mesh>
-          {/* Condenser Mic Capsule */}
           <mesh material={materials.chrome} position={[0, 0, 0]} rotation={[0, 0, -Math.PI / 2]}>
             <cylinderGeometry args={[0.022, 0.022, 0.085, 16]} />
           </mesh>
           <mesh material={materials.goldCymbal} position={[0, 0.045, 0]} rotation={[0, 0, -Math.PI / 2]}>
             <sphereGeometry args={[0.022, 16, 16]} />
           </mesh>
-          {/* Circular Pop Filter */}
           <mesh material={materials.fretboard} position={[0.06, 0.02, 0]} rotation={[0, Math.PI / 2, 0]}>
             <ringGeometry args={[0.028, 0.04, 24]} />
           </mesh>
@@ -303,7 +272,7 @@ function StudioMicrophone({
   );
 }
 
-// ================= 5. GUITAR AMPLIFIER & SPEAKER CABINET STACK =================
+// ================= 5. GUITAR AMPLIFIER STACK =================
 function AmplifierStack({
   groupRef,
   materials,
@@ -312,21 +281,17 @@ function AmplifierStack({
   materials: Record<string, THREE.Material>;
 }) {
   return (
-    <group ref={groupRef} position={[-0.98, 0.22, -0.42]} rotation={[0.05, 0.85, 0]} scale={0.88}>
-      {/* Lower Speaker Cabinet (4x12) */}
+    <group ref={groupRef} position={[-1.05, 0.22, -0.38]} rotation={[0.05, 0.85, 0]} scale={0.85}>
       <group position={[0, 0.18, 0]}>
         <mesh material={materials.synthChassis}>
           <boxGeometry args={[0.36, 0.36, 0.28]} />
         </mesh>
-        {/* Woven Speaker Grille Cloth with illuminated badge */}
         <mesh material={materials.fretboard} position={[0, 0, 0.142]}>
           <planeGeometry args={[0.32, 0.32]} />
         </mesh>
-        {/* Glowing Cyber Center Amp Emblem */}
         <mesh material={materials.cyanNeon} position={[0, 0.04, 0.144]}>
           <circleGeometry args={[0.035, 16]} />
         </mesh>
-        {/* Corner Protectors */}
         {[-0.17, 0.17].map((x, i) =>
           [-0.17, 0.17].map((y, j) => (
             <mesh key={`${i}-${j}`} material={materials.chrome} position={[x, y, 0.14]}>
@@ -335,23 +300,18 @@ function AmplifierStack({
           ))
         )}
       </group>
-
-      {/* Top Amplifier Head */}
       <group position={[0, 0.44, 0]}>
         <mesh material={materials.synthChassis}>
           <boxGeometry args={[0.34, 0.14, 0.26]} />
         </mesh>
-        {/* Control Faceplate with Knobs */}
         <mesh material={materials.fretboard} position={[0, 0, 0.132]}>
           <planeGeometry args={[0.30, 0.10]} />
         </mesh>
-        {/* Control Knobs */}
         {[-0.10, -0.05, 0, 0.05, 0.10].map((x, idx) => (
           <mesh key={idx} material={materials.goldCymbal} position={[x, 0, 0.136]} rotation={[Math.PI / 2, 0, 0]}>
             <cylinderGeometry args={[0.008, 0.008, 0.008, 12]} />
           </mesh>
         ))}
-        {/* Amber Vacuum Tube Heat Glow Indicator */}
         <mesh material={materials.lilacScreen} position={[0.12, 0.02, 0.136]}>
           <circleGeometry args={[0.008, 12]} />
         </mesh>
@@ -369,13 +329,10 @@ function DJMixerConsole({
   materials: Record<string, THREE.Material>;
 }) {
   return (
-    <group ref={groupRef} position={[0.22, 0.24, 0.92]} rotation={[0.15, -0.45, 0.08]} scale={0.88}>
-      {/* Matte Black Console Chassis */}
+    <group ref={groupRef} position={[0.12, 0.24, 0.95]} rotation={[0.15, -0.45, 0.08]} scale={0.85}>
       <mesh material={materials.synthChassis} position={[0, 0.02, 0]}>
         <boxGeometry args={[0.38, 0.04, 0.26]} />
       </mesh>
-
-      {/* Rotating Turntable Jog Platter */}
       <group position={[-0.09, 0.045, 0]}>
         <mesh material={materials.chrome}>
           <cylinderGeometry args={[0.085, 0.085, 0.012, 28]} />
@@ -384,8 +341,6 @@ function DJMixerConsole({
           <torusGeometry args={[0.065, 0.004, 8, 28]} />
         </mesh>
       </group>
-
-      {/* 4 Channel Fader Slots & Sliders */}
       {[-0.01, 0.03, 0.07, 0.11].map((x, i) => (
         <group key={i} position={[x, 0.042, 0.02]}>
           <mesh material={materials.blackKey}>
@@ -396,14 +351,161 @@ function DJMixerConsole({
           </mesh>
         </group>
       ))}
-
-      {/* Dual Segmented LED VU Meter Strips */}
       <mesh material={materials.cyanNeon} position={[0.15, 0.042, 0.02]}>
         <boxGeometry args={[0.006, 0.004, 0.07]} />
       </mesh>
       <mesh material={materials.lilacNeon} position={[0.165, 0.042, 0.02]}>
         <boxGeometry args={[0.006, 0.004, 0.07]} />
       </mesh>
+    </group>
+  );
+}
+
+// ================= 7. POLISHED BRASS SAXOPHONE =================
+function BrassSaxophone({
+  groupRef,
+  materials,
+}: {
+  groupRef: RefObject<THREE.Group | null>;
+  materials: Record<string, THREE.Material>;
+}) {
+  return (
+    <group ref={groupRef} position={[0.55, 0.28, 0.15]} rotation={[0.2, -0.4, 0.25]} scale={0.88}>
+      {/* Curved Saxophone Bell & Bow */}
+      <mesh material={materials.goldBrass} position={[0, 0.15, 0]} rotation={[0, 0, 0.1]}>
+        <cylinderGeometry args={[0.08, 0.04, 0.34, 20]} />
+      </mesh>
+      {/* Flared Bell Rim with Illuminated Neon Accent */}
+      <mesh material={materials.goldBrass} position={[0.018, 0.32, 0]}>
+        <cylinderGeometry args={[0.12, 0.08, 0.05, 20]} />
+      </mesh>
+      <mesh material={materials.cyanNeon} position={[0.018, 0.346, 0]} rotation={[Math.PI / 2, 0, 0]}>
+        <torusGeometry args={[0.118, 0.006, 8, 20]} />
+      </mesh>
+      {/* Lower U-Bow Curve */}
+      <mesh material={materials.goldBrass} position={[-0.05, -0.03, 0]} rotation={[0, 0, Math.PI / 2]}>
+        <torusGeometry args={[0.065, 0.035, 12, 20, Math.PI]} />
+      </mesh>
+      {/* Main Body Tube */}
+      <mesh material={materials.goldBrass} position={[-0.11, 0.20, 0]}>
+        <cylinderGeometry args={[0.036, 0.042, 0.45, 16]} />
+      </mesh>
+      {/* 4 Tone Key Cups & Rods */}
+      {[0.08, 0.16, 0.24, 0.32].map((y, i) => (
+        <mesh key={i} material={materials.chrome} position={[-0.145, y, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <cylinderGeometry args={[0.012, 0.012, 0.008, 12]} />
+        </mesh>
+      ))}
+      {/* Curved Neck & Mouthpiece */}
+      <group position={[-0.11, 0.43, 0]} rotation={[0, 0, -0.4]}>
+        <mesh material={materials.goldBrass}>
+          <cylinderGeometry args={[0.022, 0.032, 0.12, 12]} />
+        </mesh>
+        <mesh material={materials.blackKey} position={[0, 0.08, 0]}>
+          <coneGeometry args={[0.02, 0.05, 12]} />
+        </mesh>
+      </group>
+    </group>
+  );
+}
+
+// ================= 8. DUAL STUDIO REFERENCE MONITORS ON STANDS =================
+function StudioMonitors({
+  groupRef,
+  materials,
+}: {
+  groupRef: RefObject<THREE.Group | null>;
+  materials: Record<string, THREE.Material>;
+}) {
+  return (
+    <group ref={groupRef} name="studio-monitors">
+      {/* Left Monitor Speaker on Stand */}
+      <group position={[-1.25, 0.28, 0.15]} rotation={[0.05, 0.75, 0]} scale={0.85}>
+        <mesh material={materials.synthChassis} position={[0, 0.02, 0]}>
+          <cylinderGeometry args={[0.11, 0.13, 0.03, 16]} />
+        </mesh>
+        <mesh material={materials.chrome} position={[0, 0.22, 0]}>
+          <cylinderGeometry args={[0.014, 0.014, 0.42, 12]} />
+        </mesh>
+        <group position={[0, 0.52, 0]}>
+          <mesh material={materials.synthChassis}>
+            <boxGeometry args={[0.22, 0.32, 0.22]} />
+          </mesh>
+          <mesh material={materials.kevlarWoofer} position={[0, -0.04, 0.112]}>
+            <circleGeometry args={[0.065, 24]} />
+          </mesh>
+          <mesh material={materials.blackKey} position={[0, 0.08, 0.112]}>
+            <circleGeometry args={[0.028, 16]} />
+          </mesh>
+          <mesh material={materials.cyanNeon} position={[0, -0.12, 0.112]}>
+            <circleGeometry args={[0.005, 8]} />
+          </mesh>
+        </group>
+      </group>
+
+      {/* Right Monitor Speaker on Stand */}
+      <group position={[1.25, 0.28, 0.15]} rotation={[0.05, -0.75, 0]} scale={0.85}>
+        <mesh material={materials.synthChassis} position={[0, 0.02, 0]}>
+          <cylinderGeometry args={[0.11, 0.13, 0.03, 16]} />
+        </mesh>
+        <mesh material={materials.chrome} position={[0, 0.22, 0]}>
+          <cylinderGeometry args={[0.014, 0.014, 0.42, 12]} />
+        </mesh>
+        <group position={[0, 0.52, 0]}>
+          <mesh material={materials.synthChassis}>
+            <boxGeometry args={[0.22, 0.32, 0.22]} />
+          </mesh>
+          <mesh material={materials.kevlarWoofer} position={[0, -0.04, 0.112]}>
+            <circleGeometry args={[0.065, 24]} />
+          </mesh>
+          <mesh material={materials.blackKey} position={[0, 0.08, 0.112]}>
+            <circleGeometry args={[0.028, 16]} />
+          </mesh>
+          <mesh material={materials.lilacNeon} position={[0, -0.12, 0.112]}>
+            <circleGeometry args={[0.005, 8]} />
+          </mesh>
+        </group>
+      </group>
+    </group>
+  );
+}
+
+// ================= 9. DEVELOPER WORKSTATION / LIVE TERMINAL LAPTOP =================
+function DeveloperTerminalLaptop({
+  groupRef,
+  materials,
+}: {
+  groupRef: RefObject<THREE.Group | null>;
+  materials: Record<string, THREE.Material>;
+}) {
+  return (
+    <group ref={groupRef} position={[-0.22, 0.26, 0.96]} rotation={[0.12, 0.35, -0.04]} scale={0.88}>
+      {/* Aluminum Stand Riser */}
+      <mesh material={materials.chrome} position={[0, 0.025, 0]}>
+        <boxGeometry args={[0.26, 0.02, 0.18]} />
+      </mesh>
+      {/* Laptop Keyboard Base */}
+      <mesh material={materials.laptopChassis} position={[0, 0.045, 0]}>
+        <boxGeometry args={[0.30, 0.012, 0.20]} />
+      </mesh>
+      {/* Trackpad & Backlit Keyboard */}
+      <mesh material={materials.fretboard} position={[0, 0.052, -0.02]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[0.26, 0.11]} />
+      </mesh>
+      <mesh material={materials.chrome} position={[0, 0.052, 0.06]} rotation={[-Math.PI / 2, 0, 0]}>
+        <planeGeometry args={[0.10, 0.05]} />
+      </mesh>
+
+      {/* Angled Laptop Display Lid with Glowing Code */}
+      <group position={[0, 0.052, -0.10]} rotation={[-0.42, 0, 0]}>
+        <mesh material={materials.laptopChassis} position={[0, 0.10, 0]}>
+          <boxGeometry args={[0.30, 0.19, 0.008]} />
+        </mesh>
+        {/* Glowing Terminal Screen */}
+        <mesh material={materials.terminalScreen} position={[0, 0.10, 0.005]}>
+          <planeGeometry args={[0.28, 0.17]} />
+        </mesh>
+      </group>
     </group>
   );
 }
@@ -417,6 +519,9 @@ export function StageInstruments({ scrollRef, reducedMotion = false }: StageInst
   const micGroupRef = useRef<THREE.Group>(null);
   const ampGroupRef = useRef<THREE.Group>(null);
   const djGroupRef = useRef<THREE.Group>(null);
+  const saxGroupRef = useRef<THREE.Group>(null);
+  const monitorsGroupRef = useRef<THREE.Group>(null);
+  const laptopGroupRef = useRef<THREE.Group>(null);
 
   const materials = useMemo(() => {
     return {
@@ -426,6 +531,16 @@ export function StageInstruments({ scrollRef, reducedMotion = false }: StageInst
         roughness: 0.20,
         emissive: '#1a103c',
         emissiveIntensity: 0.35,
+      }),
+      laptopChassis: new THREE.MeshStandardMaterial({
+        color: '#E2E8F0',
+        metalness: 0.95,
+        roughness: 0.12,
+      }),
+      terminalScreen: new THREE.MeshStandardMaterial({
+        color: '#030712',
+        emissive: '#06B6D4',
+        emissiveIntensity: 2.2,
       }),
       whiteKey: new THREE.MeshStandardMaterial({
         color: '#EDEDF2',
@@ -459,6 +574,20 @@ export function StageInstruments({ scrollRef, reducedMotion = false }: StageInst
         roughness: 0.1,
         emissive: '#D97706',
         emissiveIntensity: 0.35,
+      }),
+      goldBrass: new THREE.MeshStandardMaterial({
+        color: '#FBBF24',
+        metalness: 0.96,
+        roughness: 0.08,
+        emissive: '#B45309',
+        emissiveIntensity: 0.3,
+      }),
+      kevlarWoofer: new THREE.MeshStandardMaterial({
+        color: '#EAB308',
+        metalness: 0.6,
+        roughness: 0.35,
+        emissive: '#A16207',
+        emissiveIntensity: 0.2,
       }),
       guitarBody: new THREE.MeshStandardMaterial({
         color: '#151726',
@@ -507,21 +636,19 @@ export function StageInstruments({ scrollRef, reducedMotion = false }: StageInst
     const progress = !reducedMotion && scrollRef?.current ? scrollRef.current.current : 0;
     const time = clock.getElapsedTime();
 
-    // 1. Synthesizer Keyboard: lifts upward and tilts into separate orbital tier on scroll
+    // 1. Synthesizer Keyboard
     if (keyboardGroupRef.current) {
       keyboardGroupRef.current.position.y = 0.24 + progress * 1.35 + (reducedMotion ? 0 : Math.sin(time * 1.4) * 0.02);
       keyboardGroupRef.current.position.x = -0.85 - progress * 0.65;
       keyboardGroupRef.current.position.z = 0.55 + progress * 0.45;
       keyboardGroupRef.current.rotation.y = 0.75 + progress * 0.45;
-      keyboardGroupRef.current.rotation.x = 0.1 + progress * 0.25;
     }
 
-    // 2. Drum Set: separates into exploded schematic tiers
+    // 2. Drum Set
     if (drumsGroupRef.current) {
       drumsGroupRef.current.position.y = 0.26 + progress * 1.65 + (reducedMotion ? 0 : Math.sin(time * 1.6 + 1) * 0.02);
       drumsGroupRef.current.position.x = 0.88 + progress * 0.75;
       drumsGroupRef.current.position.z = -0.45 - progress * 0.45;
-      drumsGroupRef.current.rotation.y = -0.85 - progress * 0.35;
     }
     if (cymbalGroupRef.current) {
       cymbalGroupRef.current.position.y = progress * 0.65;
@@ -530,37 +657,52 @@ export function StageInstruments({ scrollRef, reducedMotion = false }: StageInst
       }
     }
 
-    // 3. Electric Guitar: levitates dynamically into upper tier
+    // 3. Electric Guitar
     if (guitarGroupRef.current) {
       guitarGroupRef.current.position.y = 0.30 + progress * 1.95 + (reducedMotion ? 0 : Math.sin(time * 1.8 + 2) * 0.03);
-      guitarGroupRef.current.position.x = 0.55 + progress * 0.65;
-      guitarGroupRef.current.position.z = 0.85 + progress * 0.65;
-      guitarGroupRef.current.rotation.z = 0.38 + progress * 0.55 + (reducedMotion ? 0 : Math.sin(time * 1.2) * 0.04);
-      guitarGroupRef.current.rotation.y = 0.45 + progress * 0.35;
+      guitarGroupRef.current.position.x = 0.65 + progress * 0.65;
+      guitarGroupRef.current.position.z = 0.72 + progress * 0.65;
     }
 
-    // 4. Studio Boom Microphone: lifts into upper forward quadrant
+    // 4. Studio Boom Microphone
     if (micGroupRef.current) {
       micGroupRef.current.position.y = 0.22 + progress * 1.85 + (reducedMotion ? 0 : Math.sin(time * 1.5 + 3) * 0.02);
-      micGroupRef.current.position.x = -0.42 - progress * 0.55;
-      micGroupRef.current.position.z = 0.95 + progress * 0.55;
-      micGroupRef.current.rotation.y = 0.65 + progress * 0.45;
+      micGroupRef.current.position.x = -0.52 - progress * 0.55;
+      micGroupRef.current.position.z = 0.88 + progress * 0.55;
     }
 
-    // 5. Amplifier Stack: splits and drops slightly back into foundation tier
+    // 5. Amplifier Stack
     if (ampGroupRef.current) {
       ampGroupRef.current.position.y = 0.22 + progress * 1.15 + (reducedMotion ? 0 : Math.sin(time * 1.1) * 0.02);
-      ampGroupRef.current.position.x = -0.98 - progress * 0.75;
-      ampGroupRef.current.position.z = -0.42 - progress * 0.55;
-      ampGroupRef.current.rotation.y = 0.85 + progress * 0.3;
+      ampGroupRef.current.position.x = -1.05 - progress * 0.75;
+      ampGroupRef.current.position.z = -0.38 - progress * 0.55;
     }
 
-    // 6. DJ Mixer Console: floats forward with dynamic tilt
+    // 6. DJ Mixer Console
     if (djGroupRef.current) {
       djGroupRef.current.position.y = 0.24 + progress * 1.55 + (reducedMotion ? 0 : Math.sin(time * 1.7 + 4) * 0.02);
-      djGroupRef.current.position.x = 0.22 + progress * 0.45;
-      djGroupRef.current.position.z = 0.92 + progress * 0.65;
-      djGroupRef.current.rotation.y = -0.45 - progress * 0.35;
+      djGroupRef.current.position.x = 0.12 + progress * 0.45;
+      djGroupRef.current.position.z = 0.95 + progress * 0.65;
+    }
+
+    // 7. Brass Saxophone
+    if (saxGroupRef.current) {
+      saxGroupRef.current.position.y = 0.28 + progress * 1.75 + (reducedMotion ? 0 : Math.sin(time * 1.3 + 5) * 0.025);
+      saxGroupRef.current.position.x = 0.55 + progress * 0.55;
+      saxGroupRef.current.position.z = 0.15 + progress * 0.45;
+      saxGroupRef.current.rotation.z = 0.25 + progress * 0.35;
+    }
+
+    // 8. Studio Monitors
+    if (monitorsGroupRef.current) {
+      monitorsGroupRef.current.position.y = progress * 1.15;
+    }
+
+    // 9. Developer Terminal Laptop
+    if (laptopGroupRef.current) {
+      laptopGroupRef.current.position.y = 0.26 + progress * 1.65 + (reducedMotion ? 0 : Math.sin(time * 1.6 + 6) * 0.02);
+      laptopGroupRef.current.position.x = -0.22 - progress * 0.45;
+      laptopGroupRef.current.position.z = 0.96 + progress * 0.65;
     }
   });
 
@@ -572,6 +714,9 @@ export function StageInstruments({ scrollRef, reducedMotion = false }: StageInst
       <StudioMicrophone groupRef={micGroupRef} materials={materials} />
       <AmplifierStack groupRef={ampGroupRef} materials={materials} />
       <DJMixerConsole groupRef={djGroupRef} materials={materials} />
+      <BrassSaxophone groupRef={saxGroupRef} materials={materials} />
+      <StudioMonitors groupRef={monitorsGroupRef} materials={materials} />
+      <DeveloperTerminalLaptop groupRef={laptopGroupRef} materials={materials} />
     </group>
   );
 }
