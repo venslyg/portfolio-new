@@ -117,7 +117,7 @@ export function HarmonicStage({ reducedMotion = false }: HarmonicStageProps) {
   });
 
   return (
-    <group ref={stageGroupRef} position={[0, -0.2, 0]} rotation={[0.42, 0.25, -0.08]}>
+    <group ref={stageGroupRef} position={[0, 0, 0]} rotation={[0.42, 0.25, -0.08]} scale={0.72}>
       {/* ================= PRIMARY CIRCULAR STAGE BASE ================= */}
       {/* 1. Lower chassis disc */}
       <mesh material={materials.darkChassis} position={[0, -0.12, 0]}>

@@ -9,6 +9,7 @@ type ProjectSliderProps = {
 };
 
 export function ProjectSlider({ projects }: ProjectSliderProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -47,6 +48,29 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
     return () => el.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
+  // Translate vertical wheel scrolls over the carousel/controls into horizontal slider movement
+  useEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
+
+    const onWheel = (e: WheelEvent) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        const atStart = track.scrollLeft <= 5;
+        const atEnd = track.scrollLeft >= track.scrollWidth - track.clientWidth - 5;
+
+        // If scrolling forward and not at end, or backward and not at start
+        if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
+          e.preventDefault();
+          track.scrollBy({ left: e.deltaY, behavior: 'auto' });
+        }
+      }
+    };
+
+    container.addEventListener('wheel', onWheel, { passive: false });
+    return () => container.removeEventListener('wheel', onWheel);
+  }, []);
+
   function scroll(direction: 'left' | 'right') {
     const el = trackRef.current;
     if (!el) return;
@@ -80,6 +104,7 @@ export function ProjectSlider({ projects }: ProjectSliderProps) {
 
   return (
     <div
+      ref={containerRef}
       className="relative w-full"
       role="region"
       aria-roledescription="carousel"

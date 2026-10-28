@@ -36,7 +36,7 @@ export function HarmonicStageScene({ reducedMotion = false, className = '' }: Ha
   return (
     <div className={`relative h-full w-full ${className}`}>
       <Canvas
-        camera={{ position: [0.8, 1.8, 5.6], fov: 42 }}
+        camera={{ position: [0, 2.3, 6.6], fov: 38 }}
         dpr={[1, 1.75]}
         gl={{
           antialias: true,

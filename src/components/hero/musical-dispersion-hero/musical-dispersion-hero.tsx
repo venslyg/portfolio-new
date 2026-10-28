@@ -160,10 +160,7 @@ export function MusicalDispersionHero() {
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4">
-              <Button href="#work">
-                View work <span aria-hidden="true">↗</span>
-              </Button>
-              <Button href="#contact" variant="secondary">
+              <Button href="#contact">
                 Let’s talk
               </Button>
               <ViewCvButton variant="hero" />

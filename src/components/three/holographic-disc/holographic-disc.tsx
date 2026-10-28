@@ -15,7 +15,7 @@ function VinylMesh() {
   });
 
   return (
-    <group ref={groupRef} rotation={[0.4, 0, 0]}>
+    <group ref={groupRef} rotation={[0.4, 0, 0]} scale={0.58}>
       {/* Vinyl Disc Body */}
       <mesh>
         <cylinderGeometry args={[1.5, 1.5, 0.06, 48]} />
@@ -69,9 +69,9 @@ function VinylMesh() {
 
 export function HolographicDisc() {
   return (
-    <div className="relative mx-auto h-28 w-28 sm:h-36 sm:w-36 pointer-events-none" aria-hidden="true">
+    <div className="relative mx-auto h-32 w-32 sm:h-40 sm:w-40 pointer-events-none" aria-hidden="true">
       <Canvas
-        camera={{ position: [0, 1.5, 3.2], fov: 40 }}
+        camera={{ position: [0, 1.8, 4.2], fov: 36 }}
         dpr={[1, 1.5]}
         gl={{ alpha: true, antialias: true, powerPreference: 'low-power' }}
       >

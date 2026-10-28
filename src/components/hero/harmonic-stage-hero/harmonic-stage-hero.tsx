@@ -81,12 +81,9 @@ export function HarmonicStageHero() {
               resilient software. Music brings acoustic harmony to the way I engineer digital systems.
             </p>
 
-            {/* CTAs with View work, Let's talk, and View CV */}
+            {/* CTAs with Let's talk and View CV */}
             <div className="mt-6 flex flex-wrap items-center gap-3 sm:mt-8 sm:gap-4">
-              <Button href="#work">
-                View work <span aria-hidden="true">↗</span>
-              </Button>
-              <Button href="#contact" variant="secondary">
+              <Button href="#contact">
                 Let’s talk
               </Button>
               <ViewCvButton variant="hero" />
