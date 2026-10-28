@@ -1,10 +1,12 @@
 'use client';
 
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, type RefObject } from 'react';
 import * as THREE from 'three';
+import type { StageScrollState } from '@/hooks/use-stage-scroll/use-stage-scroll';
 
 interface MusicParticlesProps {
+  scrollRef?: RefObject<StageScrollState>;
   reducedMotion?: boolean;
 }
 
@@ -14,7 +16,7 @@ function pseudoRandom(seed: number) {
   return x - Math.floor(x);
 }
 
-export function MusicParticles({ reducedMotion = false }: MusicParticlesProps) {
+export function MusicParticles({ scrollRef, reducedMotion = false }: MusicParticlesProps) {
   const pointsRef = useRef<THREE.Points>(null);
 
   // 48 subtle harmonic frequency particles around the stage and core
@@ -56,17 +58,28 @@ export function MusicParticles({ reducedMotion = false }: MusicParticlesProps) {
   }, []);
 
   useFrame(({ clock }) => {
-    if (reducedMotion || !pointsRef.current) return;
+    if (!pointsRef.current) return;
 
+    const progress = !reducedMotion && scrollRef?.current ? scrollRef.current.current : 0;
     const time = clock.getElapsedTime();
     const posAttr = pointsRef.current.geometry.attributes.position as THREE.BufferAttribute;
     const array = posAttr.array as Float32Array;
 
     for (let i = 0; i < 48; i++) {
       const idx = i * 3;
-      // Gentle harmonic oscillation
-      array[idx + 1] = initialPositions[idx + 1] + Math.sin(time * 2.2 + i * 0.7) * 0.05;
-      array[idx] = initialPositions[idx] + Math.cos(time * 0.8 + i) * 0.02;
+      const radialExpansion = 1 + progress * 0.48;
+
+      // Vertical elevation into the atmosphere + harmonic oscillation
+      array[idx + 1] =
+        initialPositions[idx + 1] +
+        progress * 1.05 +
+        (reducedMotion ? 0 : Math.sin(time * 2.2 + i * 0.7) * 0.05);
+
+      array[idx] =
+        initialPositions[idx] * radialExpansion +
+        (reducedMotion ? 0 : Math.cos(time * 0.8 + i) * 0.02);
+
+      array[idx + 2] = initialPositions[idx + 2] * radialExpansion;
     }
 
     posAttr.needsUpdate = true;

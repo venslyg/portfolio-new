@@ -1,16 +1,22 @@
 'use client';
 
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, type RefObject } from 'react';
 import * as THREE from 'three';
+import type { StageScrollState } from '@/hooks/use-stage-scroll/use-stage-scroll';
 
 interface StageRingsProps {
+  scrollRef?: RefObject<StageScrollState>;
   reducedMotion?: boolean;
 }
 
-export function StageRings({ reducedMotion = false }: StageRingsProps) {
+export function StageRings({ scrollRef, reducedMotion = false }: StageRingsProps) {
   const outerRingRef = useRef<THREE.Group>(null);
   const innerRingRef = useRef<THREE.Group>(null);
+  const ringARef = useRef<THREE.Mesh>(null);
+  const ringBRef = useRef<THREE.Mesh>(null);
+  const ringCRef = useRef<THREE.Mesh>(null);
+  const consoleGroupRef = useRef<THREE.Group>(null);
 
   const materials = useMemo(() => {
     return {
@@ -38,13 +44,49 @@ export function StageRings({ reducedMotion = false }: StageRingsProps) {
   }, []);
 
   useFrame((_, delta) => {
-    if (reducedMotion) return;
+    const progress = !reducedMotion && scrollRef?.current ? scrollRef.current.current : 0;
 
-    if (outerRingRef.current) {
-      outerRingRef.current.rotation.z += delta * 0.22;
+    // 1. Ring A: Inner Lilac Channel elevation & scale expansion
+    if (ringARef.current) {
+      ringARef.current.position.y = 0.12 + progress * 0.36;
+      const s = 1 + progress * 0.08;
+      ringARef.current.scale.set(s, s, s);
     }
+
+    // 2. Ring B: Middle Cyan Laser Track separation
+    if (ringBRef.current) {
+      ringBRef.current.position.y = 0.095 + progress * 0.18;
+    }
+
+    // 3. Ring C: Outer Neon Rim expansion
+    if (ringCRef.current) {
+      ringCRef.current.position.y = 0.02 - progress * 0.04;
+      const s = 1 + progress * 0.12;
+      ringCRef.current.scale.set(s, s, s);
+    }
+
+    // 4. Ring D: Holographic Gyro Halo elevation, dynamic tilt & spin acceleration
+    if (outerRingRef.current) {
+      outerRingRef.current.position.y = 0.2 + progress * 0.65;
+      outerRingRef.current.rotation.x = Math.PI / 2.2 + progress * 0.22;
+      if (!reducedMotion) {
+        outerRingRef.current.rotation.z += delta * (0.22 + progress * 0.4);
+      }
+    }
+
+    // 5. Ring E: Counter-Rotating Wave Strip separation
     if (innerRingRef.current) {
-      innerRingRef.current.rotation.z -= delta * 0.35;
+      innerRingRef.current.position.y = 0.16 + progress * 0.48;
+      if (!reducedMotion) {
+        innerRingRef.current.rotation.z -= delta * (0.35 + progress * 0.45);
+      }
+    }
+
+    // 6. Console Segments radial expansion
+    if (consoleGroupRef.current) {
+      consoleGroupRef.current.position.y = 0.095 + progress * 0.14;
+      const s = 1 + progress * 0.18;
+      consoleGroupRef.current.scale.set(s, s, s);
     }
   });
 
@@ -52,6 +94,7 @@ export function StageRings({ reducedMotion = false }: StageRingsProps) {
     <group name="stage-rings">
       {/* Ring A: Inner Lilac Energy Channel */}
       <mesh
+        ref={ringARef}
         material={materials.purpleEmissive}
         position={[0, 0.12, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -61,6 +104,7 @@ export function StageRings({ reducedMotion = false }: StageRingsProps) {
 
       {/* Ring B: Middle Cyan Laser Track */}
       <mesh
+        ref={ringBRef}
         material={materials.cyanEmissive}
         position={[0, 0.095, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -70,6 +114,7 @@ export function StageRings({ reducedMotion = false }: StageRingsProps) {
 
       {/* Ring C: Outer Perimeter Neon Rim */}
       <mesh
+        ref={ringCRef}
         material={materials.purpleEmissive}
         position={[0, 0.02, 0]}
         rotation={[-Math.PI / 2, 0, 0]}
@@ -102,19 +147,21 @@ export function StageRings({ reducedMotion = false }: StageRingsProps) {
       </group>
 
       {/* ================= RADIAL CONSOLE SEGMENTS / STROKES ================= */}
-      {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => {
-        const rad = (deg * Math.PI) / 180;
-        return (
-          <mesh
-            key={deg}
-            material={deg % 90 === 0 ? materials.cyanEmissive : materials.purpleEmissive}
-            position={[Math.cos(rad) * 1.58, 0.095, Math.sin(rad) * 1.58]}
-            rotation={[0, -rad, 0]}
-          >
-            <boxGeometry args={[0.26, 0.008, 0.02]} />
-          </mesh>
-        );
-      })}
+      <group ref={consoleGroupRef}>
+        {[0, 45, 90, 135, 180, 225, 270, 315].map(deg => {
+          const rad = (deg * Math.PI) / 180;
+          return (
+            <mesh
+              key={deg}
+              material={deg % 90 === 0 ? materials.cyanEmissive : materials.purpleEmissive}
+              position={[Math.cos(rad) * 1.58, 0.095, Math.sin(rad) * 1.58]}
+              rotation={[0, -rad, 0]}
+            >
+              <boxGeometry args={[0.26, 0.008, 0.02]} />
+            </mesh>
+          );
+        })}
+      </group>
     </group>
   );
 }

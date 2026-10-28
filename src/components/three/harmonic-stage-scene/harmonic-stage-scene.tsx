@@ -4,6 +4,8 @@ import { Canvas } from '@react-three/fiber';
 import { Suspense, useSyncExternalStore } from 'react';
 import { HarmonicStage } from '@/components/three/harmonic-stage/harmonic-stage';
 import { StageLighting } from '@/components/three/stage-lighting/stage-lighting';
+import { CameraController } from '@/components/three/camera-controller/camera-controller';
+import { useStageScroll } from '@/hooks/use-stage-scroll/use-stage-scroll';
 
 interface HarmonicStageSceneProps {
   reducedMotion?: boolean;
@@ -25,6 +27,7 @@ function subscribeNoop() {
 
 export function HarmonicStageScene({ reducedMotion = false, className = '' }: HarmonicStageSceneProps) {
   const hasWebGL = useSyncExternalStore(subscribeNoop, checkWebGLSupport, () => true);
+  const scrollRef = useStageScroll();
 
   if (!hasWebGL) {
     return (
@@ -46,10 +49,11 @@ export function HarmonicStageScene({ reducedMotion = false, className = '' }: Ha
         }}
         className="pointer-events-none"
       >
+        <CameraController scrollRef={scrollRef} reducedMotion={reducedMotion} />
         <StageLighting />
 
         <Suspense fallback={null}>
-          <HarmonicStage reducedMotion={reducedMotion} />
+          <HarmonicStage scrollRef={scrollRef} reducedMotion={reducedMotion} />
         </Suspense>
       </Canvas>
     </div>

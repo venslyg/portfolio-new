@@ -1,14 +1,16 @@
 'use client';
 
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, type RefObject } from 'react';
 import * as THREE from 'three';
+import type { StageScrollState } from '@/hooks/use-stage-scroll/use-stage-scroll';
 
 interface HarmonicCoreProps {
+  scrollRef?: RefObject<StageScrollState>;
   reducedMotion?: boolean;
 }
 
-export function HarmonicCore({ reducedMotion = false }: HarmonicCoreProps) {
+export function HarmonicCore({ scrollRef, reducedMotion = false }: HarmonicCoreProps) {
   const coreGroupRef = useRef<THREE.Group>(null);
   const orbRef = useRef<THREE.Mesh>(null);
   const cageRef = useRef<THREE.Mesh>(null);
@@ -96,65 +98,86 @@ export function HarmonicCore({ reducedMotion = false }: HarmonicCoreProps) {
   }, []);
 
   useFrame(({ clock }, delta) => {
-    if (reducedMotion) return;
-
+    const progress = !reducedMotion && scrollRef?.current ? scrollRef.current.current : 0;
     const time = clock.getElapsedTime();
 
-    // 1. Core group subtle levitation
+    // 1. Core group vertical elevation on scroll + ambient levitation
     if (coreGroupRef.current) {
-      coreGroupRef.current.position.y = 0.68 + Math.sin(time * 1.6) * 0.04;
+      const ambientBob = reducedMotion ? 0 : Math.sin(time * 1.6) * 0.04;
+      coreGroupRef.current.position.y = 0.68 + progress * 0.52 + ambientBob;
     }
 
-    // 2. Inner orb pulsing & counter-rotation
+    // 2. Inner orb pulsing, expansion & counter-rotation
     if (orbRef.current) {
-      orbRef.current.rotation.y += delta * 0.5;
-      const pulse = 1 + Math.sin(time * 3.2) * 0.08;
-      orbRef.current.scale.set(pulse, pulse, pulse);
+      if (!reducedMotion) {
+        orbRef.current.rotation.y += delta * 0.5;
+      }
+      const pulse = 1 + (reducedMotion ? 0 : Math.sin(time * 3.2) * 0.08);
+      const orbScale = pulse * (1 + progress * 0.22);
+      orbRef.current.scale.set(orbScale, orbScale, orbScale);
     }
 
-    // 3. Cage gyroscopic rotation
+    // 3. Cage gyroscopic rotation & expansion
     if (cageRef.current) {
-      cageRef.current.rotation.x += delta * 0.6;
-      cageRef.current.rotation.y -= delta * 0.4;
-      cageRef.current.rotation.z += delta * 0.3;
+      if (!reducedMotion) {
+        cageRef.current.rotation.x += delta * 0.6;
+        cageRef.current.rotation.y -= delta * 0.4;
+        cageRef.current.rotation.z += delta * 0.3;
+      }
+      const cageScale = 1 + progress * 0.3;
+      cageRef.current.scale.set(cageScale, cageScale, cageScale);
     }
 
-    // 4. Waveform EQ bars live audio bounce
+    // 4. Waveform EQ bars: live audio bounce + radial dispersion on scroll
     if (waveformGroupRef.current) {
-      waveformGroupRef.current.rotation.y -= delta * 0.2;
+      if (!reducedMotion) {
+        waveformGroupRef.current.rotation.y -= delta * 0.2;
+      }
+      const radialScale = 1 + progress * 0.42;
+      waveformGroupRef.current.scale.set(radialScale, 1 + progress * 0.2, radialScale);
+      waveformGroupRef.current.position.y = -0.32 - progress * 0.12;
+
       waveformGroupRef.current.children.forEach((child, idx) => {
         const bar = waveformBars[idx];
         if (bar) {
-          const dynamicHeight = 0.06 + Math.abs(Math.sin(time * 3.4 + bar.freqOffset)) * 0.28;
+          const bounce = reducedMotion ? bar.baseHeight : 0.06 + Math.abs(Math.sin(time * 3.4 + bar.freqOffset)) * 0.28;
+          const dynamicHeight = bounce * (1 + progress * 0.4);
           child.scale.y = dynamicHeight / 0.1;
           child.position.y = dynamicHeight / 2;
         }
       });
     }
 
-    // 5. Staff ribbons slow rotation
+    // 5. Staff ribbons: slow rotation & vertical acoustic iris expansion
     if (staffRibbonRef.current) {
-      staffRibbonRef.current.rotation.y += delta * 0.25;
-      staffRibbonRef.current.rotation.z = Math.sin(time * 0.8) * 0.15;
+      if (!reducedMotion) {
+        staffRibbonRef.current.rotation.y += delta * 0.25;
+        staffRibbonRef.current.rotation.z = Math.sin(time * 0.8) * 0.15;
+      }
+      const ribbonScale = 1 + progress * 0.38;
+      staffRibbonRef.current.scale.set(ribbonScale, 1 + progress * 0.6, ribbonScale);
+      staffRibbonRef.current.position.y = progress * 0.15;
     }
 
-    // 6. Musical notes orbital motion and bobbing
+    // 6. Musical notes: orbital drift, bobbing, and outward dispersal
     if (notesGroupRef.current) {
       notesGroupRef.current.children.forEach((child, idx) => {
         const note = musicalNotes[idx];
         if (note) {
-          const currentAngle = note.angle + time * 0.35;
-          child.position.x = Math.cos(currentAngle) * note.radius;
-          child.position.z = Math.sin(currentAngle) * note.radius;
-          child.position.y = note.y + Math.sin(time * 2.2 + idx * 1.5) * 0.08;
+          const currentAngle = note.angle + (reducedMotion ? 0 : time * 0.35);
+          const currentRadius = note.radius * (1 + progress * 0.58);
+          child.position.x = Math.cos(currentAngle) * currentRadius;
+          child.position.z = Math.sin(currentAngle) * currentRadius;
+          child.position.y = note.y + progress * 0.48 + (reducedMotion ? 0 : Math.sin(time * 2.2 + idx * 1.5) * 0.08);
           child.rotation.y = -currentAngle + Math.PI / 2;
         }
       });
     }
 
-    // 7. Core light intensity pulse
+    // 7. Core light intensity pulse & amplification on scroll
     if (coreLightRef.current) {
-      coreLightRef.current.intensity = 2.4 + Math.sin(time * 2.8) * 0.8;
+      const pulse = reducedMotion ? 2.8 : 2.4 + Math.sin(time * 2.8) * 0.8;
+      coreLightRef.current.intensity = pulse + progress * 2.5;
     }
   });
 

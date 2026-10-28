@@ -1,10 +1,12 @@
 'use client';
 
 import { useFrame } from '@react-three/fiber';
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, type RefObject } from 'react';
 import * as THREE from 'three';
+import type { StageScrollState } from '@/hooks/use-stage-scroll/use-stage-scroll';
 
 interface CodeElementsProps {
+  scrollRef?: RefObject<StageScrollState>;
   reducedMotion?: boolean;
 }
 
@@ -128,29 +130,17 @@ function TagChevron({ color = '#67E8F9' }: { color?: string }) {
   );
 }
 
-export function CodeElements({ reducedMotion = false }: CodeElementsProps) {
+export function CodeElements({ scrollRef, reducedMotion = false }: CodeElementsProps) {
   const glyphsGroupRef = useRef<THREE.Group>(null);
   const hudPanelsGroupRef = useRef<THREE.Group>(null);
+  const hudPanel1Ref = useRef<THREE.Group>(null);
+  const hudPanel2Ref = useRef<THREE.Group>(null);
+  const hudMatRef = useRef<THREE.MeshStandardMaterial>(null);
+  const hudWireRef = useRef<THREE.MeshStandardMaterial>(null);
   const satellitesRef = useRef<THREE.Group>(null);
 
   const materials = useMemo(() => {
     return {
-      hudPanel: new THREE.MeshStandardMaterial({
-        color: '#0e1424',
-        metalness: 0.9,
-        roughness: 0.3,
-        transparent: true,
-        opacity: 0.45,
-        wireframe: false,
-      }),
-      hudWireframe: new THREE.MeshStandardMaterial({
-        color: '#67E8F9',
-        wireframe: true,
-        transparent: true,
-        opacity: 0.5,
-        emissive: '#06B6D4',
-        emissiveIntensity: 0.8,
-      }),
       codeLineCyan: new THREE.MeshStandardMaterial({
         color: '#67E8F9',
         emissive: '#67E8F9',
@@ -200,40 +190,54 @@ export function CodeElements({ reducedMotion = false }: CodeElementsProps) {
   );
 
   useFrame(({ clock }, delta) => {
-    if (reducedMotion) return;
-
+    const progress = !reducedMotion && scrollRef?.current ? scrollRef.current.current : 0;
     const time = clock.getElapsedTime();
 
-    // 1. Glyphs orbital drift and vertical floating
+    // 1. Glyphs orbital drift, vertical floating, and outward radial expansion on scroll
     if (glyphsGroupRef.current) {
       glyphsGroupRef.current.children.forEach((child, idx) => {
         const cfg = glyphConfigs[idx];
         if (cfg) {
-          const currentAngle = cfg.angle + time * cfg.speed;
-          child.position.x = Math.cos(currentAngle) * cfg.radius;
-          child.position.z = Math.sin(currentAngle) * cfg.radius;
-          child.position.y = cfg.y + Math.sin(time * 1.8 + idx * 1.2) * 0.05;
+          const currentAngle = cfg.angle + (reducedMotion ? 0 : time * cfg.speed);
+          const currentRadius = cfg.radius * (1 + progress * 0.52);
+          child.position.x = Math.cos(currentAngle) * currentRadius;
+          child.position.z = Math.sin(currentAngle) * currentRadius;
+          child.position.y = cfg.y + progress * 0.42 + (reducedMotion ? 0 : Math.sin(time * 1.8 + idx * 1.2) * 0.05);
           child.rotation.y = -currentAngle + Math.PI / 2;
         }
       });
     }
 
-    // 2. HUD panels subtle sway
-    if (hudPanelsGroupRef.current) {
-      hudPanelsGroupRef.current.rotation.y = Math.sin(time * 0.4) * 0.08;
+    // 2. HUD panels glide outward with graceful opacity fade on deep scroll via refs
+    if (hudPanel1Ref.current) {
+      hudPanel1Ref.current.position.x = 1.35 + progress * 0.55;
+      hudPanel1Ref.current.position.y = 0.45 + progress * 0.22;
+    }
+    if (hudPanel2Ref.current) {
+      hudPanel2Ref.current.position.x = -1.38 - progress * 0.55;
+      hudPanel2Ref.current.position.y = 0.52 + progress * 0.22;
+    }
+    if (hudMatRef.current) {
+      hudMatRef.current.opacity = Math.max(0.08, 0.45 * (1 - progress * 0.8));
+    }
+    if (hudWireRef.current) {
+      hudWireRef.current.opacity = Math.max(0.1, 0.5 * (1 - progress * 0.8));
     }
 
-    // 3. Geometric Satellites orbital motion
+    // 3. Geometric Satellites orbital motion & expansion
     if (satellitesRef.current) {
       satellitesRef.current.children.forEach((child, idx) => {
         const item = satelliteConfigs[idx];
         if (item) {
-          const currentAngle = item.angle + time * item.speed;
-          child.position.x = Math.cos(currentAngle) * item.radius;
-          child.position.z = Math.sin(currentAngle) * item.radius;
-          child.position.y = item.y + Math.sin(time * 2 + idx) * 0.06;
-          child.rotation.x += delta * 1.2;
-          child.rotation.y += delta * 1.5;
+          const currentAngle = item.angle + (reducedMotion ? 0 : time * item.speed);
+          const currentRadius = item.radius * (1 + progress * 0.45);
+          child.position.x = Math.cos(currentAngle) * currentRadius;
+          child.position.z = Math.sin(currentAngle) * currentRadius;
+          child.position.y = item.y + progress * 0.35 + (reducedMotion ? 0 : Math.sin(time * 2 + idx) * 0.06);
+          if (!reducedMotion) {
+            child.rotation.x += delta * 1.2;
+            child.rotation.y += delta * 1.5;
+          }
         }
       });
     }
@@ -259,12 +263,29 @@ export function CodeElements({ reducedMotion = false }: CodeElementsProps) {
       {/* ================= HOLOGRAPHIC HUD CODE PANELS ================= */}
       <group ref={hudPanelsGroupRef}>
         {/* Panel 1: Code Syntax Snippet HUD */}
-        <group position={[1.35, 0.45, -0.6]} rotation={[-0.1, -0.6, 0.05]}>
-          <mesh material={materials.hudPanel}>
+        <group ref={hudPanel1Ref} position={[1.35, 0.45, -0.6]} rotation={[-0.1, -0.6, 0.05]}>
+          <mesh>
             <planeGeometry args={[0.55, 0.32]} />
+            <meshStandardMaterial
+              ref={hudMatRef}
+              color="#0e1424"
+              metalness={0.9}
+              roughness={0.3}
+              transparent
+              opacity={0.45}
+            />
           </mesh>
-          <mesh material={materials.hudWireframe} position={[0, 0, 0.002]}>
+          <mesh position={[0, 0, 0.002]}>
             <planeGeometry args={[0.55, 0.32]} />
+            <meshStandardMaterial
+              ref={hudWireRef}
+              color="#67E8F9"
+              wireframe
+              transparent
+              opacity={0.5}
+              emissive="#06B6D4"
+              emissiveIntensity={0.8}
+            />
           </mesh>
           {/* Simulated Code Lines */}
           {[-0.08, -0.02, 0.04, 0.1].map((y, i) => (
@@ -279,12 +300,27 @@ export function CodeElements({ reducedMotion = false }: CodeElementsProps) {
         </group>
 
         {/* Panel 2: Audio/Frequency Telemetry HUD */}
-        <group position={[-1.38, 0.52, -0.45]} rotation={[-0.08, 0.55, -0.04]}>
-          <mesh material={materials.hudPanel}>
+        <group ref={hudPanel2Ref} position={[-1.38, 0.52, -0.45]} rotation={[-0.08, 0.55, -0.04]}>
+          <mesh>
             <planeGeometry args={[0.5, 0.28]} />
+            <meshStandardMaterial
+              color="#0e1424"
+              metalness={0.9}
+              roughness={0.3}
+              transparent
+              opacity={0.45}
+            />
           </mesh>
-          <mesh material={materials.hudWireframe} position={[0, 0, 0.002]}>
+          <mesh position={[0, 0, 0.002]}>
             <planeGeometry args={[0.5, 0.28]} />
+            <meshStandardMaterial
+              color="#67E8F9"
+              wireframe
+              transparent
+              opacity={0.5}
+              emissive="#06B6D4"
+              emissiveIntensity={0.8}
+            />
           </mesh>
           {/* Waveform Telemetry Stroke */}
           {[-0.14, -0.07, 0, 0.07, 0.14].map((x, i) => (
