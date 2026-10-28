@@ -3,6 +3,7 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useSyncExternalStore } from 'react';
 import { HarmonicStage } from '@/components/three/harmonic-stage/harmonic-stage';
+import { StageLighting } from '@/components/three/stage-lighting/stage-lighting';
 
 interface HarmonicStageSceneProps {
   reducedMotion?: boolean;
@@ -45,19 +46,7 @@ export function HarmonicStageScene({ reducedMotion = false, className = '' }: Ha
         }}
         className="pointer-events-none"
       >
-        <ambientLight intensity={1.0} color="#151726" />
-
-        {/* Studio White Key Light */}
-        <directionalLight position={[4, 7, 5]} intensity={2.4} color="#FFFFFF" />
-
-        {/* Electric Lilac Fill Light */}
-        <directionalLight position={[-4, 3, 2]} intensity={2.8} color="#A78BFA" />
-
-        {/* Cyan Rim & Under-Glow Light */}
-        <directionalLight position={[2, -3, 3]} intensity={2.5} color="#67E8F9" />
-
-        {/* Specular Glint Center Point */}
-        <pointLight position={[0, 2, 4]} intensity={1.8} color="#FFFFFF" />
+        <StageLighting />
 
         <Suspense fallback={null}>
           <HarmonicStage reducedMotion={reducedMotion} />
