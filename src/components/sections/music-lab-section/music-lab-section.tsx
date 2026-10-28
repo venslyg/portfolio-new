@@ -1,7 +1,7 @@
 import { Section } from '@/components/layout/section/section';
 import { SectionHeading } from '@/components/ui/section-heading/section-heading';
 import { Button } from '@/components/ui/button/button';
-import { InterstitialKnot } from '@/components/three/interstitial-knot/interstitial-knot';
+import { AcousticWaveform } from '@/components/three/acoustic-waveform/acoustic-waveform';
 
 export function MusicLabSection() {
   return (
@@ -24,7 +24,7 @@ export function MusicLabSection() {
           </div>
         </div>
         <div className="relative rounded-3xl border border-white/[0.12] bg-white/[0.04] p-6 sm:p-8 backdrop-blur-2xl shadow-[0_16px_40px_0_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.12)] overflow-hidden flex flex-col items-center text-center hover:border-accent/40 transition-all duration-300">
-          <InterstitialKnot />
+          <AcousticWaveform />
           <h3 className="text-xl font-medium text-foreground">Listen. Understand. Build.</h3>
           <p className="mt-3 leading-relaxed text-muted text-sm max-w-sm">
             Pitch, patterns, and practical acoustic software: digital signal processing engineered for live performance.

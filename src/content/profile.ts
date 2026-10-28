@@ -10,7 +10,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/gvbenaya/',
 } as const;
 
-export const technologies = ['Angular', 'Spring Boot', 'Flutter', 'React', 'PostgreSQL'];
+export const technologies = ['Spring Boot', 'Angular', 'Flutter', 'Go', 'React', 'PostgreSQL', 'TypeScript'];
 
 export const experience = [
   {

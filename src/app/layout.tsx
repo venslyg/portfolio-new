@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://vensly.dev'),
   title: {
-    default: 'VENSLY. — Engineering ideas in rhythm',
+    default: 'VENSLY Portfolio',
     template: '%s | VENSLY.',
   },
   description:
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: '/',
-    siteName: 'VENSLY. — Portfolio',
-    title: 'VENSLY. — Engineering ideas in rhythm',
+    siteName: 'Vensly Portfolio',
+    title: 'Vensly Portfolio',
     description:
       "Full-stack software engineer crafting thoughtful web applications, cross-platform mobile tools, and creative music experiments.",
   },
